@@ -1,6 +1,28 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import SplashScreen from './glazed&confused';
+import '../styles/globals.css';
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+interface AppProps {
+  Component: React.ComponentType;
+  pageProps: Record<string, unknown>;
 }
+
+const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+  const router = useRouter();
+  const showSplashScreen = router.asPath === '/glazed&confused';
+
+  useEffect(() => {
+    if (!showSplashScreen) {
+      router.prefetch('/glazed&confused');
+    }
+  }, [router, showSplashScreen]);
+
+  if (showSplashScreen) {
+    return <SplashScreen />;
+  }
+
+  return <Component {...pageProps} />;
+};
+
+export default MyApp;
