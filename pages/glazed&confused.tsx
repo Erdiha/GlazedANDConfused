@@ -22,8 +22,8 @@ const SplashScreen: React.FC = () => {
       controls.start({ x: '-100%' });
       setTimeout(() => {
         router.push('/home');
-      }, 500); // Delay the navigation after the door animation finishes
-    }, 2000); // Adjust the timeout duration as needed
+      }, 100); // Delay the navigation after the door animation finishes
+    }, 100); // Adjust the timeout duration as needed
 
     return () => clearTimeout(timeout);
   }, [controls, router]);
@@ -40,12 +40,8 @@ const SplashScreen: React.FC = () => {
   // }, []);
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen bg-blue-300 text-white w-screen p-10 overflow-hidden'>
+    <div className='flex flex-col items-center justify-center h-screen bg-blue-300 text-white w-screen p-10 overflow-hidden '>
       <motion.div
-        style={{
-          transform: `rotate(${rotation}deg)`,
-          animationDuration: '2s',
-        }}
         initial={{ y: -500 }}
         animate={{ y: 0 }}
         transition={{ type: 'spring', damping: 10, stiffness: 70 }}>
@@ -57,7 +53,7 @@ const SplashScreen: React.FC = () => {
         />
       </motion.div>
       <section className='flex flex-row items-center justify-center'>
-        <p className='mt-4 text-4xl font-semibold text-slate-600'>
+        <div className='mt-4 text-4xl font-semibold text-slate-600 justify-evenly space-x-3'>
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1.5 }}
@@ -103,7 +99,7 @@ const SplashScreen: React.FC = () => {
                 isAnimating ? 'bg-pink-400' : 'bg-gray-500'
               } h-4 w-4 rounded-full`}></div>
           </motion.span>
-        </p>
+        </div>
       </section>
     </div>
   );

@@ -2,7 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-.root,
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root,
 #root,
 #docs-root {
   --primary-red: '#FF6B6B';
@@ -11,59 +16,216 @@
   --primary-green: '#6BCB77';
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-html,
-body {
-  max-width: 100vw;
-
-  overflow-x: hidden;
-}
-
-body {
-  color: rgb(var(--primary-blue));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 a {
   color: inherit;
   text-decoration: none;
 }
+
 @keyframes glazed-animation {
   0% {
     transform: translateY(-100%);
     opacity: 0;
   }
-  50% {
-    transform: translateY(-50%);
-    opacity: 0.5;
-  }
+
   100% {
     transform: translateY(0%);
     opacity: 1;
   }
 }
+
+@keyframes pulsate {
+  0% {
+    transform: translateY(10px) rotate(0deg) scale(2);
+  }
+  50% {
+    transform: translateY(-40px) rotateX(60deg) scale(1);
+  }
+  100% {
+    transform: translateY(10px) rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes pulsateMobile {
+  0% {
+    transform: translateY(-10px) rotate(0deg) scale(2);
+  }
+  50% {
+    transform: translateY(40px) rotateX(60deg) scale(1);
+  }
+  100% {
+    transform: translateY(-10px) rotateX(0deg) scale(1);
+  }
+}
+
+.active {
+  color: red;
+  background-color: white;
+  animation: pulsate 1s 1 ease-in-out;
+  border: 2px darkblue solid;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px #000;
+  padding: 3px;
+  transition: all 2s;
+}
+
+.contactHeaderText {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.homeText {
+  font-family: 'Henny Penny', cursive;
+  letter-spacing: 1px;
+}
+
+/* .glazed-confused styles */
 .glazed-confused {
-  position: relative;
+  position: absolute;
   width: 100%;
   display: flex;
+  height: 10vh;
 }
 
 .glazed-confused span {
   display: inline-block;
-  animation: glazed-animation 0.8s ease-in-out both;
-  animation-delay: calc(var(--delay) * 0.1s);
+  animation: glazed-animation 1s ease-in-out both;
+  animation-delay: calc(var(--delay) * 0.2s);
   opacity: 0;
-  transform: translateY(-100%);
+  transform: translateY(-300%);
   font-size: 20px;
   font-weight: bold;
+}
+
+/* Background Video */
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-video__content {
+  display: flex;
+}
+
+/* Image Container */
+.imgContainer {
+  -webkit-mask-image: linear-gradient(
+    to top,
+    #454545 50%,
+    rgba(0, 0, 0, 0.5) 70%
+  );
+  mask-image: linear-gradient(to top, rgb(0, 0, 0) 50%, #454545 70%);
+}
+
+.shining-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shining-button {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--button-bg-color, #75c2f6);
+  color: white;
+  border: none; /* Remove the border property from here */
+  border-radius: 10px;
+  padding: 15px 40px;
+  z-index: 100;
+}
+
+.shining-button:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(20, 199, 231, 0.5) 0%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  animation: ripple-animation 20.5s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1;
+  border-radius: 10px; /* Add border-radius to match the button */
+}
+
+.shining-button:hover:before {
+  opacity: -1; /* Show the ripple effect on hover */
+}
+
+@keyframes ripple-animation {
+  from {
+    transform: translateY(-100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+
+/* Image Container */
+.bottomGradient {
+  -webkit-mask-image: linear-gradient(
+    to top,
+    /* Change "to bottom" to "to top" */ #454545 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  mask-image: linear-gradient(
+    to top,
+    /* Change "to top" to "to bottom" */ rgb(0, 0, 0) 0%,
+    #454545 100%
+  );
+}
+
+.truck {
+ 
+  background-image: url('../public/donut_photos/NYC.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+
+  /* Add blur effect */
+  
+
+  /* Add gradient overlay */
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.6), /* Lighter white */
+      rgba(0, 0, 0, 0.2) /* Darker black */
+    );
+    z-index: -1;
+  }
+  
+
+  /* Add saturation adjustment */
+  @media (min-width: 768px) {
+    filter:  invert(0.004) grayscale(0.2) sepia(0.5); /* Adjust the value as needed */
+   
+  }
 }
