@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Autocomplete, TextField } from '@mui/material';
-import DatePicker from 'react-datepicker';
+import { useEffect, useRef, useState } from 'react';
 import { Input, Textarea, Button, Text, Tooltip } from '@nextui-org/react';
 import 'react-datepicker/dist/react-datepicker.css';
-import { styled } from '@mui/system';
-import { keyframes } from '@emotion/react';
-import Navbar from '../components/Navbar/Navbar';
+
+import { motion } from 'framer-motion';
+import { DatePicker, Space } from 'antd';
 interface AddressProps {
   address_line1: string;
   address_line2: string;
@@ -25,10 +23,12 @@ const ContactForm = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
-  const size = 'xl';
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     if (typeof window !== undefined) {
       window.innerWidth < 768 && setIsMobile(true);
+      // window.scrollTo(0, document.body.scrollHeight);
     }
   }, []);
   const inputPlaceHolder = [
@@ -52,7 +52,7 @@ const ContactForm = () => {
     eventDescription: '',
   });
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
-
+  const size = isMobile ? 'sm' : 'xl';
   const suggestionItems = suggestions?.map((suggestion, index) => (
     <Text
       onClick={() => handleSelection(suggestion.label)}
@@ -63,10 +63,14 @@ const ContactForm = () => {
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: '10px 10px',
-        borderBottom: '1px solid #ccc',
+        padding: '20px',
+
         cursor: 'pointer',
-        '&:hover': { backgroundColor: 'SeaShell', transform: 'scale(0.98)' },
+        backgroundColor: '$accents2',
+        '&:hover': {
+          backgroundColor: 'SeaShell',
+          transform: 'scale(0.98)',
+        },
       }}>
       {suggestion.label}
     </Text>
@@ -153,17 +157,36 @@ const ContactForm = () => {
   };
 
   return (
-    <div className='flex flex-col  h-screen w-screen  relative md:justify-center md:items-center  bg-blue-300/50'>
-      <div className='w-full flex fixed bottom-0 md:top-0 z-[9999] '>
-        <Navbar />
-      </div>
-      <form
-        className='max-w-5xl md:max-h-[90%]  z-[9999] mx-auto flex md:justify-evenly  h-full shadow-md md:font-semibold  px-6 bg-blue-450 flex-col pt-[5%] gap-4'
+    <div
+      ref={wrapperRef}
+      className='flex flex-col w-full min-h-screen  relative md:justify-center md:items-center  bg-black/10 truck'>
+      <motion.form
+        initial={{ x: -100 + '%' }}
+        whileInView={{ x: 0 }}
+        viewport={{ once: true }}
+        transition={{ ease: 'easeInOut', duration: 1 }}
+        className='md:max-w-[60rem] px-5 md:px-10 gap-1 pb-10  z-50  flex md:justify-between  md:h-[90%] shadow-lg md:font-semibold  flex-col  bg-[#FF52A2]'
         onSubmit={handleSubmit}>
-        <p className='text-md font-bold italic uppercase contactHeaderText text-start px-1 flex text-black/70 md:text-xl'>
-          Hi! Let us know how we can help and we’ll respond within 24 hours.
+        <p className='text-md  justify-center items-center font-bold italic uppercase contactHeaderText text-center  flex text-slate-900/70 md:text-[1.75rem] break-words max-w-[100%] pt-20 md:pt-10'>
+          PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
+          WITHIN 24 HOURS WITH A PRICE QUOTE.
         </p>
-        <div className='flex flex-col bg-black/10 backdrop-blur-xl md:gap-14 gap-10 py-8 border-[1px] border-gray-100 p-4 relative rounded-lg'>
+        <hr className='w-full text-center self-center ' />
+        <p className='md:text-[1.2rem] text-center text-gray-900 italic'>
+          If you call to receive to a quote, you will be directed to this
+          website.
+        </p>
+
+        <p className='md:text-[1.2rem] text-center text-gray-900 italic'>
+          The quickest way to get a quote is by filling out the form on this
+          page.
+        </p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ ease: 'easeInOut', duration: 1, delay: 0.5 }}
+          className='flex flex-col border-t-4 border-gray-300 justify-evenly backdrop-blur-xl md:gap-12 gap-5 relative py-6 md:py-16'>
           <div className='flex  justify-between items-center gap-4  '>
             <Input
               type='date'
@@ -273,20 +296,23 @@ const ContactForm = () => {
             shadow={true}
             size={size}
           />
-        </div>
+        </motion.div>
         <Button
           type='submit'
-          size='lg'
+          size='xl'
           style={{
             letterSpacing: '1.5px',
-            backgroundColor: '#FF52A2',
-            fontSize: '20px',
+            fontSize: '30px',
             fontWeight: 'bold',
+            width: 'fit-content',
+            alignSelf: 'end',
+            borderRadius: 10,
+            backgroundColor: ' rgb(100 181 246)',
           }}
-          className='btn w-full'>
+          className='btn shadow-lg font-bold text-xl'>
           SUBMIT
         </Button>
-      </form>
+      </motion.form>
     </div>
   );
 };

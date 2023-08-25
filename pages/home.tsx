@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
-import LandingPage from './LandingPage';
+import LandingPage from '../components/LandingPage';
 import Button from '@mui/material/Button';
 import router, { useRouter } from 'next/router';
-import Navbar from '@/components/Navbar/Navbar';
+import Link from 'next/link';
+import Footer from '@/components/Footer';
+import NeumorphicButton from '@/components/NeumorphicButton';
 
-const HomePage: React.FC = () => {
+const HomePage: React.FC = ({ navHeight }: any) => {
   const [activeSection, setActiveSection] = useState<string>('');
   const controls = useAnimation();
   const controlImage = useAnimation();
@@ -32,45 +34,42 @@ const HomePage: React.FC = () => {
 
   const freshMiniDonuts = ['Fresh', 'made-to-order', 'mini donuts'];
 
-  const handleRoute = () => {
-    router.push('/contact');
-  };
+  // const handleRoute = () => {
+  //   router.push('/contact');
+  // };
   const arrayInArrayLetter = freshMiniDonuts.map((word, wordIndex) => (
-    <div key={wordIndex}>
+    <div className='m-2  md:inline-block whitespace-pre' key={wordIndex}>
       {word.split('').map((letter, index) => (
         <motion.span
           key={index}
-          className='homeText'
+          className='homeText text-3xl md:text-5xl text-[#ecf0f3]'
           style={{
-            display: 'inline-block',
             backfaceVisibility: 'hidden',
-            margin: '1px',
-            fontSize: '2.1rem',
-            color: 'white',
             fontSmooth: 'antialiased',
             fontWeight: 'bold',
+            width: 'full',
+            display: 'inline-block', // Adjust this breakpoint as needed
           }}
           initial={{ y: -1000 }}
           animate={controls}
           transition={{
             type: 'spring',
-            damping: 8,
-            stiffness: 100,
+            damping: 50,
+            stiffness: 600,
             delay: 0.05 * (wordIndex * index),
           }}>
-          {letter}
+          {letter === ' ' ? ` ` : letter}
         </motion.span>
       ))}
+      {/* <span style={{ whiteSpace: 'pre' }}>{'  '}</span>{' '} */}
     </div>
   ));
+
   return (
     <div
       ref={containerRef}
-      className='flex justify-center  items-start w-screen h-screen relative '>
-      <div className='w-full flex fixed bottom-0 md:top-0 z-[9999]'>
-        <Navbar />
-      </div>
-      <div className='flex flex-col md:items-center justify-between mb-[10%] h-[70%] mt-[10%] w-[80%] md:h-[70%] p-2 shadow-sm'>
+      className='flex flex-col justify-center  items-center w-screen min-h-screen relative '>
+      <div className='flex flex-col md:items-center justify-evenly  h-[100vh]  w-[100%]  p-2 shadow-sm pt-20'>
         <motion.div
           initial={{ y: -1000, rotate: 0 }}
           animate={controlImage}
@@ -94,29 +93,14 @@ const HomePage: React.FC = () => {
           animate={controls}
           initial={{ y: 500 }}
           transition={{ type: 'spring', damping: 5, stiffness: 70 }}
-          className='flex flex-col backdrop-blur-sm shadow-xl bg-gray-400/10 p-4 rounded-md md:w-[50%] justify-center items-center z-[9999]'>
-          <div>{arrayInArrayLetter}</div>
+          className='flex flex-col backdrop-blur-md  bg-[#ecf0f3]/20 p-4 md:p-16 rounded-md md:w-fit justify-center items-center z-[999] '>
+          <div className='bg-transparent  h-full w-full flex p-10  flex-col md:flex-row '>
+            {arrayInArrayLetter}
+          </div>
 
-          <Button
-            onClick={handleRoute}
-            size='large'
-            style={{
-              backgroundColor: '#FF52A2',
-              color: 'white',
-              borderRadius: '10px',
-              width: '300px',
-              height: '100px',
-              marginTop: '20px',
-              fontWeight: 'bold', // Use 'fontWeight' instead of 'font' for bold
-              fontSize: '25px', // Adjust the font size as needed
-              position: 'relative',
-              zIndex: 999,
-              padding: '3px',
-              backdropFilter: 'blur(20px)', // Frosted glass effect
-            }}
-            variant='text'>
+          <NeumorphicButton text='Book Our Truck' to='/contact'>
             BOOK OUR TRUCK
-          </Button>
+          </NeumorphicButton>
         </motion.div>
         <section
           id='features'

@@ -42,8 +42,8 @@ const SplashScreen: React.FC = () => {
   return (
     <div className='flex flex-col items-center justify-center h-screen bg-blue-300 text-white w-screen p-10 overflow-hidden '>
       <motion.div
-        initial={{ y: -500 }}
-        animate={{ y: 0 }}
+        initial={{ x: -500 }}
+        animate={{ x: 0 }}
         transition={{ type: 'spring', damping: 10, stiffness: 70 }}>
         <Image
           src='/homerdonut.png'

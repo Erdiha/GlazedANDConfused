@@ -14,10 +14,12 @@
   --primary-blue: '#4D96FF';
   --primary-yellow: '#FFD93D';
   --primary-green: '#6BCB77';
+  --carousel-border: 2px;
 }
 
 html,
 body {
+  font-size: large;
   overflow-x: hidden;
 }
 
@@ -129,6 +131,11 @@ a {
   );
   mask-image: linear-gradient(to top, rgb(0, 0, 0) 50%, #454545 70%);
 }
+.topToBottomGradient {
+  /* Using -webkit-mask-image for compatibility with older browsers */
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
 
 .shining-button-container {
   display: flex;
@@ -181,7 +188,6 @@ a {
   }
 }
 
-
 /* Image Container */
 .bottomGradient {
   -webkit-mask-image: linear-gradient(
@@ -197,35 +203,179 @@ a {
 }
 
 .truck {
- 
-  background-image: url('../public/donut_photos/NYC.jpg');
+  background-image: url('../public/truck\ photo\ 1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   font-family: Arial, sans-serif;
-
-  /* Add blur effect */
-  
-
-  /* Add gradient overlay */
   &:before {
     content: '';
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
+    min-height: 100%;
     background: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.6), /* Lighter white */
-      rgba(0, 0, 0, 0.2) /* Darker black */
+      rgba(255, 0, 230, 0.3),
+      /* Lighter white */ rgba(4, 0, 255, 0.1) /* Darker black */
     );
     z-index: -1;
   }
-  
 
   /* Add saturation adjustment */
   @media (min-width: 768px) {
-    filter:  invert(0.004) grayscale(0.2) sepia(0.5); /* Adjust the value as needed */
-   
+    filter: invert(0) sepia(0); /* Adjust the value as needed */
   }
 }
+#donut-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: Arial, sans-serif;
+  /* Add saturation adjustment */
+  @media (min-width: 768px) {
+    filter: invert(0) grayscale(0) sepia(0) brightness(1.3) saturate(1.6)
+      contrast(1.05); /* Adjust the value as needed */
+  }
+}
+.animated-pulse {
+  animation: pulseAnimation 3s infinite;
+  animation-delay: 1s; /* Delay the animation to create a stagger effect */
+}
+
+@keyframes pulseAnimation {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+@keyframes moveRandomly {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-3px, -3px);
+  }
+  50% {
+    transform: translate(3px, 3px);
+  }
+  75% {
+    transform: translate(-3px, 3px);
+  }
+}
+
+.activeNavItem {
+  animation: navItemAnimate 1s ease-in-out;
+  transform: translateY(0%) scale(1.1);
+  transition: all 1s ease;
+  font-weight: bold;
+  font-family: 'Henny Penny', cursive;
+  letter-spacing: 2px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom: 10px solid rgb(0, 128, 255);
+  z-index: 99999;
+  padding: 5px;
+  color: 'white' !important;
+  background-color: #ff52a2;
+  :hover {
+    border-bottom: hidden;
+  }
+}
+
+.passiveNavItem {
+  :hover {
+    border-bottom: solid 2px white;
+  }
+}
+
+@keyframes navItemAnimate {
+  0% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0%) scale(1.1);
+    opacity: 1;
+  }
+}
+.borderStyleCarousel {
+  border-right: #7eaa92 solid var(--carousel-border);
+  border-left: #9ed2be solid var(--carousel-border);
+  border-top: #7eaa92 solid var(--carousel-border);
+  border-bottom: #9ed2be solid var(--carousel-border);
+  padding: 10px;
+  border-radius: 10px;
+}
+.donutsText {
+  border: rgba(65, 117, 5, 1) solid var(--carousel-border);
+  border-radius: 10px;
+  padding: 16px;
+  width: 'full';
+  height: 'full';
+  flex: 1;
+  letter-spacing: 1.3px;
+  font-weight: 400;
+  text-shadow:
+    -1px -1px 1px #fff,
+    2px 2px 5px #d1d9e6;
+
+  font-size: 1.5rem /* 24px */;
+  line-height: 2rem /* 32px */;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.neuButton {
+  width: fit-content;
+  text-transform: uppercase;
+  font-family: 'Henny Penny', cursive;
+  background: #ff52a2;
+  border: none;
+  cursor: pointer;
+  padding: 30px;
+  border-radius: 10px;
+  font-size: 32px;
+  font-weight: 900;
+  color: #d1d9e6;
+  text-shadow: 2px 2px 5px #ff6b6b;
+  transition: all 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+  .neuButton {
+    padding: 20px;
+    font-size: 20px;
+  }
+}
+
+.neuButton:focus {
+  outline: none;
+}
+.neuButton:hover {
+  transform: scale(1.05);
+
+  border: solid black 5px;
+}
+.gradientContainer {
+  mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+}
+/* ImageCarousel.module.css */

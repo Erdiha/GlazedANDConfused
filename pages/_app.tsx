@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import SplashScreen from './glazed&confused';
 import '../styles/globals.css';
-import Navbar from '../components/Navbar/Navbar';
-import { BrowserRouter as Router } from 'react-router-dom';
-import LandingPage from './LandingPage';
+import StickyNavbar from '../components/Navbar';
+import LandingPage from '../components/LandingPage';
+import Footer from '../components/Footer';
+import Link from 'next/link';
+import { ThemeProvider } from '@material-tailwind/react';
 
 interface AppProps {
   Component: React.ComponentType;
@@ -13,31 +15,32 @@ interface AppProps {
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
-  const showSplashScreen = router.asPath === '/glazed&confused';
+  const [showSplashScreen, setShowSplashScreen] = useState(true); // State to control splash screen
   const navRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (navRef.current) {
-      setIsMobile(navRef.current.clientWidth < 768);
-      navRef.current.classList.add('absolute');
-    }
+    // Hide splash screen after 2 seconds
+    const timer = setTimeout(() => {
+      setShowSplashScreen(false);
+    }, 2000);
+
+    // Clear the timer if the component unmounts
+    return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    if (!showSplashScreen) {
-      router.prefetch('/glazed&confused');
-    }
-  }, [router, showSplashScreen]);
-
-  if (showSplashScreen) {
-    return <SplashScreen />;
-  }
-
   return (
-    <div className='relative flex flex-grow h-screen bg-transparent'>
-      <Component {...pageProps} />
-    </div>
+    <ThemeProvider>
+      {showSplashScreen ? (
+        <SplashScreen />
+      ) : (
+        <div className='relative'>
+          <StickyNavbar />
+          <Component {...pageProps} />
+          <Footer />
+        </div>
+      )}
+    </ThemeProvider>
   );
 };
 

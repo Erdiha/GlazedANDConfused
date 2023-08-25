@@ -1,6 +1,12 @@
-module.exports = {
+const withMT = require('@material-tailwind/react/utils/withMT');
+
+module.exports = withMT({
   mode: 'jit',
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './pages/**/*.{js,jsx,ts,tsx}'],
+  purge: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    './pages/**/*.{js,jsx,ts,tsx}',
+    './components/**/*.{js,jsx,ts,tsx}',
+  ],
   darkMode: false,
   theme: {
     extend: {
@@ -24,4 +30,4 @@ module.exports = {
     extend: {},
   },
   plugins: [require('daisyui')],
-};
+});
