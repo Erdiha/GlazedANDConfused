@@ -11,6 +11,7 @@
 #root,
 #docs-root {
   --primary-red: '#FF6B6B';
+  --primary-pink: '#ff52a2';
   --primary-blue: '#4D96FF';
   --primary-yellow: '#FFD93D';
   --primary-green: '#6BCB77';
@@ -31,7 +32,7 @@ body {
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 @keyframes glazed-animation {
@@ -82,7 +83,6 @@ a {
 }
 
 .contactHeaderText {
-  font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0.5px;
 }
 
@@ -207,7 +207,7 @@ a {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: Arial, sans-serif;
+
   &:before {
     content: '';
     position: absolute;
@@ -232,7 +232,6 @@ a {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: Arial, sans-serif;
   /* Add saturation adjustment */
   @media (min-width: 768px) {
     filter: invert(0) grayscale(0) sepia(0) brightness(1.3) saturate(1.6)
@@ -275,14 +274,11 @@ a {
   animation: navItemAnimate 1s ease-in-out;
   transform: translateY(0%) scale(1.1);
   transition: all 1s ease;
-  font-weight: bold;
-  font-family: 'Henny Penny', cursive;
+  font-family: 'Henny Penny', cursive !important;
   letter-spacing: 2px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border-bottom: 10px solid rgb(0, 128, 255);
   z-index: 99999;
   padding: 5px;
+  box-shadow: 0px 0px 5px black;
   color: 'white' !important;
   background-color: #ff52a2;
   :hover {
@@ -292,7 +288,7 @@ a {
 
 .passiveNavItem {
   :hover {
-    border-bottom: solid 2px white;
+    border-bottom: solid 3px black;
   }
 }
 
@@ -379,3 +375,4 @@ a {
   );
 }
 /* ImageCarousel.module.css */
+/* Your CSS file */

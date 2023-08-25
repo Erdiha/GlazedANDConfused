@@ -18,7 +18,7 @@ interface IAddress {
   label: string;
 }
 
-const ContactForm = () => {
+const contact = () => {
   const [selectedItem, setSelectedItem] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -317,4 +317,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default contact;

@@ -6,3 +6,12 @@ export interface IImages {
     description: string;
   }[];
 }
+export interface Image {
+  src: string;
+  name: string;
+  desc: string;
+}
+
+export interface ImageCarouselProps {
+  images: Image[];
+}

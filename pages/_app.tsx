@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, Component } from 'react';
 import { useRouter } from 'next/router';
-import SplashScreen from './glazed&confused';
+import SplashScreen from '../components/splashScreen';
 import '../styles/globals.css';
-import StickyNavbar from '../components/Navbar';
-import LandingPage from '../components/LandingPage';
+import StickyNavbar from '../components/Nav';
 import Footer from '../components/Footer';
-import Link from 'next/link';
 import { ThemeProvider } from '@material-tailwind/react';
 
 interface AppProps {

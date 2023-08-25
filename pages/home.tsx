@@ -7,8 +7,9 @@ import router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import NeumorphicButton from '@/components/NeumorphicButton';
+import { AiOutlineForm } from 'react-icons/ai';
 
-const HomePage: React.FC = ({ navHeight }: any) => {
+const Home: React.FC = ({ navHeight }: any) => {
   const [activeSection, setActiveSection] = useState<string>('');
   const controls = useAnimation();
   const controlImage = useAnimation();
@@ -34,9 +35,6 @@ const HomePage: React.FC = ({ navHeight }: any) => {
 
   const freshMiniDonuts = ['Fresh', 'made-to-order', 'mini donuts'];
 
-  // const handleRoute = () => {
-  //   router.push('/contact');
-  // };
   const arrayInArrayLetter = freshMiniDonuts.map((word, wordIndex) => (
     <div className='m-2  md:inline-block whitespace-pre' key={wordIndex}>
       {word.split('').map((letter, index) => (
@@ -98,9 +96,11 @@ const HomePage: React.FC = ({ navHeight }: any) => {
             {arrayInArrayLetter}
           </div>
 
-          <NeumorphicButton text='Book Our Truck' to='/contact'>
-            BOOK OUR TRUCK
-          </NeumorphicButton>
+          <NeumorphicButton
+            text='Book Our Truck'
+            to='/contact'
+            icon={AiOutlineForm}
+          />
         </motion.div>
         <section
           id='features'
@@ -112,4 +112,4 @@ const HomePage: React.FC = ({ navHeight }: any) => {
   );
 };
 
-export default HomePage;
+export default Home;

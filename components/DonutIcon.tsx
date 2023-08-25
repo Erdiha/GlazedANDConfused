@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const GlazedAndConfused = () => {
+const DonutIcon = () => {
   const text = 'Glazed & Confused';
   const colors = [
     '#FF6B6B',
@@ -62,4 +62,4 @@ const GlazedAndConfused = () => {
   );
 };
 
-export default GlazedAndConfused;
+export default DonutIcon;
