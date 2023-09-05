@@ -1,63 +1,30 @@
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
+export const DonutIconDataUrl = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' stroke='black' stroke-width='3' fill='pink' /%3E%3C/svg%3E`;
 
 const DonutIcon = () => {
-  const text = 'Glazed & Confused';
-  const colors = [
-    '#FF6B6B',
-    '#4D96FF',
-    '#FFD93D',
-    '#FF6B6B',
-    '#555',
-    '#666',
-    '#4D96FF',
-    '#888',
-    '#FFD93D',
-  ]; // More nuanced shades of black, gray, and white
+  const router = useRouter();
+  const mbl = typeof window !== 'undefined' && window.innerWidth < 468;
 
   return (
-    <div className='flex justify-center items-center rounded-full  p-2 px-4 border-b-blue-400 border-b-[8px] '>
-      <img
-        content='cover'
-        width={80}
-        height={80}
-        src='/homerdonut.png'
-        alt=''
-      />
-      {/* <div className='flex flex-col items-center  md:space-x-2'>
-        {text.split(' ').map((word, wordIndex) => (
-          <div key={wordIndex} className='flex'>
-            {Array.from(word).map((char, charIndex) => (
-              <motion.p
-                key={charIndex}
-                initial={{
-                  opacity: 0,
-                  y: -25,
-                  scale: 0.5,
-                  color: 'white',
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  x: 2,
-                  rotate: Math.random() * 11 - 10,
-                  color: colors[Math.floor(Math.random() * colors.length)],
-                }}
-                transition={{
-                  duration: 0.6,
-                  delay: (wordIndex * word.length + charIndex) * 0.08,
-                  type: 'spring',
-                  damping: 10,
-                  stiffness: 100,
-                }}
-                style={{ fontFamily: 'Henny Penny, cursive' }}
-                className='md:text-xl text-md tracking-wider'>
-                {char}
-              </motion.p>
-            ))}
-          </div>
-        ))}
-      </div> */}
+    <div
+      onClick={() => router.push('/')}
+      className={`flex capitalize rounded-full px-2 aspect-square cursor-pointer bg-gray-300/90 shadow-2xl border-b-[4px] lg:border-b-[8px] border-b-pink-300 p-1 md:p-2 absolute left-0 transition ease-in-out duration-1000`}>
+      <div
+        className={`flex justify-center items-center rounded-full lg:p-2 lg:px-4 p-1 px-2 border-b-blue-400 lg:border-b-[8px] border-b-[4px] `}>
+        <AnimatePresence mode='wait'>
+          <Image
+            key={router.pathname}
+            content='cover'
+            width={mbl ? 50 : 75}
+            height={mbl ? 50 : 75}
+            src='/homerdonut.png'
+            alt='image'
+          />
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

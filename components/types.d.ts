@@ -6,7 +6,7 @@ export interface IImages {
     description: string;
   }[];
 }
-export interface Image {
+export interface ImageProps {
   src: string;
   name: string;
   desc: string;
@@ -14,4 +14,8 @@ export interface Image {
 
 export interface ImageCarouselProps {
   images: Image[];
+}
+
+export interface SharedContainerProps extends IImages {
+  whatComp: string;
 }

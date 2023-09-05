@@ -1,11 +1,16 @@
 import React from 'react';
-import { Card } from 'ui-neumorphism'
-function about() {
+import { Card } from 'ui-neumorphism';
+import { aboutUsCardInfo } from '@/components/data/texts';
+import SharedContainer from '@/components/SharedContainer';
+
+function About() {
   return (
-    <div className='w-full min-h-screen bg-red-400 p-36'> <Card minHeight='500' bordered>
-    
-  </Card></div>
+    <div className='flex flex-col w-full min-h-screen  relative md:justify-center md:items-center  bg-black/10 truck  '>
+      <div className='w-full h-full  backdrop-blur-sm flex  justify-center items-center md:text-2xl flex-wrap flex-col py-32'>
+        <SharedContainer images={aboutUsCardInfo} whatComp='aboutus' />
+      </div>
+    </div>
   );
 }
 
-export default about;
+export default About;

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Input, Textarea, Button, Text, Tooltip } from '@nextui-org/react';
 import 'react-datepicker/dist/react-datepicker.css';
+import { inputPlaceHolder } from '../components/data/texts';
 
 import { motion } from 'framer-motion';
 import { DatePicker, Space } from 'antd';
@@ -18,12 +19,13 @@ interface IAddress {
   label: string;
 }
 
-const contact = () => {
+const Contact = () => {
   const [selectedItem, setSelectedItem] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const size = isMobile ? 'sm' : 'xl';
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -31,16 +33,7 @@ const contact = () => {
       // window.scrollTo(0, document.body.scrollHeight);
     }
   }, []);
-  const inputPlaceHolder = [
-    'Name',
-    'Email',
-    'Address',
-    'Event Date',
-    'Event Time',
-    'Guest Count',
-    'How Did You Hear About Us?',
-    'Event Description',
-  ];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -52,7 +45,7 @@ const contact = () => {
     eventDescription: '',
   });
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
-  const size = isMobile ? 'sm' : 'xl';
+
   const suggestionItems = suggestions?.map((suggestion, index) => (
     <Text
       onClick={() => handleSelection(suggestion.label)}
@@ -64,7 +57,6 @@ const contact = () => {
         justifyContent: 'flex-start',
         alignItems: 'center',
         padding: '20px',
-
         cursor: 'pointer',
         backgroundColor: '$accents2',
         '&:hover': {
@@ -98,7 +90,7 @@ const contact = () => {
     };
 
     fetch(
-      `https://api.geoapify.com/v1/geocode/autocomplete?text=${value}&apiKey=15d397821f41484c83e9205ef20bef3b`,
+      `https://api.geoapify.com/v1/geocode/autocomplete?text=${value}&apiKey=${api}`,
       requestOptions,
     )
       .then((response) => response.json())
@@ -129,6 +121,7 @@ const contact = () => {
 
     console.log('suggestions', suggestions);
   };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     // Handle form submission (you can add backend integration here)
@@ -159,54 +152,58 @@ const contact = () => {
   return (
     <div
       ref={wrapperRef}
-      className='flex flex-col w-full min-h-screen  relative md:justify-center md:items-center  bg-black/10 truck'>
+      className='flex flex-col w-full min-h-screen  relative md:justify-center md:items-center px-2  bg-black/10 truck pt-24 pb-32 md:pb-0 md:pt-0'>
       <motion.form
         initial={{ x: -100 + '%' }}
         whileInView={{ x: 0 }}
         viewport={{ once: true }}
         transition={{ ease: 'easeInOut', duration: 1 }}
-        className='md:max-w-[60rem] px-5 md:px-10 gap-1 pb-10  z-50  flex md:justify-between  md:h-[90%] shadow-lg md:font-semibold  flex-col  bg-[#FF52A2]'
+        className='md:max-w-[60rem] px-3 md:px-10 gap-1 pb-3 md:pb-10 z-50 flex md:justify-between md:font-semibold flex-col  bg-[#FF52A2]/90 backdrop-blur-2xl shadow-4xl'
         onSubmit={handleSubmit}>
-        <p className='text-md  justify-center items-center font-bold italic uppercase contactHeaderText text-center  flex text-slate-900/70 md:text-[1.75rem] break-words max-w-[100%] pt-20 md:pt-10'>
+        <p className='text-[12px]  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-900/70 md:text-[1.75rem] break-words max-w-[100%] pt-3 md:pt-16 md:leading-9 md:p-4'>
           PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
           WITHIN 24 HOURS WITH A PRICE QUOTE.
         </p>
         <hr className='w-full text-center self-center ' />
-        <p className='md:text-[1.2rem] text-center text-gray-900 italic'>
+        <p className='md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[12px] md:p-4'>
           If you call to receive to a quote, you will be directed to this
-          website.
+          website. The quickest way to get a quote is by filling out the form on
+          this page.
         </p>
 
-        <p className='md:text-[1.2rem] text-center text-gray-900 italic'>
-          The quickest way to get a quote is by filling out the form on this
-          page.
-        </p>
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ ease: 'easeInOut', duration: 1, delay: 0.5 }}
-          className='flex flex-col border-t-4 border-gray-300 justify-evenly backdrop-blur-xl md:gap-12 gap-5 relative py-6 md:py-16'>
-          <div className='flex  justify-between items-center gap-4  '>
+          className='flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-6 relative md:py-8  pt-6 pb-3'>
+          <div className='flex  justify-between items-center gap-4 font-bold'>
             <Input
+              id='inputCustom'
               type='date'
-              value={formData.eventDate}
+              value={formData?.eventDate}
               onChange={(e: any) => handleChange(e)}
               name='eventDate'
               clearable
-              labelPlaceholder={`${isMobile ? inputPlaceHolder[3] : ''}`}
               required
               css={{ width: '100%' }}
               shadow={true}
               size={size}
+              style={{ fontWeight: 'bold' }}
+              label={isMobile ? undefined : inputPlaceHolder[3]}
+              labelPlaceholder={isMobile ? inputPlaceHolder[3] : undefined}
             />
+
             <Input
+              id='inputCustom'
               type='time'
               value={formData.eventTime}
               onChange={(e: any) => handleChange(e)}
               name='eventTime'
               clearable
-              labelPlaceholder={`${isMobile ? inputPlaceHolder[4] : ''}`}
+              style={{ fontWeight: 'bold' }}
+              label={isMobile ? undefined : inputPlaceHolder[4]}
+              labelPlaceholder={isMobile ? inputPlaceHolder[4] : undefined}
               required
               css={{ width: '100%' }}
               shadow={true}
@@ -214,7 +211,10 @@ const contact = () => {
             />
           </div>
           <Input
-            labelPlaceholder={inputPlaceHolder[0]}
+            style={{ fontWeight: 'bold' }}
+            id='inputCustom'
+            label={isMobile ? undefined : inputPlaceHolder[0]}
+            labelPlaceholder={isMobile ? inputPlaceHolder[0] : undefined}
             onChange={(e: any) => handleChange(e)}
             required
             name='name'
@@ -226,9 +226,12 @@ const contact = () => {
           />
 
           <Input
+            style={{ fontWeight: 'bold' }}
+            id='inputCustom'
             type='email'
             value={formData.email}
-            labelPlaceholder={inputPlaceHolder[1]}
+            label={isMobile ? undefined : inputPlaceHolder[1]}
+            labelPlaceholder={isMobile ? inputPlaceHolder[1] : undefined}
             onChange={(e: any) => handleChange(e)}
             required
             name='email'
@@ -244,11 +247,14 @@ const contact = () => {
                 className='flex-grow'
                 content={formData.address}>
                 <Input
+                  style={{ fontWeight: 'bold' }}
+                  id='inputCustom'
                   type='text'
                   name='address'
                   width='100%'
                   onChange={(e) => handleParams(e)}
-                  labelPlaceholder={inputPlaceHolder[2]}
+                  label={isMobile ? undefined : inputPlaceHolder[2]}
+                  labelPlaceholder={isMobile ? inputPlaceHolder[2] : undefined}
                   value={formData.address}
                   required
                   clearable
@@ -257,14 +263,16 @@ const contact = () => {
                 />
               </Tooltip>
               <Input
+                style={{ fontWeight: 'bold' }}
+                id='inputCustom'
                 value={formData.guestCount}
-                labelPlaceholder={inputPlaceHolder[5]}
+                label={isMobile ? undefined : inputPlaceHolder[5]}
+                labelPlaceholder={isMobile ? inputPlaceHolder[5] : undefined}
                 onChange={(e: any) => handleChange(e)}
-                placeholder='Guest Count'
                 required
                 name='guestCount'
                 clearable
-                css={{ display: 'flex-1' }}
+                css={{ display: 'flex-1', color: 'black', fontWeight: 'bold' }}
                 shadow={true}
                 size={size}
               />
@@ -278,8 +286,11 @@ const contact = () => {
           </div>
 
           <Input
+            style={{ fontWeight: 'bold' }}
+            id='inputCustom'
             value={formData.hearAboutUs}
-            labelPlaceholder={inputPlaceHolder[6]}
+            label={isMobile ? undefined : inputPlaceHolder[6]}
+            labelPlaceholder={isMobile ? inputPlaceHolder[6] : undefined}
             onChange={(e: any) => handleChange(e)}
             required
             clearable
@@ -288,28 +299,30 @@ const contact = () => {
             size={size}
           />
           <Textarea
-            labelPlaceholder={inputPlaceHolder[7]}
+            id='inputCustom'
+            label={isMobile ? undefined : inputPlaceHolder[7]}
+            labelPlaceholder={isMobile ? inputPlaceHolder[7] : undefined}
             value={formData.eventDescription}
             onChange={(e: any) => handleChange(e)}
             required
             name='eventDescription'
             shadow={true}
-            size={size}
+            size={isMobile ? 'xs' : 'xl'}
           />
         </motion.div>
         <Button
           type='submit'
-          size='xl'
+          size={isMobile ? 'sm' : 'xl'}
           style={{
             letterSpacing: '1.5px',
-            fontSize: '30px',
+            fontSize: isMobile ? '18px' : '30px',
             fontWeight: 'bold',
             width: 'fit-content',
             alignSelf: 'end',
             borderRadius: 10,
             backgroundColor: ' rgb(100 181 246)',
           }}
-          className='btn shadow-lg font-bold text-xl'>
+          className='btn shadow-lg font-bold md:text-xl text-sm'>
           SUBMIT
         </Button>
       </motion.form>
@@ -317,4 +330,4 @@ const contact = () => {
   );
 };
 
-export default contact;
+export default Contact;

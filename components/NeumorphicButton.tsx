@@ -6,22 +6,22 @@ interface NeumorphicButtonProps {
   text: string;
   to: string;
   icon: any;
+  size: { w: string; h: string; size: any };
 }
 
 const NeumorphicButton: React.FC<NeumorphicButtonProps> = ({
   text,
   to,
   icon,
+  size,
 }) => {
   return (
     <Link href={to}>
       <Button
         variant='filled'
-        size='lg'
-        style={{
-          fontFamily: 'Henny Penny, cursive',
-        }}
-        className='flex bg-[#ff52a2] p-6 rounded-lg text-3xl w-[500px] h-[100px] tracking-widest hover:scale-105 justify-center items-center hover:shadow-xl hover:border-4 border-black transition-all ease-in-out duration-700'>
+        size={size.size}
+        style={{ width: size.w, height: size.h }}
+        className='flex bg-[#ff52a2] p-6 rounded-lg text-lg 2xl:text-2xl 3xl:text-3xl  tracking-widest hover:scale-105 justify-center items-center hover:shadow-xl hover:border-4 border-black transition-all ease-in-out duration-700 buttonText '>
         {text}
       </Button>
     </Link>

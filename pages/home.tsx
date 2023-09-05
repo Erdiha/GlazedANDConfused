@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Footer from '@/components/Footer';
 import NeumorphicButton from '@/components/NeumorphicButton';
 import { AiOutlineForm } from 'react-icons/ai';
-
+import Nav from '@/components/Nav';
 const Home: React.FC = ({ navHeight }: any) => {
   const [activeSection, setActiveSection] = useState<string>('');
   const controls = useAnimation();
@@ -16,6 +16,7 @@ const Home: React.FC = ({ navHeight }: any) => {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isMobile, setIsMobile] = React.useState(false);
+  const size = { w: '', h: '', size: '' };
   useEffect(
     () => {
       controls.start({ y: 0 }); // Start the motion animation when the component mounts
@@ -29,18 +30,18 @@ const Home: React.FC = ({ navHeight }: any) => {
     if (containerRef?.current) {
       const getWidth = containerRef.current.clientWidth;
       console.log('getWidth', getWidth);
-      getWidth < 768 ? setIsMobile(true) : setIsMobile(false);
+      getWidth < 486 ? setIsMobile(true) : setIsMobile(false);
     }
   }, []);
 
   const freshMiniDonuts = ['Fresh', 'made-to-order', 'mini donuts'];
 
   const arrayInArrayLetter = freshMiniDonuts.map((word, wordIndex) => (
-    <div className='m-2  md:inline-block whitespace-pre' key={wordIndex}>
+    <div className='md:m-2 m-1 md:inline-block whitespace-pre' key={wordIndex}>
       {word.split('').map((letter, index) => (
         <motion.span
           key={index}
-          className='homeText text-3xl md:text-5xl text-[#ecf0f3]'
+          className='homeText flex lg:text-3xl xl:text-4xl 3xl:text-5xl text-xl text-[#ecf0f3] '
           style={{
             backfaceVisibility: 'hidden',
             fontSmooth: 'antialiased',
@@ -66,8 +67,8 @@ const Home: React.FC = ({ navHeight }: any) => {
   return (
     <div
       ref={containerRef}
-      className='flex flex-col justify-center  items-center w-screen min-h-screen relative '>
-      <div className='flex flex-col md:items-center justify-evenly  h-[100vh]  w-[100%]  p-2 shadow-sm pt-20'>
+      className='flex flex-col justify-center  items-center w-screen h-[110vh] md:h-screen min-h-screen relative '>
+      <div className='flex flex-col md:items-center justify-evenly h-[60%] gap-[5rem]  md:gap-[10rem]  p-2 shadow-sm'>
         <motion.div
           initial={{ y: -1000, rotate: 0 }}
           animate={controlImage}
@@ -91,15 +92,20 @@ const Home: React.FC = ({ navHeight }: any) => {
           animate={controls}
           initial={{ y: 500 }}
           transition={{ type: 'spring', damping: 5, stiffness: 70 }}
-          className='flex flex-col backdrop-blur-md  bg-[#ecf0f3]/20 p-4 md:p-16 rounded-md md:w-fit justify-center items-center z-[999] '>
-          <div className='bg-transparent  h-full w-full flex p-10  flex-col md:flex-row '>
+          className='flex flex-col backdrop-blur-md h-full w-full bg-[#ecf0f3]/20  rounded-md justify-evenly z-[999] items-center px-8'>
+          <div className='bg-transparent  flex  flex-col md:flex-row '>
             {arrayInArrayLetter}
           </div>
 
           <NeumorphicButton
             text='Book Our Truck'
-            to='/contact'
+            to='/Contact'
             icon={AiOutlineForm}
+            size={{
+              w: isMobile ? '300px' : '450px',
+              h: isMobile ? '75px' : '100px',
+              size: isMobile ? 'sm' : 'lg',
+            }}
           />
         </motion.div>
         <section

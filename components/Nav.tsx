@@ -1,154 +1,127 @@
-import React, { useState } from 'react';
-import {
-  Navbar,
-  MobileNav,
-  Typography,
-  Button,
-  IconButton,
-  Card,
-} from '@material-tailwind/react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Navbar, Collapse } from '@material-tailwind/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router'; // Import the useRouter hook
-
-import {
-  CubeTransparentIcon,
-  UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
-  ChevronDownIcon,
-  Cog6ToothIcon,
-  InboxArrowDownIcon,
-  LifebuoyIcon,
-  PowerIcon,
-  RocketLaunchIcon,
-  Bars2Icon,
-} from '@heroicons/react/24/outline';
+import { Sling as Hamburger } from 'hamburger-react';
 import DonutIcon from './DonutIcon';
-interface Iprops {
-  getNavHeight: (height: number) => void; // Callback function to get nav height
+interface NavItem {
+  id: number;
+  name: string;
+  label: string;
+  path: string;
 }
 
 const Nav: React.FC = () => {
-  const navRef = React.useRef<HTMLDivElement | null>(null);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0,
+  );
+  const [windowHeight, setWindowHeight] = useState(
+    typeof window !== 'undefined' ? window.innerHeight : 0,
+  );
 
   const [openNav, setOpenNav] = React.useState(false);
+  const isMobile = windowWidth < 480;
   const [activeItem, setActiveItem] = useState('home');
-  const items = [
-    { id: 1, name: 'home', label: 'HOME', path: '/home' },
-    { id: 2, name: 'donuts', label: 'OUR DONUTS', path: '/donuts' },
-    {
-      id: 3,
-      name: 'services',
-      label: 'OUR SERVICES',
-      path: '/services',
-    },
-    { id: 2, name: 'about', label: 'ABOUT US', path: '/about' },
-    { id: 4, name: 'contact', label: 'CONTACT', path: '/contact' },
-  ];
+
+  const items: NavItem[] = useMemo(
+    () => [
+      { id: 0, name: 'home', label: 'HOME', path: '/Home' },
+      { id: 1, name: 'donuts', label: 'OUR DONUTS', path: '/Donuts' },
+      { id: 2, name: 'services', label: 'OUR SERVICES', path: '/Services' },
+      { id: 3, name: 'clients', label: 'OUR CLIENTS', path: '/Clients' },
+      { id: 4, name: 'about', label: 'ABOUT US', path: '/About' },
+      { id: 5, name: 'contact', label: 'CONTACT', path: '/Contact' },
+    ],
+    [],
+  );
+
   const router = useRouter(); // Initialize the router
 
-  React.useEffect(() => {
+  useEffect(() => {
     const pathname = router.pathname;
-    const matchedItem = items.find((item) => pathname.includes(item.path));
+    const matchedItem = items?.find((item) => pathname.includes(item.path));
+
     if (matchedItem) {
       setActiveItem(matchedItem.name);
     }
-  }, [router.pathname]);
+  }, [router.pathname, items]);
 
-  React.useEffect(() => {
-    window.addEventListener(
-      'resize',
-      () => window.innerWidth >= 780 && setOpenNav(false),
-    );
-    const height: any = navRef?.current?.clientHeight;
+  useEffect(() => {
+    // Function to update window dimensions
+    const updateWindowDimensions = () => {
+      if (typeof window !== 'undefined') {
+        setWindowWidth(window?.innerWidth);
+        setWindowHeight(window?.innerHeight);
+      }
+    };
+
+    // Add event listener on component mount
+    window.addEventListener('resize', updateWindowDimensions);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', updateWindowDimensions);
+    };
   }, []);
-  React.useEffect(() => {
+
+  useEffect(() => {
     setOpenNav(false);
   }, [router.asPath]);
+
   const navList = (
-    <Typography
-      as='ul'
-      style={{ backgroundColor: '' }}
-      className='flex  flex-col lg:flex-row text-xl  lg:w-[90%]  w-full h-[100%] z-[9999] justify-evenly items-center  max-w-[70%] '>
+    <ul className='flex  flex-col lg:flex-row z-[9999] p-5  justify-center items-center w-full my-4 lg:p-2 lg:my-0 gap-4 h-[20rem] lg:h-full  '>
       {items.map((item, index) => (
-        <Typography
+        <li
           key={item.id}
-          as='li'
-          variant='large'
-          color='white'
-          className={` h-fit w-fit border-none font-semibold  md:p-4  flex justify-center items-center 
+          className={` h-full w-[60%] lg:w-full border-none font-semibold text-md md:text-sm 2xl:text-lg 3xl:text-xl flex justify-center items-center 
           ${
             item.name === activeItem
               ? 'activeNavItem text-white'
-              : 'passiveNavItem text-black'
+              : 'passiveNavItem text-gray-800'
           }`}>
           <Link
             href={item.path}
-            className='flex items-center justify-start md:justify-center pl-4 md:pl-0 h-full text-xl text-center w-full'>
+            id='navItem'
+            className={`flex items-center  text-start lg:h-[3rem]   w-full  ${
+              item.name === activeItem
+                ? 'justify-center text-gray-200'
+                : 'text-gray-800'
+            } ${windowWidth < 480 ? '' : 'justify-center'}`}>
             {item.label}
           </Link>
-        </Typography>
+        </li>
       ))}
-    </Typography>
+    </ul>
   );
 
   return (
-    <div
-      ref={navRef}
-      className='fixed top-0 w-full md:h-fit overflow-hidden z-[9999]  justify-center items-center px-8 py-2'>
-      <div className='absolute  inset-0 z-[-1] bg-gradient-to-b from-blue-400 to-white/10 ' />
-      <Navbar className=' border-none  bg-transparent'>
-        <div className='flex items-center z-[9999] justify-center  h-full w-full '>
-          <div
-            onClick={() => router.push('/')}
-            className='flex z-[9999] justify-center items-center capitalize  rounded-full px-2 aspect-square cursor-pointer  bg-gray-300/90  shadow-2xl border-b-[8px]  border-b-pink-400'>
-            <DonutIcon />
-          </div>
+    <div className='fixed top-0 min-w-screen w-full  overflow-hidden z-[9999]  justify-center items-center  '>
+      <div
+        className={`absolute inset-0 z-[-1]   ${
+          openNav ? 'bg-blue-400' : 'bg-gradient-to-b from-blue-400 to-white/10'
+        } `}
+      />
+      <Navbar
+        color='transparent'
+        className='sticky top-0 z-10 h-max max-w-full rounded-none py-2 md:py-4 px-4 lg:px-8 lg:py-6 justify-center items-center '>
+        <div className='flex items-center h-[5rem] w-full relative justify-end  3xl:justify-center '>
+          <DonutIcon />
 
-          <div className='flex w-full h-full justify-evenly items-center '>
-            <div className=' hidden lg:flex w-full h-[5vh] justify-center  items-center  '>
+          <div className='flex lg:flex w-fit  max-w-[120rem]  lg:w-[80%] '>
+            <div className='hidden lg:flex w-full h-full justify-center  items-center '>
               {navList}
             </div>
 
-            <IconButton
-              variant='text'
-              className='absolute right-10 h-full  text-inherit hover:bg-transparent  focus:bg-transparent active:bg-transparent flex lg:hidden justify-center items-center '
-              ripple={false}
-              onClick={() => setOpenNav(!openNav)}>
-              {openNav ? (
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  className='h-6 w-6'
-                  viewBox='0 0 24 24'
-                  stroke='currentColor'
-                  strokeWidth={2}>
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M6 18L18 6M6 6l12 12'
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='h-6 w-6'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={2}>
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    d='M4 6h16M4 12h16M4 18h16'
-                  />
-                </svg>
-              )}
-            </IconButton>
+            <div className='flex w-fit h-fit lg:hidden'>
+              <Hamburger
+                color='rgba(66, 66, 66, 1)' // RGBA color value with alpha 1
+                toggled={openNav}
+                toggle={setOpenNav}
+              />
+            </div>
           </div>
         </div>
-        <MobileNav style={{}} open={openNav}>
-          {navList}
-        </MobileNav>
+        <Collapse open={openNav}>{navList}</Collapse>
       </Navbar>
     </div>
   );

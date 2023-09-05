@@ -1,16 +1,15 @@
 import React from 'react';
 import CarouselComp from '@/components/Carousel';
-import { Image } from '../components/types';
+import { ImageProps } from '../components/types';
 import SharedContainer from '@/components/SharedContainer';
 import { imagesOurServices } from '@/components/data/texts';
 
-function services() {
-  const images: Image[] = [];
+function Services() {
+  const images: ImageProps[] = [];
   const getImages = () => {
     for (let i = 1; i <= 16; i++) {
       const name = `/servicesImages/i${i}.jpg`;
-      // Assuming you also have 'desc' and 'name' properties for each image
-      const image: Image = {
+      const image: ImageProps = {
         src: name,
         name: `Image ${i}`,
         desc: `Description for Image ${i}`,
@@ -23,17 +22,13 @@ function services() {
   getImages();
 
   return (
-    <div className='flex flex-col w-full min-h-screen  relative md:justify-center md:items-center  bg-black/10 truck '>
-      <div className='flex justify-between items-center w-full   flex-col py-20 gap-10'>
-        <div className='w-full h-full  backdrop-blur-sm   flex  justify-center items-center text-2xl flex-wrap flex-col'>
-          <SharedContainer images={imagesOurServices} />
-        </div>
-        <div className='w-full h-full flex justify-center items-center flex-col'>
-          <CarouselComp images={images} />
-        </div>
+    <div className='flex flex-col w-full min-h-screen h-full  relative md:justify-center md:items-center  bg-black/10 truck md:pt-32 py-24'>
+      <div className='w-full h-full  backdrop-blur-sm  flex  md:p-10 justify-evenly items-center md:text-2xl flex-wrap flex-col md:gap-20 gap-10'>
+        <SharedContainer images={imagesOurServices} whatComp={'services'} />
+        <CarouselComp images={images} />
       </div>
     </div>
   );
 }
 
-export default services;
+export default Services;

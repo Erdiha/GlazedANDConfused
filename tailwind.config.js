@@ -2,10 +2,11 @@ const withMT = require('@material-tailwind/react/utils/withMT');
 
 module.exports = withMT({
   mode: 'jit',
-  purge: [
+  content: [
     './src/**/*.{js,jsx,ts,tsx}',
     './pages/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
+    './node_modules/tw-elements/dist/js/**/*.js',
   ],
   darkMode: false,
   theme: {
@@ -23,11 +24,20 @@ module.exports = withMT({
         display: ['Oswald'],
         body: ['"Open Sans"'],
       },
+      screens: {
+        xs: '0px',
+        sm: '640px',
+        md: ' 768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+        '3xl': '1920px',
+      },
     },
   },
 
   variants: {
     extend: {},
   },
-  plugins: [require('daisyui')],
+  plugins: [require('daisyui'), require('tw-elements/dist/plugin.cjs')],
 });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useAnimation } from 'framer-motion';
 import Image from 'next/image';
@@ -13,7 +13,7 @@ const SplashScreen: React.FC = () => {
     const timeout = setTimeout(() => {
       controls.start({ x: '-100%' });
       setTimeout(() => {
-        router.push('/home');
+        router.push('/Home');
       }, 100); // Delay the navigation after the door animation finishes
     }, 100); // Adjust the timeout duration as needed
 
