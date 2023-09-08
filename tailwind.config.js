@@ -12,17 +12,20 @@ module.exports = withMT({
   theme: {
     extend: {
       colors: {
-        'custom-blue': 'var(--primary-blue)',
-        'custom-red': 'var(--primary-red)',
-        'custom-yellow': 'var(--primary-yellow)',
-        'custom-green': 'var(--primary-green)',
+        'primary-red': '#FF6B6B',
+        'primary-pink': '#ff52a2',
+        'primary-blue': '#4D96FF',
+        'primary-yellow': '#FFD93D',
+        'primary-green': '#6BCB77',
+        'primary-offWhite': '#FAF3F0',
       },
       fontFamily: {
-        sans: ['ui-sans-serif', 'system-ui'],
+        main: ['ui-sans-serif', 'system-ui'],
+        subMain: ['Henny Penny', 'cursive'],
         serif: ['ui-serif', 'Georgia'],
         mono: ['ui-monospace', 'SFMono-Regular'],
-        display: ['Oswald'],
-        body: ['"Open Sans"'],
+        alt1: ['Oswald'],
+        alt2: ['"Open Sans"'],
       },
       screens: {
         xs: '0px',

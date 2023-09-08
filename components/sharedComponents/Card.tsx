@@ -30,10 +30,10 @@ const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
         <Image
           width={600}
           height={600}
-          objectPosition='center' loading='eager'
+          objectPosition='center'
+          loading='eager'
           onLoadingComplete={(image) => image.classList.remove('opacity-0')}
-          className='hover:rounded-xl transition-opacity opacity-0 duration-[2s]'
-          className={`  ${
+          className={`hover:rounded-xl transition-opacity opacity-0 duration-[2s]  ${
             isMobile
               ? 'rounded-t-lg'
               : index % 2 === 0
@@ -60,7 +60,7 @@ const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
         md:w-full md:h-full items-center md:pl-7 text-xl md:text-4xl break-words hyphens-auto font-bold'>
           {item.title}
         </p>
-        <p className='lg:text-xl text-md font-semibold text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-relaxed flex indent-7 break-words hyphens-auto relative gap-2'>
+        <p className='lg:text-xl text-md font-normal text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-relaxed flex indent-7 break-words hyphens-auto relative gap-2'>
           {showFullDescription ? item.description : truncatedDescription}
           {item.description.length > 100 && isMobile && (
             <button

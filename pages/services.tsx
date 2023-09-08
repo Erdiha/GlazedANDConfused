@@ -1,7 +1,7 @@
 import React from 'react';
-import CarouselComp from '@/components/Carousel';
+import CarouselComp from '@/components/sharedComponents/Carousel';
 import { ImageProps } from '../components/types';
-import SharedContainer from '@/components/SharedContainer';
+import SharedContainer from '@/components/sharedComponents/SharedContainer';
 import { imagesOurServices } from '@/components/data/texts';
 
 function Services() {

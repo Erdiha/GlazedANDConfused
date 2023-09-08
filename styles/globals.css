@@ -1,20 +1,17 @@
+/* Import Tailwind CSS first */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Then apply Tailwind CSS with @apply */
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-:root,
-#root,
-#docs-root {
-  --primary-red: '#FF6B6B';
-  --primary-pink: '#ff52a2';
-  --primary-blue: '#4D96FF';
-  --primary-yellow: '#FFD93D';
-  --primary-green: '#6BCB77';
+:root {
+  --primary-red: #ff6b6b;
+  --primary-pink: #ff52a2;
+  --primary-blue: #4d96ff;
+  --primary-yellow: #ffd93d;
+  --primary-green: #6bcb77;
   --carousel-border: 2px;
 }
 
@@ -358,21 +355,6 @@ input::placeholder {
     transform: translateY(-20px);
   }
 }
-.rubiks-cube {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  transform-style: preserve-3d;
-  animation: rotate 10s infinite linear;
-}
-
-.face {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 
 .front {
   transform: translateZ(50px);
@@ -460,4 +442,15 @@ Input::placeholder {
   color: mintcream;
   background: thistle;
   padding: 5px;
+}
+#emailSentDiv {
+  background-image: url('/emailsent.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  box-shadow: inset 0px 0px 1px 10px white;
 }

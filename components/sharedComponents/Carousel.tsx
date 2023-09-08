@@ -1,7 +1,7 @@
 import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/css/skyblue';
-import { ImageProps, ImageCarouselProps } from '../components/types';
+import { ImageProps, ImageCarouselProps } from '../types';
 import Image from 'next/image';
 
 const Carousel: React.FC<ImageCarouselProps> = ({ images }) => {
@@ -47,8 +47,8 @@ const Carousel: React.FC<ImageCarouselProps> = ({ images }) => {
                 <Image
                   src={image.src}
                   alt={image.name}
-                  fill={true}  
-                  loading='eager' 
+                  fill={true}
+                  loading='eager'
                   style={{
                     objectFit: 'cover', // cover, contain, none
                   }}

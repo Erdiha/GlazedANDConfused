@@ -18,8 +18,8 @@ const DonutIcon = () => {
           <Image
             key={router.pathname}
             content='cover'
-            width={mbl ? 50 : 75}
-            height={mbl ? 50 : 75}
+            width={mbl ? 40 : 75}
+            height={mbl ? 40 : 75}
             src='/homerdonut.png'
             alt='image'
           />

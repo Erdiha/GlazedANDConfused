@@ -5,7 +5,7 @@ import { AiOutlineForm } from 'react-icons/ai';
 interface NeumorphicButtonProps {
   text: string;
   to: string;
-  icon: any;
+  icon?: any;
   size: { w: string; h: string; size: any };
 }
 

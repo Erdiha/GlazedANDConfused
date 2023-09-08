@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
-import LandingPage from '../components/LandingPage';
+import LandingPage from '../components/sharedComponents/LandingPage';
 import Button from '@mui/material/Button';
 import router, { useRouter } from 'next/router';
 import Link from 'next/link';
-import Footer from '@/components/Footer';
-import NeumorphicButton from '@/components/NeumorphicButton';
+import Footer from '@/components/sharedComponents/Footer';
+import NeumorphicButton from '@/components/sharedComponents/NeumorphicButton';
 import { AiOutlineForm } from 'react-icons/ai';
-import Nav from '@/components/Nav';
+import Nav from '@/components/sharedComponents/Nav';
 const Home: React.FC = ({ navHeight }: any) => {
   const [activeSection, setActiveSection] = useState<string>('');
   const controls = useAnimation();

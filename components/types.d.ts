@@ -19,3 +19,17 @@ export interface ImageCarouselProps {
 export interface SharedContainerProps extends IImages {
   whatComp: string;
 }
+
+export interface AddressProps {
+  address_line1: string;
+  address_line2: string;
+  city: string;
+  country: string;
+  country_code: string;
+  county: string;
+  county_code: string;
+}
+
+export interface IAddress {
+  label: string;
+}

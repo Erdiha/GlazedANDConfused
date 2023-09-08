@@ -20,7 +20,7 @@ const Nav: React.FC = () => {
   );
 
   const [openNav, setOpenNav] = React.useState(false);
-  const isMobile = windowWidth < 480;
+  const isMobile = windowWidth < 468;
   const [activeItem, setActiveItem] = useState('home');
 
   const items: NavItem[] = useMemo(
@@ -82,7 +82,7 @@ const Nav: React.FC = () => {
           <Link
             href={item.path}
             id='navItem'
-            className={`flex items-center  text-start lg:h-[3rem]   w-full  ${
+            className={`flex items-center  text-start lg:h-[3rem]  w-full  ${
               item.name === activeItem
                 ? 'justify-center text-gray-200'
                 : 'text-gray-800'
@@ -103,8 +103,8 @@ const Nav: React.FC = () => {
       />
       <Navbar
         color='transparent'
-        className='sticky top-0 z-10 h-max max-w-full rounded-none py-2 md:py-4 px-4 lg:px-8 lg:py-6 justify-center items-center '>
-        <div className='flex items-center h-[5rem] w-full relative justify-end  3xl:justify-center '>
+        className='sticky top-0 z-10 h-max max-w-[110rem] rounded-none py-2 md:py-4 px-4 lg:px-8 lg:py-6 justify-center items-center mx-auto'>
+        <div className='flex items-center h-[5rem] w-full relative justify-end  3xl:justify-center bg-transparent'>
           <DonutIcon />
 
           <div className='flex lg:flex w-fit  max-w-[120rem]  lg:w-[80%] '>

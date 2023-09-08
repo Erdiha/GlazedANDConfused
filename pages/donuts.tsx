@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useRef, useEffect, useState } from 'react';
-import CarouselComp from '@/components/Carousel';
+import CarouselComp from '@/components/sharedComponents/Carousel';
 import { Typography } from '@material-tailwind/react';
-import SharedContainer from '@/components/SharedContainer';
+import SharedContainer from '@/components/sharedComponents/SharedContainer';
 import { flavors, ourDonuts } from '@/components/data/texts';
 
 function Donuts() {

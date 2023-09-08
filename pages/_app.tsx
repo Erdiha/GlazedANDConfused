@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import SplashScreen from '../components/SplashScreen';
+import SplashScreen from '../components/sharedComponents/SplashScreen';
 import '../styles/globals.css';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
+import Nav from '../components/sharedComponents/Nav';
+import Footer from '../components/sharedComponents/Footer';
 import { ThemeProvider } from '@material-tailwind/react';
 import SEO from '../components/SEO/SEO'; // Import the SEO component
 import Layout from '../components/SEO/Layout'; // Import the Layout component

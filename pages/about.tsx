@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'ui-neumorphism';
 import { aboutUsCardInfo } from '@/components/data/texts';
-import SharedContainer from '@/components/SharedContainer';
+import SharedContainer from '@/components/sharedComponents/SharedContainer';
 
 function About() {
   return (

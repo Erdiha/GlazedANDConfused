@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion, warning } from 'framer-motion';
-import { SharedContainerProps } from './types';
+import { SharedContainerProps } from '../types';
 import Card from './Card';
 import { kosherWarning } from '@/components/data/texts';
 const SharedContainer: React.FC<SharedContainerProps> = ({
