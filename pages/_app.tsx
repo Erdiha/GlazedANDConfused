@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import SplashScreen from '../components/sharedComponents/SplashScreen';
-import '../styles/globals.css';
-import Nav from '../components/sharedComponents/Nav';
-import Footer from '../components/sharedComponents/Footer';
-import { ThemeProvider } from '@material-tailwind/react';
-import SEO from '../components/SEO/SEO'; // Import the SEO component
-import Layout from '../components/SEO/Layout'; // Import the Layout component
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import SplashScreen from "../components/sharedComponents/SplashScreen";
+import "../styles/globals.css";
+import Nav from "../components/sharedComponents/Nav";
+import Footer from "../components/sharedComponents/Footer";
+import { ThemeProvider } from "@material-tailwind/react";
+import SEO from "../components/SEO/SEO"; // Import the SEO component
+import Layout from "../components/SEO/Layout"; // Import the Layout component
 
 interface AppProps {
   Component: React.ComponentType;
@@ -27,37 +27,37 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
   const { pathname } = router;
   const words =
-    'Dessert Catering,Food Truck Catering,Food Truck Rental,Mini Donuts,Donuts,Donut Truck,Dessert Food Truck, Cheap Food Truck,Ice Cream Truck,Kosher Dessert,Corporate Catering,Wedding Caterer';
+    "Dessert Catering,Food Truck Catering,Food Truck Rental,Mini Donuts,Donuts,Donut Truck,Dessert Food Truck, Cheap Food Truck,Ice Cream Truck,Kosher Dessert,Corporate Catering,Wedding Caterer";
   // Define SEO information for each page
   const seoInfo: any = {
-    '/': {
-      title: 'Home - Your Website Title',
-      description: 'Welcome to our website. Learn more about us.',
+    "/": {
+      title: "Home - Glazed & Confused",
+      description: "Welcome to our website. Learn more about us.",
       keywords: words,
     },
-    '/about': {
-      title: 'About Us - Your Website Title',
-      description: 'Learn more about our company and what we do.',
+    "/about": {
+      title: "About Us - Glazed & Confused",
+      description: "Learn more about our company and what we do.",
       keywords: words,
     },
-    '/clients': {
-      title: 'Our Clients - Your Website Title',
-      description: 'Explore our list of satisfied clients.',
+    "/clients": {
+      title: "Our Clients - Glazed & Confused",
+      description: "Explore our list of satisfied clients.",
       keywords: words,
     },
-    '/contact': {
-      title: 'Contact Us - Your Website Title',
-      description: 'Get in touch with us. We are here to help.',
+    "/contact": {
+      title: "Contact Us - Glazed & Confused",
+      description: "Get in touch with us. We are here to help.",
       keywords: words,
     },
-    '/donuts': {
-      title: 'Donuts - Your Website Title',
-      description: 'Discover our delicious donuts menu.',
+    "/donuts": {
+      title: "Donuts - Glazed & Confused",
+      description: "Discover our delicious donuts menu.",
       keywords: words,
     },
-    '/services': {
-      title: 'Services - Your Website Title',
-      description: 'Explore our range of services.',
+    "/services": {
+      title: "Services - Glazed & Confused",
+      description: "Explore our range of services.",
       keywords: words,
     },
   };
@@ -70,12 +70,13 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       {showSplashScreen ? (
         <SplashScreen />
       ) : (
-        <div className='relative'>
+        <div className="relative">
           <Nav />
           <Layout
-            title={currentSeoInfo.title || 'Glazed and Confused'}
-            description={currentSeoInfo.description || 'Default Description'}
-            keywords={currentSeoInfo.keywords}>
+            title={currentSeoInfo.title || "Glazed and Confused"}
+            description={currentSeoInfo.description || "Default Description"}
+            keywords={currentSeoInfo.keywords}
+          >
             <Component {...pageProps} />
           </Layout>
           <Footer />

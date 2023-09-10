@@ -122,7 +122,7 @@ export const ourDonuts = [
 
     title: "  Private Catering for All Occasions",
     description:
-      "Our loyal fans know our donuts to be light and airy. This is because we use no artificial base ingredients and our donut batter is trans-fat free. The unique flavor comes from a blend of spices including nutmeg and turmeric. We fry all our donuts in vegetable oil at a very hot 375 degrees. This produces a light crisp exterior with a soft fluffy inside that wont leave your hands greasy. Our ingredients and donut batter are Certified Kosher* to meet OU-D standards. Gluten Free donuts and a Nut Free environment are also available for private events.",
+      "Our loyal fans know our donuts to be light and airy. This is because we use no artificial base ingredients and our donut batter is trans-fat free. The unique flavor comes from a blend of spices including nutmeg and turmeric. We fry all our donuts in vegetable oil at a very hot 375 degrees. This produces a light crisp exterior with a soft fluffy inside that won't leave your hands greasy. Our ingredients and donut batter are Certified Kosher* to meet OU-D standards. Gluten Free donuts and a Nut Free environment are also available for private events.",
   },
   {
     src: "/donutImages/3.jpg",
@@ -130,13 +130,13 @@ export const ourDonuts = [
 
     title: "Looking for a unique treat to cool down your guests?",
     description:
-      "Try our Ice Cream Donut Sundaes! We serve our freshly made donuts on top off a scoop of high quality vanilla ice cream. Guests are then able to customize their sundaes with our glazes and toppings. A real crowd pleaser! " +
-      "We offer over ten mouth-watering combinations of glazes and toppings for a tray of donuts (because one is never enough!). Check out our regular menu flavors below, and dont forget to ask about our seasonal specials and boozy options for the 21+ crowd. Donut forget the drinks! Coffee, Cold Brew, Hot Cocoa and Cider available upon request!",
+      "Try our Ice Cream Donut Sundaes! We serve our freshly made donuts on top of a scoop of high quality vanilla ice cream. Guests are then able to customize their sundaes with our glazes and toppings. A real crowd pleaser! " +
+      "We offer over ten mouth-watering combinations of glazes and toppings for a tray of donuts (because one is never enough!). Check out our regular menu flavors below, and don't forget to ask about our seasonal specials and boozy options for the 21+ crowd. Donut forget the drinks! Coffee, Cold Brew, Hot Cocoa and Cider available upon request!",
   },
 ];
 
 export const kosherWarning =
-  "*While we only use Kosher ingredients. We DO NOT hold a Kosher Certificate. If you want the truck to be inspected and go through a Kashering, you must rent the truck the day before your event as well as the day of the event";
+  "*While we only use Kosher ingredients, we DO NOT hold a Kosher Certificate. If you want the truck to be inspected and go through a Kashering, you must rent the truck the day before your event as well as the day of the event.";
 
 export const imagesOurServices = [
   {
@@ -153,7 +153,7 @@ export const imagesOurServices = [
 
     title: "Private Catering for All Occasions",
     description:
-      "Make any event memorable with our delectable mini donuts, delighting guests of all ages. Whether you are celebrating a birthday, having a backyard BBQ, or planning that big occasion, wed love to be part of your event! ",
+      "Make any event memorable with our delectable mini donuts, delighting guests of all ages. Whether you are celebrating a birthday, having a backyard BBQ, or planning that big occasion, we'd love to be part of your event! ",
   },
 ];
 
@@ -181,21 +181,21 @@ export const aboutUsCardInfo = [
     alt: "image",
     title: "Our Start",
     description:
-      "When Danny first saw a donut machine in sunny California on his honeymoon back in 2014 he knew it would be a huge success in New York City.  The idea was simple...bring donut joy to the streets of NYC. So Danny and Larry founded Glazed & Confused in April 2015. With their signature creations, comprised of delectable glazes and toppings, they have gone from streets of the five boroughs, to wedding halls in the New Jersey suburbs, to Long Island, the Hamptons, Connecticut, even Boston. Now they have brought their donuts all the way back to the West Coast!",
+      "When Danny first saw a donut machine in sunny California on his honeymoon back in 2014 he knew it would be a huge success in New York City.  The idea was simple...bring donut joy to the streets of NYC. So Danny and Larry founded Glazed & Confused in April 2015. With their signature creations, comprised of delectable glazes and toppings, they have gone from the streets of the five boroughs, to wedding halls in the New Jersey suburbs, to Long Island, the Hamptons, Connecticut, even Boston. Now they have brought their donuts all the way back to the West Coast!",
   },
   {
     src: "/aboutImages/pallawiAndDan.jpg",
     alt: "image",
     title: "Our Vision",
     description:
-      ' Since conquering the street fair scene, the business has expanded into private events including weddings, bat/bar mitzvahs, corporate parties, and charity events. We love bringing our lively trucks to impress guests and make a special event that much more memorable. Whether an informal gathering or that once in a lifetime moment, we look forward to catering your next event! You can still find us at local food trucks festivals and we always tells our guests we will be "wherever there is a need for donuts',
+      " Since conquering the street fair scene, the business has expanded into private events including weddings, bat/bar mitzvahs, corporate parties, and charity events. We love bringing our lively trucks to impress guests and make a special event that much more memorable. Whether an informal gathering or that once in a lifetime moment, we look forward to catering your next event! You can still find us at local food truck festivals and we always tells our guests we will be wherever there is a need for donuts.",
   },
   {
     src: "/aboutImages/larryAndSister.jpg",
     alt: "image",
     title: "Our Growth",
     description:
-      "When Danny and Larry began their journey in 2015, they never imagined how far their mini donuts would take them.  Danny didn\u2019t know that five years later, he would bring his mobile food business to California where it all began. After successfully building and operating 3 food trucks in the tri-state area, Danny expanded to LA/Orange county in 2020. But donut worry NJ/NY Glazed fans--Larry can still be found running the trucks on the East Coast!",
+      "When Danny and Larry began their journey in 2015, they never imagined how far their mini donuts would take them.  Danny didn\u2019t know that five years later, he would bring his mobile food business to California where it all began. After successfully building and operating 3 food trucks in the tri-state area, Danny expanded to Los Angeles/Orange County in 2020, and services areas from Santa Barbara to San Diego. But donut worry NJ/NY Glazed fans--Larry can still be found running the trucks on the East Coast!",
   },
 ];
 export const inputPlaceHolder = [
