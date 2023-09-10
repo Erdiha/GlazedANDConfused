@@ -14,6 +14,7 @@ export interface ImageProps {
 
 export interface ImageCarouselProps {
   images: Image[];
+  whatComp: string;
 }
 
 export interface SharedContainerProps extends IImages {
