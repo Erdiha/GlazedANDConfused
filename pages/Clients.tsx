@@ -2,7 +2,7 @@ import React from 'react';
 import CompanyCard from '../components/CompanyCard'; // Import CompanyCard from the correct location
 import { list } from '../components/data/texts';
 
-const ClientLists: React.FC = () => {
+const Clients: React.FC = () => {
   return (
     <div className="relative min-h-screen overflow-auto bg-primary-offWhite flex flex-col justify-center items-center truck ">
       <div className=" max-w-[100rem] flex flex-col w-full min-h-full pt-28 lg:px-10 md:px-4 px-2 pb-32">
@@ -21,4 +21,4 @@ const ClientLists: React.FC = () => {
   );
 };
 
-export default ClientLists;
+export default Clients;
