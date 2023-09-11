@@ -196,7 +196,7 @@ const Contact = () => {
   return (
     <div
       ref={wrapperRef}
-      className="flex flex-col w-full min-h-screen  relative justify-center items-center px-2  bg-black/10 truck  "
+      className="flex flex-col w-full min-h-screen  relative justify-center items-center px-2  bg-black/10 truck"
     >
       {isEmailSent.openContainer ? (
         <div className="w-[50%] md:max-h-[80vh]  h-[70vh] max-w-[100rem] flex bg-primary-offWhite justify-center items-center ">
@@ -221,7 +221,7 @@ const Contact = () => {
           className="md:max-w-[60rem] px-3 md:px-10 gap-1 pb-3 md:pb-10 z-50 flex md:justify-between md:font-semibold flex-col  bg-primary-pink/80 backdrop-blur-2xl shadow-4xl md:max-h-[80vh]"
           onSubmit={handleSubmit}
         >
-          <p className="text-[12px]  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-[1.75rem] break-words max-w-[100%] pt-3 md:pt-16 md:leading-9 md:p-4">
+          <p className="text-[12px]  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%] pt-3 md:pt-16 md:leading-9 md:p-4">
             PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
             WITHIN 24 HOURS WITH A PRICE QUOTE.
           </p>

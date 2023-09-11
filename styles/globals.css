@@ -2,35 +2,39 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
-
-/* Then apply Tailwind CSS with @apply */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-:root {
-  --primary-red: #ff6b6b;
-  --primary-pink: #ff52a2;
-  --primary-blue: #4d96ff;
-  --primary-blue-opacity: rgb(77, 150, 255, 1);
-  --primary-yellow: #ffd93d;
-  --primary-green: #6bcb77;
-  --carousel-border: 2px;
-}
+@layer base {
+  :root {
+    --primary-red: #ff6b6b;
+    --primary-pink: #ff52a2;
+    --primary-blue: #4d96ff;
+    --primary-blue-opacity: rgb(77, 150, 255, 1);
+    --primary-yellow: #ffd93d;
+    --primary-green: #6bcb77;
+    --carousel-border: 2px;
+  }
 
-html,
-body {
-  font-size: large;
-  overflow-x: hidden;
-}
+  html,
+  body {
+    font-size: medium;
+    overflow-x: hidden;
+  }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 
-a {
-  text-decoration: none !important;
+  a {
+    text-decoration: none !important;
+  }
 }
+/* Then apply Tailwind CSS with @apply */
 
 .active {
   color: red;
