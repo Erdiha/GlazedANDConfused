@@ -218,7 +218,7 @@ const Contact = () => {
           whileInView={{ x: 0 }}
           viewport={{ once: true }}
           transition={{ ease: 'easeInOut', duration: 1 }}
-          className="md:max-w-[60rem] px-3 md:px-10 gap-1 pb-3 md:pb-10 z-50 flex md:justify-between md:font-semibold flex-col  bg-primary-pink/80 backdrop-blur-2xl shadow-4xl min-h-[50%]"
+          className="md:max-w-[60rem] px-3 md:px-10 gap-1 pb-3 md:pb-10 z-50 flex md:justify-between md:font-semibold flex-col  bg-primary-pink/80 backdrop-blur-2xl shadow-4xl md:max-h-[80vh]"
           onSubmit={handleSubmit}
         >
           <p className="text-[12px]  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-[1.75rem] break-words max-w-[100%] pt-3 md:pt-16 md:leading-9 md:p-4">

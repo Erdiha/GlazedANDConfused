@@ -146,7 +146,7 @@ const Nav: React.FC = () => {
         color="transparent"
         className="sticky top-0 z-10 h-max max-w-[110rem] rounded-none py-2 md:py-4 px-4 lg:px-8 lg:py-6 justify-center items-center mx-auto"
       >
-        <div className="flex items-center h-[5rem] w-full relative justify-end  3xl:justify-center bg-transparent">
+        <div className="flex items-center h-[5rem] w-full relative justify-end  3xl:justify-end bg-transparent">
           <DonutIcon />
 
           <div className="flex lg:flex w-fit  max-w-[120rem]  lg:w-[80%] ">
