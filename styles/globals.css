@@ -1,10 +1,10 @@
 /* Import Tailwind CSS first */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 /* Then apply Tailwind CSS with @apply */
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
   --primary-red: #ff6b6b;
@@ -29,45 +29,8 @@ body {
 }
 
 a {
-  color: inherit;
   text-decoration: none !important;
 }
-
-/* @keyframes glazed-animation {
-  0% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0%);
-    opacity: 1;
-  }
-}
-
-@keyframes pulsate {
-  0% {
-    transform: translateY(10px) rotate(0deg) scale(2);
-  }
-  50% {
-    transform: translateY(-40px) rotateX(60deg) scale(1);
-  }
-  100% {
-    transform: translateY(10px) rotateX(0deg) scale(1);
-  }
-} */
-
-/* @keyframes pulsateMobile {
-  0% {
-    transform: translateY(-10px) rotate(0deg) scale(2);
-  }
-  50% {
-    transform: translateY(40px) rotateX(60deg) scale(1);
-  }
-  100% {
-    transform: translateY(-10px) rotateX(0deg) scale(1);
-  }
-} */
 
 .active {
   color: red;
@@ -85,7 +48,7 @@ a {
 }
 
 .homeText {
-  font-family: "Henny Penny", cursive;
+  font-family: 'Henny Penny', cursive;
   letter-spacing: 1px;
 }
 
@@ -175,13 +138,13 @@ a {
 }
 
 .truck {
-  background-image: url("../public/truck\ photo\ 1.jpg");
+  background-image: url('../public/truck\ photo\ 1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     width: 100%;
@@ -215,33 +178,6 @@ a {
   animation-delay: 1s; /* Delay the animation to create a stagger effect */
 }
 
-/* @keyframes pulseAnimation {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-}
-@keyframes moveRandomly {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(-3px, -3px);
-  }
-  50% {
-    transform: translate(3px, 3px);
-  }
-  75% {
-    transform: translate(-3px, 3px);
-  }
-} */
-
 .activeNavItem {
   display: flex;
   justify-content: center;
@@ -249,20 +185,20 @@ a {
   animation: navItemAnimate 1s ease-in-out;
   transform: translateY(0%) scale(1.1);
   transition: all 1s ease;
-  font-family: "Henny Penny", cursive !important;
+  font-family: 'Henny Penny', cursive !important;
   letter-spacing: 2px;
   z-index: 99999;
   padding: 5px;
   box-shadow: 0px 0px 5px black;
-  color: "white" !important;
+  color: 'white' !important;
   background-color: #ff52a2;
   :hover {
     border-bottom: hidden;
   }
 }
 .client-header-text {
-  font-family: "Henny Penny", cursive !important;
-  letter-spacing: "5px";
+  font-family: 'Henny Penny', cursive !important;
+  letter-spacing: '5px';
 }
 .passiveNavItem {
   :hover {
@@ -287,7 +223,7 @@ a {
 }
 
 .passiveNavItem:hover:before {
-  content: "";
+  content: '';
   position: absolute;
   height: 100%;
   width: 100%;
@@ -336,8 +272,8 @@ a {
   border: rgba(65, 117, 5, 1) solid var(--carousel-border);
   border-radius: 10px;
   padding: 16px;
-  width: "full";
-  height: "full";
+  width: 'full';
+  height: 'full';
   flex: 1;
   letter-spacing: 1.3px;
   font-weight: 400;
@@ -352,7 +288,7 @@ a {
 .neuButton {
   width: fit-content;
   text-transform: uppercase;
-  font-family: "Henny Penny", cursive;
+  font-family: 'Henny Penny', cursive;
   background: #ff52a2;
   border: none;
   cursor: pointer;
@@ -399,14 +335,14 @@ a {
 /* ImageCarousel.module.css */
 /* Your CSS file */
 .buttonText:hover {
-  font-family: "Henny Penny", cursive !important;
+  font-family: 'Henny Penny', cursive !important;
 }
 input::placeholder {
   font-weight: bold;
 }
 
 .addFunnyFont {
-  font-family: "Henny Penny", cursive;
+  font-family: 'Henny Penny', cursive;
   letter-spacing: 3px;
 }
 
@@ -426,32 +362,32 @@ input::placeholder {
 
 .front {
   transform: translateZ(50px);
-  background-image: url("/front.jpg");
+  background-image: url('/front.jpg');
 }
 
 .back {
   transform: translateZ(-50px) rotateY(180deg);
-  background-image: url("/back.jpg");
+  background-image: url('/back.jpg');
 }
 
 .top {
   transform: rotateX(90deg) translateZ(50px);
-  background-image: url("/top.jpg");
+  background-image: url('/top.jpg');
 }
 
 .bottom {
   transform: rotateX(-90deg) translateZ(50px);
-  background-image: url("/bottom.jpg");
+  background-image: url('/bottom.jpg');
 }
 
 .left {
   transform: rotateY(-90deg) translateZ(50px);
-  background-image: url("/left.jpg");
+  background-image: url('/left.jpg');
 }
 
 .right {
   transform: rotateY(90deg) translateZ(50px);
-  background-image: url("/right.jpg");
+  background-image: url('/right.jpg');
 }
 
 @keyframes rotate {
@@ -512,7 +448,7 @@ Input::placeholder {
   padding: 5px;
 }
 #emailSentDiv {
-  background-image: url("/emailsent.jpg");
+  background-image: url('/emailsent.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

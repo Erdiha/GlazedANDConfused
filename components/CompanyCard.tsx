@@ -10,14 +10,14 @@ interface CompanyCardProps {
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
-  const isMobile = useMediaQuery({ query: '(max-resolution: 468px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
 
   const initialAnimation = {
     x: Math.random() * -500 + '%', // Random initial x position (-50 to 50)
     y: Math.random() * 500 + '%', // Random initial y position (-50 to 50)
     opacity: 0,
   };
-
+  console.log('ismobile isss', isMobile);
   return (
     <motion.div
       className="w-full h-full aspect-square flex justify-center items-center border-2 md:border-4 border-pink-300 relative placeholder shadow-2xl "
