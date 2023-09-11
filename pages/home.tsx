@@ -4,22 +4,16 @@ import { motion, useAnimation } from 'framer-motion';
 import LandingPage from '../components/sharedComponents/LandingPage';
 import NeumorphicButton from '@/components/sharedComponents/NeumorphicButton';
 import { AiOutlineForm } from 'react-icons/ai';
-
+import { useMediaQuery } from 'react-responsive';
 const Home: React.FC = () => {
   const controls = useAnimation();
   const controlImage = useAnimation();
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
 
   useEffect(() => {
     controls.start({ y: 0 });
     controlImage.start({ y: 0, rotateY: [0, 360] });
-
-    if (containerRef?.current) {
-      const getWidth = containerRef.current.clientWidth;
-
-      getWidth < 486 ? setIsMobile(true) : setIsMobile(false);
-    }
   }, [controls, controlImage]);
 
   const freshMiniDonuts = ['Fresh', 'made-to-order', 'mini donuts'];
@@ -68,7 +62,7 @@ const Home: React.FC = () => {
             delay: 1,
             duration: 4,
           }}
-          className="flex justify-center items-center md:w-full"
+          className="flex justify-center items-center md:w-full relative"
         >
           <Image
             alt="homerdonut image"
