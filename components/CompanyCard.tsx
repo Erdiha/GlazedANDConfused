@@ -1,9 +1,7 @@
-import React from "react";
-import Image, { StaticImageData } from "next/image";
-import { Card } from "ui-neumorphism";
-import { Spinner } from "@nextui-org/react";
-import { delay, motion, useAnimation } from "framer-motion";
-import { useMediaQuery } from "react-responsive";
+import React from 'react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 
 interface CompanyCardProps {
   id: number;
@@ -12,11 +10,11 @@ interface CompanyCardProps {
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
-  const isMobile = useMediaQuery({ query: "(max-resolution: 468px)" });
+  const isMobile = useMediaQuery({ query: '(max-resolution: 468px)' });
 
   const initialAnimation = {
-    x: Math.random() * -500 + "%", // Random initial x position (-50 to 50)
-    y: Math.random() * 500 + "%", // Random initial y position (-50 to 50)
+    x: Math.random() * -500 + '%', // Random initial x position (-50 to 50)
+    y: Math.random() * 500 + '%', // Random initial y position (-50 to 50)
     opacity: 0,
   };
 
@@ -31,7 +29,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
         transition: { delay: 0.05 * id, duration: 1 },
       }}
       transition={{
-        type: "spring",
+        type: 'spring',
         damping: 10,
         stiffness: 100,
         mass: 1,
@@ -40,14 +38,14 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
         scale: 1.3,
         rotate: [720, -90, -360],
         zIndex: 99999,
-        borderRadius: isMobile ? "0px" : "100%",
-        boxShadow: "0px 0px 20px 10px pink",
+        borderRadius: isMobile ? '0px' : '100%',
+        boxShadow: '0px 0px 20px 10px pink',
         transition: {
           duration: 1,
           delay: 0,
         }, // Transition duration for hover
       }}
-      whileFocus={{ borderColor: "pink" }}
+      whileFocus={{ borderColor: 'pink' }}
     >
       <Image
         key={id}
@@ -55,16 +53,16 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
         src={img}
         fill
         blurDataURL={img}
-        onLoadingComplete={(image) => image.classList.remove("opacity-0")}
+        onLoadingComplete={(image) => image.classList.remove('opacity-0')}
         className="opacity-0  md:hover:rounded-full duration-1000 transition-all ease hover:border-primary-pink border-2 md:p-4"
         style={{
-          objectFit: "contain",
-          display: "flex",
-          position: "absolute",
-          backgroundColor: "white",
-          boxShadow: "0px 0px 10px black",
+          objectFit: 'contain',
+          display: 'flex',
+          position: 'absolute',
+          backgroundColor: 'white',
+          boxShadow: '0px 0px 10px black',
         }}
-        alt={name || ""}
+        alt={name || ''}
       />
     </motion.div>
   );

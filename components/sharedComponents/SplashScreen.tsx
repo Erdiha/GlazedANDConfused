@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useRouter } from "next/router";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import Loading from "./Loading";
-import { useMediaQuery } from "react-responsive";
+import React, { useEffect, useState, useRef } from 'react';
+import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import Loading from './Loading';
+import { useMediaQuery } from 'react-responsive';
 
 const SplashScreen: React.FC = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ const SplashScreen: React.FC = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      router.push("/Home");
+      router.push('/home');
     }, 100); // Adjust the timeout duration as needed
 
     return () => clearTimeout(timeout);
@@ -22,7 +22,7 @@ const SplashScreen: React.FC = () => {
       <motion.div
         initial={{ x: -500 }}
         animate={{ x: 0 }}
-        transition={{ type: "spring", damping: 10, stiffness: 70, mass: 2 }}
+        transition={{ type: 'spring', damping: 10, stiffness: 70, mass: 2 }}
       >
         <Image
           src="/homerdonut.png"

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { Navbar, Collapse } from "@material-tailwind/react";
-import Link from "next/link";
-import { useRouter } from "next/router"; // Import the useRouter hook
-import { Sling as Hamburger } from "hamburger-react";
-import DonutIcon from "./DonutIcon";
+import React, { useState, useEffect, useMemo } from 'react';
+import { Navbar, Collapse } from '@material-tailwind/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router'; // Import the useRouter hook
+import { Sling as Hamburger } from 'hamburger-react';
+import DonutIcon from './DonutIcon';
 interface NavItem {
   id: number;
   name: string;
@@ -13,38 +13,39 @@ interface NavItem {
 type NavbarElement = HTMLElement | null;
 const Nav: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 0
+    typeof window !== 'undefined' ? window.innerWidth : 0
   );
   const [windowHeight, setWindowHeight] = useState(
-    typeof window !== "undefined" ? window.innerHeight : 0
+    typeof window !== 'undefined' ? window.innerHeight : 0
   );
 
   const [openNav, setOpenNav] = React.useState(false);
   const isMobile = windowWidth < 468;
-  const [activeItem, setActiveItem] = useState("home");
-  const navbar: NavbarElement = document.getElementById("navbar");
+  const [activeItem, setActiveItem] = useState('home');
+  const navbar: NavbarElement = document.getElementById('navbar');
+
   const items: NavItem[] = useMemo(
     () => [
-      { id: 0, name: "home", label: "HOME", path: "/Home" },
-      { id: 1, name: "donuts", label: "OUR DONUTS", path: "/Donuts" },
-      { id: 2, name: "services", label: "OUR SERVICES", path: "/Services" },
-      { id: 3, name: "clients", label: "OUR CLIENTS", path: "/Clients" },
-      { id: 4, name: "about", label: "ABOUT US", path: "/About" },
-      { id: 5, name: "contact", label: "CONTACT", path: "/Contact" },
+      { id: 0, name: 'home', label: 'HOME', path: '/home' },
+      { id: 1, name: 'donuts', label: 'OUR DONUTS', path: '/donuts' },
+      { id: 2, name: 'services', label: 'OUR SERVICES', path: '/services' },
+      { id: 3, name: 'clients', label: 'OUR CLIENTS', path: '/clients' },
+      { id: 4, name: 'about', label: 'ABOUT US', path: '/about' },
+      { id: 5, name: 'contact', label: 'CONTACT', path: '/contact' },
     ],
     []
   );
-  document.addEventListener("DOMContentLoaded", () => {
-    const navItem = document.getElementById("navItem");
+  document.addEventListener('DOMContentLoaded', () => {
+    const navItem = document.getElementById('navItem');
 
     if (navItem) {
-      window.addEventListener("scroll", () => {
+      window.addEventListener('scroll', () => {
         if (window.scrollY > 0) {
-          navItem.classList.add("text-white");
-          navItem.classList.remove("text-black");
+          navItem.classList.add('text-white');
+          navItem.classList.remove('text-black');
         } else {
-          navItem.classList.add("text-black");
-          navItem.classList.remove("text-white");
+          navItem.classList.add('text-black');
+          navItem.classList.remove('text-white');
         }
       });
     }
@@ -64,30 +65,30 @@ const Nav: React.FC = () => {
   useEffect(() => {
     // Function to update window dimensions
     const updateWindowDimensions = () => {
-      if (typeof window !== "undefined") {
+      if (typeof window !== 'undefined') {
         setWindowWidth(window?.innerWidth);
         setWindowHeight(window?.innerHeight);
       }
     };
 
     // Add event listener on component mount
-    window.addEventListener("resize", updateWindowDimensions);
+    window.addEventListener('resize', updateWindowDimensions);
 
     // Clean up the event listener on component unmount
     return () => {
-      window.removeEventListener("resize", updateWindowDimensions);
+      window.removeEventListener('resize', updateWindowDimensions);
     };
   }, []);
 
   if (navbar) {
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       // Check if the navbar element exists
       if (window.scrollY > 0) {
-        navbar.classList.add("navbarGradientScroll");
-        navbar.classList.remove("navbarGradient");
+        navbar.classList.add('navbarGradientScroll');
+        navbar.classList.remove('navbarGradient');
       } else {
-        navbar.classList.remove("navbarGradientScroll");
-        navbar.classList.add("navbarGradient");
+        navbar.classList.remove('navbarGradientScroll');
+        navbar.classList.add('navbarGradient');
       }
     });
   }
@@ -106,10 +107,10 @@ const Nav: React.FC = () => {
           font-semibold text-md md:text-sm 2xl:text-lg 3xl:text-xl flex justify-center items-center 
           ${
             item.name === activeItem
-              ? "activeNavItem "
+              ? 'activeNavItem '
               : isMobile
-              ? "mobilePassiveNavItem"
-              : "passiveNavItem "
+              ? 'mobilePassiveNavItem'
+              : 'passiveNavItem '
           }`}
         >
           <Link
@@ -117,9 +118,9 @@ const Nav: React.FC = () => {
             id="navItem"
             className={`flex items-center  text-start lg:h-[3rem]  w-full  ${
               item.name === activeItem
-                ? "justify-center text-gray-200"
-                : "text-gray-800"
-            } ${windowWidth < 480 ? "" : "justify-center"}`}
+                ? 'justify-center text-gray-200'
+                : 'text-gray-800'
+            } ${windowWidth < 480 ? '' : 'justify-center'}`}
           >
             {item.label}
           </Link>
@@ -133,7 +134,7 @@ const Nav: React.FC = () => {
       <div
         id="navbar"
         className={`absolute inset-0 z-[-1]   ${
-          openNav ? "bg-blue-400" : "navbarGradient"
+          openNav ? 'bg-blue-400' : 'navbarGradient'
         } `}
       />
       <Navbar

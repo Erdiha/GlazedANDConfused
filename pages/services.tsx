@@ -1,11 +1,11 @@
-import React from "react";
-import CarouselComp from "@/components/sharedComponents/Carousel";
-import { ImageProps } from "../components/types";
-import SharedContainer from "@/components/sharedComponents/SharedContainer";
+import React from 'react';
+import CarouselComp from '@/components/sharedComponents/Carousel';
+import { ImageProps } from '../components/types';
+import SharedContainer from '@/components/sharedComponents/SharedContainer';
 import {
   imagesOurServices,
   descriptionServices,
-} from "@/components/data/texts";
+} from '@/components/data/texts';
 
 function Services() {
   const images: ImageProps[] = [];

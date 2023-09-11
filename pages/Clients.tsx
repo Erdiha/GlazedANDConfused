@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CompanyCard from '../components/CompanyCard'; // Import CompanyCard from the correct location
 import { list } from '../components/data/texts';
 
