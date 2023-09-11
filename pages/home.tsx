@@ -9,7 +9,7 @@ const Home: React.FC = () => {
   const controls = useAnimation();
   const controlImage = useAnimation();
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
+  const isMobile = useMediaQuery({ maxWidth: 468 });
 
   useEffect(() => {
     controls.start({ y: 0 });
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col justify-center items-center w-screen h-[110vh] md:h-screen min-h-screen relative"
+      className="flex flex-col justify-center items-center w-screen  h-screen min-h-screen relative"
     >
       <div className="flex flex-col md:items-center justify-evenly h-[60%] gap-[5rem] md:gap-[10rem] p-2 shadow-sm">
         <motion.div
@@ -77,7 +77,7 @@ const Home: React.FC = () => {
           animate={controls}
           initial={{ y: 500 }}
           transition={{ type: 'spring', damping: 5, stiffness: 70 }}
-          className="flex flex-col backdrop-blur-md h-full w-full bg-[#ecf0f3]/20 rounded-md justify-evenly z-[999] items-center px-8"
+          className="flex flex-col backdrop-blur-md h-[100%] w-[100%] bg-[#ecf0f3]/20 rounded-md justify-evenly z-[999] items-center px-8"
         >
           <div className="bg-transparent flex flex-col md:flex-row">
             {arrayInArrayLetter}

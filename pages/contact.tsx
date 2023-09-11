@@ -196,10 +196,10 @@ const Contact = () => {
   return (
     <div
       ref={wrapperRef}
-      className="flex flex-col w-full h-screen  relative md:justify-center md:items-center px-2  bg-black/10 truck pt-24 pb-32 md:pb-0 md:pt-0"
+      className="flex flex-col w-full min-h-screen  relative justify-center items-center px-2  bg-black/10 truck  "
     >
       {isEmailSent.openContainer ? (
-        <div className="w-[50%] max-h-[80vh] h-[75vh] max-w-[100rem] flex bg-primary-offWhite justify-center items-center ">
+        <div className="w-[50%] md:max-h-[80vh]  h-[70vh] max-w-[100rem] flex bg-primary-offWhite justify-center items-center ">
           {isLoading ? (
             <EmailSending isLoading={isLoading} />
           ) : (

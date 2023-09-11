@@ -49,20 +49,16 @@ const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
   const textContainer = () => {
     return (
       <div
-        className={` flex flex-col md:h-full md:w-full absolute md:static bg-white/80 bottom-0 md:justify-evenly transition-all duration-500 ${
-          whatComp !== 'services' ? 'absolute' : 'static'
-        }
-       items-center p-4  invert md:invert-0 md:p-5 md:gap-10 gap-3 ${
-         showFullDescription ? 'h-fit' : 'h-fit'
-       }`}
+        className={` flex flex-col md:h-full md:w-full absolute md:static bg-white/80 bottom-0 md:justify-evenly transition-all duration-500 
+       items-center p-4  invert md:invert-0 md:p-5 md:gap-10 gap-3`}
       >
         <p
           className="text-black dark:text-white flex
-        md:w-full md:h-full items-center md:pl-7 text-xl md:text-4xl break-words hyphens-auto font-bold"
+        md:w-full md:h-full items-center md:pl-7 text-lg lg:text-4xl break-words hyphens-auto font-bold"
         >
           {item.title}
         </p>
-        <p className="lg:text-xl text-md font-normal text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-relaxed flex indent-7 break-words hyphens-auto relative gap-2">
+        <p className=" text-sm  text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-relaxed flex indent-7 break-words hyphens-auto relative gap-2 lg:text-xl lg:font-normal font-semibold">
           {showFullDescription ? item.description : truncatedDescription}
           {item?.description?.length > 100 && isMobile && (
             <button

@@ -9,8 +9,6 @@ const SharedContainer: React.FC<SharedContainerProps> = ({
   images,
   whatComp,
 }) => {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 468;
-
   return (
     <div className="flex flex-col w-full h-full justify-evenly items-center">
       <div
