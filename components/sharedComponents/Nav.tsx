@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router'; // Import the useRouter hook
 import { Sling as Hamburger } from 'hamburger-react';
 import DonutIcon from './DonutIcon';
+import { useMediaQuery } from 'react-responsive';
 interface NavItem {
   id: number;
   name: string;
@@ -11,16 +12,10 @@ interface NavItem {
   path: string;
 }
 type NavbarElement = HTMLElement | null;
-const Nav: React.FC = () => {
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== 'undefined' ? window.innerWidth : 0
-  );
-  const [windowHeight, setWindowHeight] = useState(
-    typeof window !== 'undefined' ? window.innerHeight : 0
-  );
 
+const Nav: React.FC = () => {
   const [openNav, setOpenNav] = React.useState(false);
-  const isMobile = windowWidth < 468;
+  const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
   const [activeItem, setActiveItem] = useState('home');
   const navbar: NavbarElement = document.getElementById('navbar');
 
@@ -67,24 +62,6 @@ const Nav: React.FC = () => {
     }
   }, [router.pathname, items]);
 
-  useEffect(() => {
-    // Function to update window dimensions
-    const updateWindowDimensions = () => {
-      if (typeof window !== 'undefined') {
-        setWindowWidth(window?.innerWidth);
-        setWindowHeight(window?.innerHeight);
-      }
-    };
-
-    // Add event listener on component mount
-    window.addEventListener('resize', updateWindowDimensions);
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener('resize', updateWindowDimensions);
-    };
-  }, []);
-
   if (navbar) {
     window.addEventListener('scroll', () => {
       // Check if the navbar element exists
@@ -125,7 +102,7 @@ const Nav: React.FC = () => {
               item.name === activeItem
                 ? 'justify-center text-gray-200'
                 : 'text-gray-800'
-            } ${windowWidth < 480 ? '' : 'justify-center'}`}
+            } ${isMobile ? '' : 'justify-center'}`}
           >
             {item.label}
           </Link>

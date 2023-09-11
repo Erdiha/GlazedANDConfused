@@ -14,7 +14,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
-  const isMobile = useMediaQuery({ maxWidth: 468 });
+  const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
   const [showFullDescription, setShowFullDescription] = useState(!isMobile);
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
@@ -25,13 +25,7 @@ const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
 
   const imageContainer = () => {
     return (
-      <div
-        style={{
-          width: whatComp === 'services' ? '100%' : '',
-          height: whatComp === 'services' ? '100%' : '',
-        }}
-        className="relative flex overflow-hidden md:justify-center md:items-center rounded-none w-fit h-fit"
-      >
+      <div className="relative flex overflow-hidden md:justify-center md:items-center rounded-none w-fit h-fit">
         <Image
           objectPosition="center"
           loading="eager"
