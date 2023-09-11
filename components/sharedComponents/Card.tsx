@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { TERipple } from "tw-elements-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
 
 interface CardProps {
   item: {
-    src: string; // Update this type as needed
+    src: string;
     title: string;
     description: string;
   };
-  whatComp: any; // Replace 'any' with the actual type of 'whatComp'
-  index: number; // Replace 'number' with the actual type of 'index'
+  whatComp: string | null;
+  index: number;
 }
 
 const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 468;
+  const isMobile = useMediaQuery({ maxWidth: 468 });
   const [showFullDescription, setShowFullDescription] = useState(!isMobile);
-
   const toggleDescription = () => {
     setShowFullDescription(!showFullDescription);
   };
