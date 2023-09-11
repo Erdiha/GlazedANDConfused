@@ -34,3 +34,32 @@ export interface AddressProps {
 export interface IAddress {
   label: string;
 }
+export interface AddressProps {
+  address_line1: string;
+  address_line2: string;
+  city: string;
+  country: string;
+  country_code: string;
+  county: string;
+  county_code: string;
+}
+
+export interface IAddress {
+  label: string;
+}
+
+export interface EmailResponse {
+  openContainer: boolean;
+  mailSent: boolean;
+}
+
+export interface FormData {
+  name: string;
+  email: string;
+  address: string;
+  eventDate: string;
+  eventTime: string;
+  guestCount: string;
+  hearAboutUs: string;
+  eventDescription: string;
+}

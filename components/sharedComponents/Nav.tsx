@@ -29,7 +29,12 @@ const Nav: React.FC = () => {
       { id: 0, name: 'home', label: 'HOME', path: '/home' },
       { id: 1, name: 'donuts', label: 'OUR DONUTS', path: '/donuts' },
       { id: 2, name: 'services', label: 'OUR SERVICES', path: '/services' },
-      { id: 3, name: 'clients', label: 'OUR CLIENTS', path: '/clients' },
+      {
+        id: 3,
+        name: 'clientspage',
+        label: 'OUR CLIENTS',
+        path: '/clientspage',
+      },
       { id: 4, name: 'about', label: 'ABOUT US', path: '/about' },
       { id: 5, name: 'contact', label: 'CONTACT', path: '/contact' },
     ],

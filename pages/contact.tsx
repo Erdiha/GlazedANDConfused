@@ -10,36 +10,14 @@ import {
 import { inputPlaceHolder } from '../components/data/texts';
 import { motion } from 'framer-motion';
 import { EmailSent, EmailSending } from '../components/email/VerifyEmailSent';
+import { useMediaQuery } from 'react-responsive';
+import {
+  FormData,
+  EmailResponse,
+  IAddress,
+  AddressProps,
+} from '../components/types';
 
-interface AddressProps {
-  address_line1: string;
-  address_line2: string;
-  city: string;
-  country: string;
-  country_code: string;
-  county: string;
-  county_code: string;
-}
-
-interface IAddress {
-  label: string;
-}
-
-interface EmailResponse {
-  openContainer: boolean;
-  mailSent: boolean;
-}
-
-interface FormData {
-  name: string;
-  email: string;
-  address: string;
-  eventDate: string;
-  eventTime: string;
-  guestCount: string;
-  hearAboutUs: string;
-  eventDescription: string;
-}
 const Contact = () => {
   const [isEmailSent, setIsEmailSent] = useState<EmailResponse>({
     openContainer: false,
@@ -47,7 +25,7 @@ const Contact = () => {
   });
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const size = isMobile ? 'sm' : 'xl';
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
@@ -56,12 +34,6 @@ const Contact = () => {
     'Email Sent!',
     'WE WILL GET BACK TO YOU WITHIN 24 HOURS WITH A PRICE QUOTE',
   ]);
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      window.innerWidth < 768 && setIsMobile(true);
-      // window.scrollTo(0, document.body.scrollHeight);
-    }
-  }, []);
 
   const [formData, setFormData] = useState<FormData>({
     name: '',
