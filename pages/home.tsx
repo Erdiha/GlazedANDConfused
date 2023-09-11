@@ -67,12 +67,13 @@ const Home: React.FC = () => {
           <Image
             alt="homerdonut image"
             layout="fixed"
-            width={isMobile ? 150 : 350}
-            height={isMobile ? 150 : 350}
+            width={isMobile ? 150 : 300}
+            height={isMobile ? 150 : 300}
             src="/homerdonut.png"
           />
         </motion.div>
         <motion.div
+          style={{ width: '100%', height: '100%' }}
           animate={controls}
           initial={{ y: 500 }}
           transition={{ type: 'spring', damping: 5, stiffness: 70 }}
@@ -84,11 +85,11 @@ const Home: React.FC = () => {
 
           <NeumorphicButton
             text="Book Our Truck"
-            to="/Contact"
+            to="/contact"
             icon={AiOutlineForm}
             size={{
-              w: isMobile ? '300px' : '450px',
-              h: isMobile ? '75px' : '100px',
+              w: isMobile ? '250px' : '400px',
+              h: isMobile ? '70px' : '80px',
               size: isMobile ? 'sm' : 'lg',
             }}
           />

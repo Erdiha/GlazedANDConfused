@@ -202,24 +202,23 @@ a {
 }
 .passiveNavItem {
   :hover {
+    padding: 0 0;
     background-color: rgb(245, 245, 245);
   }
 }
-.mobilePassiveNavItem {
-  :hover {
-    background-color: rgb(245, 245, 245);
-    padding: 3px;
-    -webkit-mask-image: linear-gradient(
-      to right,
-      /* Change "to bottom" to "to top" */ #454545 50%,
-      transparent 100%
-    );
-    mask-image: linear-gradient(
-      to right,
-      /* Change "to bottom" to "to top" */ #454545 50%,
-      transparent 100%
-    );
-  }
+.mobilePassiveNavItem:hover {
+  background-color: rgb(245, 245, 245);
+  padding: 0px 0px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    /* Change "to bottom" to "to top" */ #454545 50%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    /* Change "to bottom" to "to top" */ #454545 50%,
+    transparent 100%
+  );
 }
 
 .passiveNavItem:hover:before {

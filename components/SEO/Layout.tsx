@@ -22,12 +22,13 @@ const Layout: React.FC<LayoutProps> = ({
     <div>
       <Head>
         <link
-          rel='icon'
-          sizes='180x180'
-          href='/homerdonut.png'
-          type='image/svg+xml'
+          rel="icon"
+          sizes="180x180"
+          href="/homerdonut.png"
+          type="image/svg+xml"
         />
-        <link rel='apple-touch-icon' sizes='180x180' href='/homerdonut.png' />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/homerdonut.png" />
         {/* Include additional sizes if needed */}
         <SEO title={title} description={description} keywords={keywords} />
       </Head>

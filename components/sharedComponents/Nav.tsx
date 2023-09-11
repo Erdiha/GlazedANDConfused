@@ -15,7 +15,7 @@ type NavbarElement = HTMLElement | null;
 
 const Nav: React.FC = () => {
   const [openNav, setOpenNav] = React.useState(false);
-  const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
+  const isMobile = useMediaQuery({ maxWidth: 468 });
   const [activeItem, setActiveItem] = useState('home');
   const navbar: NavbarElement = document.getElementById('navbar');
 
