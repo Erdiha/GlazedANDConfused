@@ -14,18 +14,7 @@ const NeumorphicButton: React.FC<NeumorphicButtonProps> = ({
   icon,
   size,
 }) => {
-  return (
-    <Link href={to}>
-      <Button
-        variant="filled"
-        size={size.size}
-        style={{ width: size.w, height: size.h }}
-        className="flex bg-[#ff52a2] p-6 rounded-lg text-lg 2xl:text-2xl 3xl:text-3xl  tracking-widest hover:scale-105 justify-center items-center hover:shadow-xl hover:border-4 border-black transition-all ease-in-out duration-700 buttonText "
-      >
-        {text}
-      </Button>
-    </Link>
-  );
+  return <Link href={to}></Link>;
 };
 
 export default NeumorphicButton;

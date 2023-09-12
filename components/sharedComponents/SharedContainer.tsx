@@ -15,7 +15,7 @@ const SharedContainer: React.FC<SharedContainerProps> = ({
         className={`flex flex-col w-[90%] max-w-[110rem] h-full items-center justify-evenly md:bg-[#FAF3F0] 
         ${whatComp === 'aboutus' && 'md:p-16 gap-16 my-10'}
         ${whatComp === 'donuts' && 'md:p-16 gap-10'}
-        ${whatComp === 'services' && 'md:p-20 gap-16'}
+        ${whatComp === 'services' && 'md:p-20 gap-16 mt-12'}
        `}
       >
         {images.map((image, index) => (

@@ -18,7 +18,7 @@ const DonutIcon = () => {
           <Image
             key={router.pathname}
             content="cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 28vw"
             width={isMobile ? 40 : 60}
             height={isMobile ? 40 : 60}
             src="/homerdonut.png"

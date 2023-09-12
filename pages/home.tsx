@@ -5,6 +5,8 @@ import LandingPage from '../components/sharedComponents/LandingPage';
 import NeumorphicButton from '@/components/sharedComponents/NeumorphicButton';
 import { AiOutlineForm } from 'react-icons/ai';
 import { useMediaQuery } from 'react-responsive';
+import { Button } from '@material-tailwind/react';
+
 const Home: React.FC = () => {
   const controls = useAnimation();
   const controlImage = useAnimation();
@@ -19,11 +21,11 @@ const Home: React.FC = () => {
   const freshMiniDonuts = ['Fresh', 'made-to-order', 'mini donuts'];
 
   const arrayInArrayLetter = freshMiniDonuts.map((word, wordIndex) => (
-    <div className="md:m-2 m-1 md:inline-block whitespace-pre" key={wordIndex}>
+    <div className="md:m-5 m-2 md:inline-block whitespace-pre" key={wordIndex}>
       {word.split('').map((letter, index) => (
         <motion.span
           key={index}
-          className="homeText flex lg:text-3xl xl:text-4xl 3xl:text-5xl text-xl text-[#ecf0f3]"
+          className="homeText flex lg:text-[3.5rem]  text-2xl text-[#ecf0f3] p-[1px]"
           style={{
             backfaceVisibility: 'hidden',
             fontSmooth: 'antialiased',
@@ -49,9 +51,9 @@ const Home: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col justify-center items-center w-screen  h-screen min-h-screen relative"
+      className="flex flex-col justify-center items-center w-screen  h-[92vh]  relative"
     >
-      <div className="flex flex-col md:items-center justify-evenly h-[60%] gap-[5rem] md:gap-[10rem] p-2 shadow-sm">
+      <div className="flex flex-col md:items-center justify-evenly gap-[5rem] mt-20 md:gap-[12rem] p-10 md:p-20 ">
         <motion.div
           initial={{ y: -1000, rotate: 0 }}
           animate={controlImage}
@@ -73,26 +75,26 @@ const Home: React.FC = () => {
           />
         </motion.div>
         <motion.div
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: '100%', height: isMobile ? '60%' : '100%' }}
           animate={controls}
           initial={{ y: 500 }}
           transition={{ type: 'spring', damping: 5, stiffness: 70 }}
-          className="flex flex-col backdrop-blur-md h-[100%] w-[100%] bg-[#ecf0f3]/20 rounded-md justify-evenly z-[999] items-center px-8"
+          className="flex flex-col backdrop-blur-md gap-10 bg-[#ecf0f3]/20 rounded-md justify-evenly z-[999] items-center p-8"
         >
           <div className="bg-transparent flex flex-col md:flex-row">
             {arrayInArrayLetter}
           </div>
-
-          <NeumorphicButton
-            text="Book Our Truck"
-            to="/contact"
-            icon={AiOutlineForm}
-            size={{
-              w: isMobile ? '250px' : '400px',
-              h: isMobile ? '70px' : '80px',
-              size: isMobile ? 'sm' : 'lg',
+          <Button
+            variant="filled"
+            size="lg"
+            style={{
+              width: isMobile ? '250px' : '400px',
+              height: isMobile ? '70px' : '80px',
             }}
-          />
+            className="flex bg-[#ff52a2] p-6 rounded-lg text-xl md:text-2xl xl:text-3xl  tracking-widest hover:scale-105 justify-center items-center hover:shadow-xl hover:border-4 border-black transition-all ease-in-out duration-700 buttonText "
+          >
+            Book Our Truck
+          </Button>
         </motion.div>
         <section
           id="features"
