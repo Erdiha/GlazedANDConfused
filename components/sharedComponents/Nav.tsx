@@ -80,13 +80,13 @@ const Nav: React.FC = () => {
   }, [router.asPath]);
 
   const navList = (
-    <ul className="flex  flex-col lg:flex-row z-[9999] p-5  justify-center items-center w-full my-4 lg:p-2 lg:my-0 gap-4 h-[20rem] lg:h-full  ">
+    <ul className="flex  flex-col lg:flex-row z-[9999] p-8  justify-center items-center w-full my-4 lg:p-2 lg:my-0 gap-4 h-[20rem] lg:h-full  ">
       {items.map((item, index) => (
         <li
           id="navItem"
           key={item.id}
           className={` h-full w-[60%] relative lg:w-full border-none z-[9999] 
-          font-semibold text-md md:text-sm 2xl:text-lg 3xl:text-xl flex justify-center items-center 
+          font-semibold text-md md:text-xl 2xl:text-xl 3xl:text-2xl flex justify-center items-center 
           ${
             item.name === activeItem
               ? 'activeNavItem '
@@ -121,7 +121,7 @@ const Nav: React.FC = () => {
       />
       <Navbar
         color="transparent"
-        className="sticky top-0 z-10 h-max max-w-[110rem] rounded-none py-1 md:py-4 px-4 lg:px-8 lg:py-6 justify-center items-center mx-auto"
+        className="sticky top-0 z-10 h-max max-w-[110rem] rounded-none py-2 md:py-6 px-6 lg:px-8 lg:py-10 justify-center items-center mx-auto"
       >
         <div className="flex items-center h-[5rem] w-full relative justify-end  3xl:justify-end bg-transparent">
           <DonutIcon />

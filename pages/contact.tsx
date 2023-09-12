@@ -27,7 +27,7 @@ const Contact = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const size = isMobile ? 'sm' : 'xl';
+  const size = 'lg';
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
   let [isLoading, setIsLoading] = useState(false);
   const [emailResponse, setEmailResponse] = useState([
@@ -196,7 +196,7 @@ const Contact = () => {
   return (
     <div
       ref={wrapperRef}
-      className="flex flex-col w-full h-screen  relative justify-center items-center px-2  bg-black/10 truck"
+      className="flex flex-col w-full min-h-screen pt-5 relative justify-center items-center px-2  bg-black/10 truck"
     >
       {isEmailSent.openContainer ? (
         <div className="w-[50%] md:max-h-[80vh]  h-[70vh] max-w-[100rem] flex bg-primary-offWhite justify-center items-center ">
@@ -218,10 +218,11 @@ const Contact = () => {
           whileInView={{ x: 0 }}
           viewport={{ once: true }}
           transition={{ ease: 'easeInOut', duration: 1 }}
-          className="md:max-w-[60rem] px-3 md:px-10 gap-1 pb-3 md:pb-10 z-50 flex md:justify-between md:font-semibold flex-col  bg-primary-pink/80 backdrop-blur-2xl shadow-4xl md:max-h-[80vh]"
+          className="md:max-w-[60rem] px-5 md:px-10 gap-4 pb-5 md:pb-10 z-50 flex md:justify-between md:font-semibold flex-col bg-primary-pink/80 
+          backdrop-blur-2xl shadow-4xl md:max-h-[80vh] h-full"
           onSubmit={handleSubmit}
         >
-          <p className="text-[12px]  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%] pt-3 md:pt-16 md:leading-9 md:p-4">
+          <p className="text-md  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%] pt-3 md:pt-16 md:leading-9 md:p-4">
             PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
             WITHIN 24 HOURS WITH A PRICE QUOTE.
           </p>
@@ -237,7 +238,7 @@ const Contact = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ ease: 'easeInOut', duration: 1, delay: 0.5 }}
-            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-[1.8rem] relative md:py-8  pt-6 pb-3"
+            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-10 relative md:py-8  pt-9 pb-3"
           >
             <div className="flex  justify-between items-center gap-4 font-bold">
               <Input
