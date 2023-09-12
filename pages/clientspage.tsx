@@ -4,18 +4,16 @@ import { list } from '../components/data/texts';
 
 function Clients() {
   return (
-    <div className="relative min-h-screen overflow-auto bg-primary-offWhite flex flex-col justify-center items-center truck ">
-      <div className=" max-w-[100rem] flex flex-col w-full min-h-full pt-28 lg:px-10 md:px-4 px-2 pb-32">
-        <div className="md:px-10 p-2 shadow-2xl bg-primary-offWhite backdrop-blur-xl md:py-20 py-10 grid grid-cols-4 gap-[1%] md:grid-cols-5 lg:grid-cols-6 min-h-fit md:gap-[2%]  w-full h-full justify-center content-center items-center transition-all duration-500 ease relative">
-          {list?.map((img, index) => (
-            <CompanyCard
-              key={index}
-              id={index}
-              img={img} // Pass the image URL as a prop
-              name={`Company ${index}`} // You can provide a name for each image
-            />
-          ))}
-        </div>
+    <div className="relative min-h-screen md:min-h-[94vh] overflow-auto bg-primary-offWhite flex flex-col justify-center items-center truck pt-32 px-3 pb-6 md:px-0 md:pt-0 md:pb-0 md:py-0">
+      <div className="md:max-w-[120rem]  max-w-[95%] shadow-2xl bg-primary-offWhite backdrop-blur-xl grid grid-cols-3  md:grid-cols-4 lg:grid-cols-6 w-[95%] h-[100%] md:h-fit justify-center content-center items-center transition-all duration-500 ease relative md:p-10 p-5 gap-1 md:gap-8 ">
+        {list?.map((img, index) => (
+          <CompanyCard
+            key={index}
+            id={index}
+            img={img} // Pass the image URL as a prop
+            name={`Company ${index}`} // You can provide a name for each image
+          />
+        ))}
       </div>
     </div>
   );

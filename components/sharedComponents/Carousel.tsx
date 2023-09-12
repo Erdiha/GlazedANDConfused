@@ -7,7 +7,7 @@ import Image from 'next/image';
 const Carousel: React.FC<ImageCarouselProps> = ({ images, whatComp }) => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 468;
   return (
-    <div className="flex h-full w-full  max-w-[100rem]  p-5 md:p-0 justify-center items-center flex-col  mb-20 backdrop-blur-xl bg-transparent ">
+    <div className="flex h-full w-full  max-w-[100rem]  p-5 md:p-0 justify-center items-center flex-col backdrop-blur-xl bg-transparent ">
       <Splide
         options={{
           rewind: true,
@@ -62,7 +62,7 @@ const Carousel: React.FC<ImageCarouselProps> = ({ images, whatComp }) => {
                 {whatComp !== 'services' && (
                   <p
                     style={{ fontFamily: 'Henny Penny, cursive' }}
-                    className="bg-white text-black w-full text-md p-5 h-12 text-center flex justify-center items-center tracking-widest font-bold md:text-2xl"
+                    className="bg-white text-black w-full text-2xl p-5 md:p-10 h-12 text-center flex justify-center items-center tracking-widest font-bold md:text-4xl"
                   >
                     {image.name}
                   </p>
@@ -75,13 +75,13 @@ const Carousel: React.FC<ImageCarouselProps> = ({ images, whatComp }) => {
                     fontSize:
                       whatComp === 'services'
                         ? isMobile
-                          ? '1.7rem'
-                          : '2.2rem'
+                          ? '1.9rem'
+                          : '2.5rem'
                         : whatComp === 'donuts' && isMobile
-                        ? '0.85rem'
-                        : '1.3rem',
+                        ? '1.2rem'
+                        : '1.8rem',
                   }}
-                  className={`text-white bg-black w-full text-sm p-5 h-24 text-center flex justify-center items-center`}
+                  className={`text-white bg-black w-full  p-5 h-24 text-center flex justify-center items-center`}
                 >
                   {image.desc}
                 </p>

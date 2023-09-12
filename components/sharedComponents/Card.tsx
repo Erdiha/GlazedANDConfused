@@ -54,11 +54,11 @@ const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
       >
         <p
           className="text-black dark:text-white flex
-        md:w-full md:h-full items-center md:pl-7 text-lg lg:text-4xl break-words hyphens-auto font-bold"
+        md:w-full md:h-full items-center md:pl-7 text-2xl lg:text-5xl break-words hyphens-auto font-bold"
         >
           {item.title}
         </p>
-        <p className=" text-sm  text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-relaxed flex indent-7 break-words hyphens-auto relative gap-2 lg:text-xl lg:font-normal font-semibold">
+        <p className=" text-lg  text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-relaxed flex indent-7 break-words hyphens-auto relative gap-2 lg:text-2xl xl:text-3xl lg:font-normal font-normal">
           {showFullDescription ? item.description : truncatedDescription}
           {item?.description?.length > 100 && isMobile && (
             <button
