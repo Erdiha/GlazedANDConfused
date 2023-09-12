@@ -23,7 +23,7 @@ const SharedContainer: React.FC<SharedContainerProps> = ({
         ))}
 
         {whatComp === 'donuts' && (
-          <div className="w-full p-4 h-full flex text-md md:text-[22px] italic tracking-wide text-black font-bold justify-center  items-center bg-[#FAF3F0]/80">
+          <div className="w-full p-4 h-full flex text-md md:text-[19px] italic tracking-wide text-black font-bold justify-center  items-center bg-[#FAF3F0]/80">
             <p className="border-b-[2px] pb-2 border-b-red-400 flex w-full">
               {kosherWarning}
             </p>
