@@ -263,7 +263,6 @@ const Contact = () => {
                 css={{ width: '100%' }}
                 shadow={true}
                 size={size}
-                pattern="\d{2}/\d{2}/\d{4}"
                 style={{ fontWeight: 'bold' }}
                 label={isMobile ? undefined : inputPlaceHolder[3]}
                 labelPlaceholder={isMobile ? inputPlaceHolder[3] : undefined}
@@ -293,7 +292,6 @@ const Contact = () => {
               onChange={(e: any) => handleChange(e)}
               required
               name="name"
-              color="default"
               clearable
               shadow={true}
               value={formData.name}
