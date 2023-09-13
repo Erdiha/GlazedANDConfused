@@ -30,7 +30,7 @@ export default async function sendEmail(
       // Email content
       const mailOptions = {
         from: `"Glazed & Confused" <${process.env.EMAIL_USER}>`,
-        to: 'minidonutsnyc@gmail.com',
+        to: 'erdiha@hotmail.com',
         subject: 'Message From Glazed & Confused',
         html: `
         <div style="width: 100%; background-color: #f3f9ff; padding: 2rem 0;">
