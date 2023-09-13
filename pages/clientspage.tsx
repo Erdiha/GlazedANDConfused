@@ -4,9 +4,9 @@ import { list } from '../components/data/texts';
 
 function Clients() {
   return (
-    <div className="relative min-h-screen   bg-primary-offWhite flex flex-col overflow-hidden justify-center items-center truck pt-32 px-3 ">
+    <div className="relative min-h-screen  flex flex-col overflow-hidden justify-center items-center truck pt-32 px-3 pb-10 md:pb-0">
       <div className="md:max-w-[110rem] shadow-2xl bg-primary-offWhite backdrop-blur-xl flex justify-center items-center w-[95%] md:w-[90%] transition-all duration-500 ease relative">
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 w-full h-full p-5 md:p-10 gap-3 md:gap5 relative">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 w-full h-full p-5 md:p-10 gap-3 md:gap-5 relative">
           {list?.map((img, index) => (
             <CompanyCard
               key={index}
