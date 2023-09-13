@@ -80,13 +80,13 @@ const Nav: React.FC = () => {
   }, [router.asPath]);
 
   const navList = (
-    <ul className="flex  flex-col lg:flex-row z-[9999] p-8  justify-center items-center w-full my-4 lg:p-2 lg:my-0 gap-4 h-[20rem] lg:h-full  ">
+    <ul className="flex  flex-col lg:flex-row z-[9999] md:p-4 py-8  justify-center items-center w-full my-2 gap-6  lg:h-full lg:w-[85%]  ">
       {items.map((item, index) => (
         <li
           id="navItem"
           key={item.id}
-          className={` h-full w-[60%] relative lg:w-full border-none z-[9999] 
-          font-semibold text-md md:text-xl 2xl:text-xl 3xl:text-2xl flex justify-center items-center 
+          className={` h-full w-[50%] relative lg:w-full border-none z-[9999] 
+          font-semibold text-lg md:xl 3xl:xl  flex justify-center items-center 
           ${
             item.name === activeItem
               ? 'activeNavItem '
@@ -112,22 +112,17 @@ const Nav: React.FC = () => {
   );
 
   return (
-    <div className="fixed top-0 min-w-screen w-full  overflow-hidden z-[9999]  justify-center items-center  ">
+    <div className="fixed top-0 min-w-screen w-full  overflow-hidden z-[9999]  justify-center items-center  bg-transparent">
       <div
         id="navbar"
-        className={`absolute inset-0 z-[-1]   ${
-          openNav ? 'bg-blue-400' : 'navbarGradient'
-        } `}
+        className={`absolute inset-0 z-[-1]   ${openNav ? 'bg-blue-400' : ''} `}
       />
-      <Navbar
-        color="transparent"
-        className="sticky top-0 z-10 h-max max-w-[110rem] rounded-none py-2 md:py-6 px-6 lg:px-8 lg:py-10 justify-center items-center mx-auto"
-      >
-        <div className="flex items-center h-[5rem] w-full relative justify-end  3xl:justify-end bg-transparent">
+      <Navbar className="sticky top-0 z-10 h-max max-w-[110rem] rounded-none p-0  justify-center items-center border-none  mx-auto navbarGradient px-4">
+        <div className="flex items-center min-h-[5rem] justify-end lg:justify-center w-full relative bg-transparent p-4  ">
           <DonutIcon />
 
-          <div className="flex lg:flex w-fit  max-w-[120rem]  lg:w-[80%] ">
-            <div className="hidden lg:flex w-full h-full justify-center  items-center ">
+          <div className="flex lg:flex w-fit  max-w-[110rem]  lg:w-full ">
+            <div className="hidden lg:flex w-full h-full justify-center lg:justify-end 3xl:justify-center  items-center ">
               {navList}
             </div>
 

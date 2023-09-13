@@ -1,6 +1,6 @@
 const withMT = require('@material-tailwind/react/utils/withMT');
 
-module.exports = withMT({
+export default withMT({
   mode: 'jit',
   content: [
     './pages/**/*.{js,jsx,ts,tsx}',

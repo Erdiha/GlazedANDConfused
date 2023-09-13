@@ -27,8 +27,8 @@ const SplashScreen: React.FC = () => {
         <Image
           src="/homerdonut.png"
           alt="Splash Screen Image"
-          width={450}
-          height={450}
+          width={isMobile ? 200 : 300}
+          height={isMobile ? 200 : 300}
         />
       </motion.div>
       <Loading isMobile={isMobile} isLoading={true} />

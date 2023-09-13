@@ -2,15 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation } from 'framer-motion';
 import LandingPage from '../components/sharedComponents/LandingPage';
-import NeumorphicButton from '@/components/sharedComponents/NeumorphicButton';
-import { AiOutlineForm } from 'react-icons/ai';
 import { useMediaQuery } from 'react-responsive';
 import { Button } from '@material-tailwind/react';
 
 const Home: React.FC = () => {
   const controls = useAnimation();
   const controlImage = useAnimation();
-  const containerRef = useRef<HTMLDivElement | null>(null);
   const isMobile = useMediaQuery({ maxWidth: 468 });
 
   useEffect(() => {
@@ -25,7 +22,7 @@ const Home: React.FC = () => {
       {word.split('').map((letter, index) => (
         <motion.span
           key={index}
-          className="homeText flex lg:text-[3.5rem]  text-2xl text-[#ecf0f3] p-[1px]"
+          className="homeText flex lg:text-[3rem]  text-3xl text-[#ecf0f3] p-[1px]"
           style={{
             backfaceVisibility: 'hidden',
             fontSmooth: 'antialiased',
@@ -49,10 +46,7 @@ const Home: React.FC = () => {
   ));
 
   return (
-    <div
-      ref={containerRef}
-      className="flex flex-col justify-center items-center w-screen  h-[92vh]  relative"
-    >
+    <div className="flex min-h-screen justify-center items-center overflow-hidden ">
       <div className="flex flex-col md:items-center justify-evenly gap-[5rem] mt-20 md:gap-[12rem] p-10 md:p-20 ">
         <motion.div
           initial={{ y: -1000, rotate: 0 }}

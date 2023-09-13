@@ -9,18 +9,17 @@ const DonutIcon = () => {
   return (
     <div
       onClick={() => router.push('/home')}
-      className={`flex capitalize rounded-full px-2 aspect-square cursor-pointer bg-gray-300/90 shadow-md border-b-[4px] lg:border-b-[8px] border-b-pink-300 p-1 md:p-2 absolute left-0 transition ease-in-out duration-1000`}
+      className={`flex capitalize rounded-full px-2 aspect-square cursor-pointer bg-gray-300/90 shadow-md border-b-[3px] lg:border-b-[6px] border-b-pink-300 p-1 md:p-2 absolute left-0 transition ease-in-out duration-1000 `}
     >
       <div
-        className={`flex justify-center items-center rounded-full lg:p-4 lg:px-6 p-1 px-2 border-b-blue-400 lg:border-b-[8px] border-b-[4px] `}
+        className={`flex justify-center items-center rounded-full lg:p-2 lg:px-4 p-1 px-2 border-b-blue-400 lg:border-b-[6px] border-b-[3px] `}
       >
         <AnimatePresence mode="wait">
           <Image
             key={router.pathname}
             content="cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 28vw"
-            width={isMobile ? 40 : 60}
-            height={isMobile ? 40 : 60}
+            width={isMobile ? 40 : 45}
+            height={isMobile ? 40 : 45}
             src="/homerdonut.png"
             alt="image"
           />

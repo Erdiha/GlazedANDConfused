@@ -20,7 +20,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
   console.log('ismobile isss', isMobile);
   return (
     <motion.div
-      className="w-full h-full aspect-square flex justify-center items-center border-2 md:border-4 border-pink-300 relative placeholder shadow-2xl "
+      className="w-[90%] h-full aspect-square flex justify-center items-center border-2 md:border-4 border-pink-300 relative placeholder shadow-2xl "
       initial={initialAnimation} // Use the random initial animation
       animate={{
         x: 0,
