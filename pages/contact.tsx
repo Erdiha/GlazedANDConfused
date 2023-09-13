@@ -76,7 +76,6 @@ const Contact = () => {
   //handles the change when user type in input
   const handleChange = (e: any) => {
     const { name, value, defaultValue } = e.target;
-    console.log('handleChange called:', e.target.name, value, defaultValue);
     setFormData((prevData) => ({
       ...prevData,
       [name]: value.toString(), // Convert the value to a string
@@ -157,16 +156,7 @@ const Contact = () => {
       ...prevIsEmailSent,
       openContainer: true,
     }));
-    const {
-      name,
-      email,
-      address,
-      eventDate,
-      eventTime,
-      guestCount,
-      hearAboutUs,
-      eventDescription,
-    } = formData;
+    const { eventDate, eventTime } = formData;
 
     const [year, month, day] = eventDate.split('-');
     formData.eventDate = `${month}/${day}/${year}`;
@@ -175,7 +165,7 @@ const Contact = () => {
     const amPm = hour >= 12 ? 'PM' : 'AM';
     const formattedHour = hour % 12 || 12;
     formData.eventTime = `${formattedHour}:${minutes} ${amPm}`;
-    console.log('inside the submit', formData);
+
     try {
       const response = await fetch('/api/sendEmail', {
         method: 'POST',
@@ -196,7 +186,6 @@ const Contact = () => {
         }));
         handleEmailSent(); // Handle success
       } else {
-        console.error('Failed to send email');
         handleError(response.statusText); // Handle error
       }
     } catch (error: any) {
@@ -218,10 +207,10 @@ const Contact = () => {
   return (
     <div
       ref={wrapperRef}
-      className="flex flex-col w-full min-h-screen pt-5 relative justify-center items-center px-2  bg-black/10 truck"
+      className="flex flex-col w-full min-h-screen md:pt-20 pt-5 relative justify-center items-center px-2  bg-black/10 truck"
     >
       {isEmailSent.openContainer ? (
-        <div className="w-[50%] md:max-h-[80vh]  h-[70vh] max-w-[100rem] flex bg-primary-offWhite justify-center items-center ">
+        <div className="w-[50%] md:max-h-[85vh]  h-[70vh] max-w-[40rem] flex bg-primary-offWhite justify-center items-center ">
           {isLoading ? (
             <EmailSending isLoading={isLoading} />
           ) : (
