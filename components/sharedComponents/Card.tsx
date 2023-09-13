@@ -50,15 +50,18 @@ const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
     return (
       <div
         className={` flex flex-col md:h-full md:w-full absolute md:static bg-white/80 bottom-0 md:justify-evenly transition-all duration-500 
-       items-center p-4  invert md:invert-0 md:p-5 md:gap-10 gap-3`}
+       items-center   invert md:invert-0 md:px-20 p-10 md:gap-10 gap-3`}
       >
         <p
           className="text-black dark:text-white flex
-        md:w-full md:h-full items-center md:pl-7 text-xl lg:text-3xl break-words hyphens-auto font-bold"
+        md:w-full md:h-full items-center md:pl-7 text-xl  lg:text-3xl break-words hyphens-auto font-bold"
         >
           {item.title}
         </p>
-        <p className=" text-lg  text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-relaxed flex indent-7 break-words hyphens-auto relative gap-2 lg:text-xl xl:text-2xl lg:font-normal font-normal">
+        <p
+          className="text-lg text-black dark:text-white w-full h-full tracking-wide flex-col lg:leading-[20px] flex indent-7 break-words hyphens-auto relative gap-2 lg:text-xl xl:text-2xl lg:font-normal font-normal"
+          style={{ lineHeight: '1.5' }}
+        >
           {showFullDescription ? item.description : truncatedDescription}
           {item?.description?.length > 100 && isMobile && (
             <button
