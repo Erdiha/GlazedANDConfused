@@ -4,11 +4,13 @@ import { motion, useAnimation } from 'framer-motion';
 import LandingPage from '../components/sharedComponents/LandingPage';
 import { useMediaQuery } from 'react-responsive';
 import { Button } from '@material-tailwind/react';
+import { useRouter } from 'next/router';
 
 const Home: React.FC = () => {
   const controls = useAnimation();
   const controlImage = useAnimation();
   const isMobile = useMediaQuery({ maxWidth: 468 });
+  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     controls.start({ y: 0 });
@@ -79,6 +81,7 @@ const Home: React.FC = () => {
             {arrayInArrayLetter}
           </div>
           <Button
+            onClick={() => router.push('/contact')}
             variant="filled"
             size="lg"
             style={{
