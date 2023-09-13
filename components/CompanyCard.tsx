@@ -20,7 +20,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
   console.log('ismobile isss', isMobile);
   return (
     <motion.div
-      className="w-[90%] h-full aspect-square flex justify-center items-center border-2 md:border-4 border-pink-300 relative placeholder shadow-2xl "
+      className="  aspect-square flex justify-center items-center border-2 md:border-4 border-pink-300  placeholder shadow-2xl "
       initial={initialAnimation} // Use the random initial animation
       animate={{
         x: 0,
@@ -36,10 +36,10 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
       }}
       whileHover={{
         scale: 1.3,
-        rotate: [720, -90, -360],
+        rotate: [-720, 360, -360],
         zIndex: 99999,
         borderRadius: isMobile ? '0px' : '100%',
-        boxShadow: '0px 0px 20px 10px pink',
+        boxShadow: '0px 0px 10px 1px pink',
         transition: {
           duration: 1,
           delay: 0,

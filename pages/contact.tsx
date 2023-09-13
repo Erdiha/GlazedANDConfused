@@ -157,7 +157,25 @@ const Contact = () => {
       ...prevIsEmailSent,
       openContainer: true,
     }));
+    const {
+      name,
+      email,
+      address,
+      eventDate,
+      eventTime,
+      guestCount,
+      hearAboutUs,
+      eventDescription,
+    } = formData;
 
+    const [year, month, day] = eventDate.split('-');
+    formData.eventDate = `${month}/${day}/${year}`;
+    const [hours, minutes] = eventTime.split(':');
+    const hour = parseInt(hours, 10);
+    const amPm = hour >= 12 ? 'PM' : 'AM';
+    const formattedHour = hour % 12 || 12;
+    formData.eventTime = `${formattedHour}:${minutes} ${amPm}`;
+    console.log('inside the submit', formData);
     try {
       const response = await fetch('/api/sendEmail', {
         method: 'POST',
@@ -247,15 +265,16 @@ const Contact = () => {
             <div className="flex  justify-between items-center gap-4 font-bold">
               <Input
                 id="inputCustom"
-                type="date"
+                type="date" // Use text type to accept MM/DD/YYYY
                 value={formData?.eventDate}
-                onChange={(e: any) => handleChange(e)}
+                onChange={(e) => handleChange(e)}
                 name="eventDate"
                 clearable
                 required
                 css={{ width: '100%' }}
                 shadow={true}
                 size={size}
+                pattern="\d{2}/\d{2}/\d{4}"
                 style={{ fontWeight: 'bold' }}
                 label={isMobile ? undefined : inputPlaceHolder[3]}
                 labelPlaceholder={isMobile ? inputPlaceHolder[3] : undefined}

@@ -1,11 +1,11 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import nodemailer from "nodemailer";
+import { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
 
 export default async function sendEmail(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     try {
       const {
         name,
@@ -30,8 +30,8 @@ export default async function sendEmail(
       // Email content
       const mailOptions = {
         from: `"Glazed & Confused" <${process.env.EMAIL_USER}>`,
-        to: "minidonutsnyc@gmail.com",
-        subject: "Message From Glazed & Confused",
+        to: 'minidonutsnyc@gmail.com',
+        subject: 'Message From Glazed & Confused',
         html: `
         <div style="width: 100%; background-color: #f3f9ff; padding: 2rem 0;">
         <div style="max-width: 700px; background-color: white; margin: 0 auto; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); ">
@@ -64,10 +64,10 @@ export default async function sendEmail(
       // Send the email
       await transporter.sendMail(mailOptions);
 
-      res.status(200).json({ message: "Email sent successfully!" });
+      res.status(200).json({ message: 'Email sent successfully!' });
     } catch (error) {
-      console.error("Error sending email:", error);
-      res.status(500).json({ error: "Failed to send email" });
+      console.error('Error sending email:', error);
+      res.status(500).json({ error: 'Failed to send email' });
     }
   } else {
     res.status(405).end(); // Method Not Allowed

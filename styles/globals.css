@@ -482,3 +482,6 @@ Input::placeholder {
   color: red;
   transition: all 0.8s ease-in-out;
 }
+#navbar {
+  background-color: transparent !important;
+}
