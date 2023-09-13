@@ -119,7 +119,7 @@ const Nav: React.FC = () => {
           openNav ? 'bg-blue-400' : '!bg-transparent'
         } `}
       />
-      <Navbar className="sticky top-0 z-10 h-max max-w-[110rem] rounded-none p-0  justify-center items-center border-none  mx-auto navbarGradient px-4">
+      <Navbar className="sticky top-0 z-10 h-max max-w-[110rem] w-full  p-0 rounded-t-none rounded-none md:rounded-md md:rounded-t-none justify-center items-center border-none  mx-auto navbarGradient px-4">
         <div className="flex items-center min-h-[5rem] justify-end lg:justify-center w-full relative bg-transparent p-4  ">
           <DonutIcon />
 
