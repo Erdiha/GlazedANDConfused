@@ -465,3 +465,20 @@ Input::placeholder {
 .scrolled {
   background-color: var(--primary-blue) !important;
 }
+.nextui-c-jeuecp.nextui-input {
+  padding: 0px 15px;
+  padding-right: 20px;
+  border-radius: 0 !important;
+}
+.nextui-c-ghxhhI {
+  border-radius: 0 !important;
+}
+.nextui-c-eXOOPO {
+  border-radius: 2px !important;
+}
+.nextui-c-ctQnhE.nextui-input-clear-button svg {
+  width: 2rem;
+  height: 2rem;
+  color: red;
+  transition: all 0.8s ease-in-out;
+}

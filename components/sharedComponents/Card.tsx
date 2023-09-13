@@ -29,8 +29,8 @@ const Card: React.FC<CardProps> = ({ item, whatComp, index }) => {
         <Image
           objectPosition="center"
           loading="eager"
-          width={600}
-          height={600}
+          width={whatComp === 'services' ? 700 : 400}
+          height={500}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           onLoadingComplete={(image) => image.classList.remove('opacity-0')}
           className={`hover:rounded-xl transition-opacity opacity-0 duration-[2s]  ${

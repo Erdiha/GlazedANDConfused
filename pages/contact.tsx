@@ -53,15 +53,19 @@ const Contact = () => {
       css={{
         textAlign: 'left',
         width: '100%',
+        height: 'fit-content',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: '20px',
+        padding: '5px',
+        borderRadius: '10px',
+        transition: 'all 0.5s ease ',
         cursor: 'pointer',
         backgroundColor: '$accents2',
+        boxShadow: ' 0px 0px 5px pink',
         '&:hover': {
-          backgroundColor: 'SeaShell',
-          transform: 'scale(0.98)',
+          border: '1px var(--primary-pink) solid',
+          transform: 'scale(1.04)',
         },
       }}
     >
@@ -349,7 +353,7 @@ const Contact = () => {
               </div>
 
               {isDropdownOpen && suggestions && (
-                <div className="flex flex-col rounded-md bg-slate-200 p-2 absolute overflow-y-scroll  z-[999] top-10">
+                <div className="flex flex-col rounded-xl bg-slate-200 p-4 bg-gray-800 absolute md:w-[70%] w-[100%] h-[20rem] overflow-y-scroll  z-[999] lg:top-[4.8rem] top-[2.8rem] justify-start items-start gap-2 ">
                   {suggestionItems}
                 </div>
               )}
@@ -382,17 +386,18 @@ const Contact = () => {
           </motion.div>
           <Button
             type="submit"
-            size={isMobile ? 'sm' : 'xl'}
+            size={isMobile ? 'md' : 'xl'}
             style={{
               letterSpacing: '1.5px',
-              fontSize: isMobile ? '18px' : '30px',
+              fontSize: isMobile ? '18px' : '23px',
               fontWeight: 'bold',
               width: 'fit-content',
               alignSelf: 'end',
-              borderRadius: 10,
+              textShadow: '0px 0px 4px gray',
+              borderRadius: 2,
               backgroundColor: ' rgb(100 181 246)',
             }}
-            className="btn shadow-lg font-bold md:text-xl text-sm"
+            className="btn shadow-lg font-bold md:text-lg text-sm"
           >
             SUBMIT
           </Button>
