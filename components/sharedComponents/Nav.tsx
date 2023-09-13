@@ -115,7 +115,9 @@ const Nav: React.FC = () => {
     <div className="fixed top-0 min-w-screen w-full  overflow-hidden z-[9999]  justify-center items-center  bg-transparent">
       <div
         id="navbar"
-        className={`absolute inset-0 z-[-1]   ${openNav ? 'bg-blue-400' : ''} `}
+        className={`absolute inset-0 z-[-1]   ${
+          openNav ? 'bg-blue-400' : 'bg-transparent'
+        } `}
       />
       <Navbar className="sticky top-0 z-10 h-max max-w-[110rem] rounded-none p-0  justify-center items-center border-none  mx-auto navbarGradient px-4">
         <div className="flex items-center min-h-[5rem] justify-end lg:justify-center w-full relative bg-transparent p-4  ">
