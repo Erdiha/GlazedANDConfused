@@ -5,12 +5,14 @@ import LandingPage from '../components/sharedComponents/LandingPage';
 import { useMediaQuery } from 'react-responsive';
 import { Button } from '@material-tailwind/react';
 import { useRouter } from 'next/router';
+import BrowserDetection from '@/components/BrowserDetection';
 
 const Home: React.FC = () => {
   const controls = useAnimation();
   const controlImage = useAnimation();
   const isMobile = useMediaQuery({ maxWidth: 468 });
   const router = useRouter(); // Initialize the router
+  const browserType: any = BrowserDetection();
 
   useEffect(() => {
     controls.start({ y: 0 });
@@ -49,7 +51,11 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex min-h-screen justify-center items-center overflow-hidden ">
-      <div className="flex flex-col md:items-center justify-evenly gap-[5rem] mt-20 md:gap-[12rem] p-10 md:p-20 ">
+      <div
+        className={`flex flex-col md:items-center justify-evenly gap-[5rem] mt-20 md:gap-[12rem] p-10 md:p-20
+      ${browserType === 'Safari' ? 'bg-primary-blue/90' : ''}
+       `}
+      >
         <motion.div
           initial={{ y: -1000, rotate: 0 }}
           animate={controlImage}
