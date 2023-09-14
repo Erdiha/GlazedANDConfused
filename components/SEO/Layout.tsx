@@ -4,6 +4,7 @@ import React from 'react';
 import SEO from './SEO';
 import Head from 'next/head';
 import DonutIcon from '../sharedComponents/DonutIcon';
+import { Analytics } from '@vercel/analytics/react';
 
 type LayoutProps = {
   title: string;
@@ -34,7 +35,10 @@ const Layout: React.FC<LayoutProps> = ({
       </Head>
 
       {/* Your layout structure */}
-      <main>{children}</main>
+      <main>
+        <Analytics />
+        {children}
+      </main>
     </div>
   );
 };
