@@ -103,16 +103,12 @@ const Contact = () => {
         const suggestions: IAddress[] = result?.features?.map(
           (feature: any, index: number) => {
             const addressProps: AddressProps = feature.properties;
-            const {
-              address_line1,
-              address_line2,
-              city,
-              country,
-              country_code,
-              county,
-            } = addressProps;
-
-            const label = `${address_line1}, ${address_line2}, ${city}, ${country}`;
+            const { address_line1, address_line2, city, country } =
+              addressProps;
+            const [a, b, c] = address_line2.split(',');
+            console.log('address friends', a, b, c);
+            //TODO:remove country and
+            const label = `${address_line1}, ${city}, ${b}`;
             return {
               label,
               id: index,
@@ -207,7 +203,7 @@ const Contact = () => {
   return (
     <div
       ref={wrapperRef}
-      className="flex flex-col w-full min-h-screen md:pt-20 pt-5 relative justify-center items-center px-2  bg-black/10 truck"
+      className="flex flex-col w-full min-h-screen md:pt-20 pt-5 relative justify-center items-center px-2  bg-black/10 truck overflow-y-auto"
     >
       {isEmailSent.openContainer ? (
         <div className="w-[50%] md:max-h-[85vh]  h-[70vh] max-w-[40rem] flex bg-primary-offWhite justify-center items-center ">
@@ -229,16 +225,16 @@ const Contact = () => {
           whileInView={{ x: 0 }}
           viewport={{ once: true }}
           transition={{ ease: 'easeInOut', duration: 1 }}
-          className="md:max-w-[60rem] px-5 md:px-10 gap-4 pb-5 md:pb-10 z-50 flex md:justify-between md:font-semibold flex-col bg-primary-pink/80 
-          backdrop-blur-2xl shadow-4xl md:max-h-[80vh] h-full"
+          className="md:max-w-[60rem] px-5 md:px-10 gap-4 pb-5 md:pb-10 z-50  md:justify-between md:font-semibold flex-col bg-primary-pink/80 flex
+          backdrop-blur-2xl shadow-4xl md:max-h-[100vh] h-full"
           onSubmit={handleSubmit}
         >
-          <p className="text-md  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%] pt-3 md:pt-16 md:leading-9 md:p-4">
+          <p className="text-md  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%]   md:leading-9 md:pt-8">
             PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
             WITHIN 24 HOURS WITH A PRICE QUOTE.
           </p>
           <hr className="w-full text-center self-center " />
-          <p className="md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[12px] md:p-4">
+          <p className="md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[12px]  flex">
             If you call to receive to a quote, you will be directed to this
             website. The quickest way to get a quote is by filling out the form
             on this page.
@@ -249,8 +245,39 @@ const Contact = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ ease: 'easeInOut', duration: 1, delay: 0.5 }}
-            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-10 relative md:py-8  pt-9 pb-3"
+            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-10 relative md:py-8 pt-9 pb-3"
           >
+            <div className="flex gap-4 justify-evenly">
+              <Input
+                style={{ fontWeight: 'bold' }}
+                id="inputCustom"
+                type="email"
+                value={formData.email}
+                label={isMobile ? undefined : inputPlaceHolder[1]}
+                labelPlaceholder={isMobile ? inputPlaceHolder[1] : undefined}
+                onChange={(e: any) => handleChange(e)}
+                required
+                css={{ width: '100%' }}
+                name="email"
+                clearable
+                shadow={true}
+                size={size}
+              />
+              <Input
+                style={{ fontWeight: 'bold' }}
+                id="inputCustom"
+                label={isMobile ? undefined : inputPlaceHolder[0]}
+                labelPlaceholder={isMobile ? inputPlaceHolder[0] : undefined}
+                onChange={(e: any) => handleChange(e)}
+                required
+                name="name"
+                css={{ width: '100%' }}
+                clearable
+                shadow={true}
+                value={formData.name}
+                size={size}
+              />
+            </div>
             <div className="flex  justify-between items-center gap-4 font-bold">
               <Input
                 id="inputCustom"
@@ -283,35 +310,25 @@ const Contact = () => {
                 shadow={true}
                 size={size}
               />
+              <Input
+                style={{ fontWeight: 'bold' }}
+                id="inputCustom"
+                value={formData.guestCount}
+                label={isMobile ? undefined : inputPlaceHolder[5]}
+                labelPlaceholder={isMobile ? inputPlaceHolder[5] : undefined}
+                onChange={(e: any) => handleChange(e)}
+                required
+                name="guestCount"
+                clearable
+                css={{
+                  display: 'flex-1',
+                  color: 'black',
+                  fontWeight: 'bold',
+                }}
+                shadow={true}
+                size={size}
+              />
             </div>
-            <Input
-              style={{ fontWeight: 'bold' }}
-              id="inputCustom"
-              label={isMobile ? undefined : inputPlaceHolder[0]}
-              labelPlaceholder={isMobile ? inputPlaceHolder[0] : undefined}
-              onChange={(e: any) => handleChange(e)}
-              required
-              name="name"
-              clearable
-              shadow={true}
-              value={formData.name}
-              size={size}
-            />
-
-            <Input
-              style={{ fontWeight: 'bold' }}
-              id="inputCustom"
-              type="email"
-              value={formData.email}
-              label={isMobile ? undefined : inputPlaceHolder[1]}
-              labelPlaceholder={isMobile ? inputPlaceHolder[1] : undefined}
-              onChange={(e: any) => handleChange(e)}
-              required
-              name="email"
-              clearable
-              shadow={true}
-              size={size}
-            />
 
             <div className="relative flex w-full" style={{ width: '100%' }}>
               <div className="flex flex-row gap-4 w-full">
@@ -341,18 +358,13 @@ const Contact = () => {
                 <Input
                   style={{ fontWeight: 'bold' }}
                   id="inputCustom"
-                  value={formData.guestCount}
-                  label={isMobile ? undefined : inputPlaceHolder[5]}
-                  labelPlaceholder={isMobile ? inputPlaceHolder[5] : undefined}
+                  value={formData.hearAboutUs}
+                  label={isMobile ? undefined : inputPlaceHolder[6]}
+                  labelPlaceholder={isMobile ? inputPlaceHolder[6] : undefined}
                   onChange={(e: any) => handleChange(e)}
                   required
-                  name="guestCount"
                   clearable
-                  css={{
-                    display: 'flex-1',
-                    color: 'black',
-                    fontWeight: 'bold',
-                  }}
+                  name="hearAboutUs"
                   shadow={true}
                   size={size}
                 />
@@ -365,19 +377,6 @@ const Contact = () => {
               )}
             </div>
 
-            <Input
-              style={{ fontWeight: 'bold' }}
-              id="inputCustom"
-              value={formData.hearAboutUs}
-              label={isMobile ? undefined : inputPlaceHolder[6]}
-              labelPlaceholder={isMobile ? inputPlaceHolder[6] : undefined}
-              onChange={(e: any) => handleChange(e)}
-              required
-              clearable
-              name="hearAboutUs"
-              shadow={true}
-              size={size}
-            />
             <Textarea
               id="inputCustom"
               label={isMobile ? undefined : inputPlaceHolder[7]}
