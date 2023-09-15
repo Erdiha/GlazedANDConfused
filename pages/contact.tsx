@@ -225,11 +225,11 @@ const Contact = () => {
           whileInView={{ x: 0 }}
           viewport={{ once: true }}
           transition={{ ease: 'easeInOut', duration: 1 }}
-          className="md:max-w-[60rem] px-5 md:px-10 gap-4 pb-5 md:pb-10 z-50  md:justify-between md:font-semibold flex-col bg-primary-pink/80 flex
+          className="md:max-w-[60rem] px-5 md:px-10 gap-2 pb-5 md:pb-10 z-50  md:justify-between md:font-semibold flex-col bg-primary-pink/80 flex
           backdrop-blur-2xl shadow-4xl md:max-h-[100vh] h-full"
           onSubmit={handleSubmit}
         >
-          <p className="text-md  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%]   md:leading-9 md:pt-8 pt-5">
+          <p className="text-[12px]  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%]   md:leading-9 md:pt-8 pt-5">
             PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
             WITHIN 24 HOURS WITH A PRICE QUOTE.
           </p>
@@ -245,7 +245,7 @@ const Contact = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ ease: 'easeInOut', duration: 1, delay: 0.5 }}
-            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-5 relative md:py-8 pt-5 pb-3"
+            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-4 relative md:py-8 pt-5 pb-3"
           >
             <div className="flex gap-4 justify-evenly">
               <Input
