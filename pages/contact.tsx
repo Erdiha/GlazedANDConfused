@@ -229,7 +229,7 @@ const Contact = () => {
           backdrop-blur-2xl shadow-4xl md:max-h-[100vh] h-full"
           onSubmit={handleSubmit}
         >
-          <p className="text-md  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%]   md:leading-9 md:pt-8">
+          <p className="text-md  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%]   md:leading-9 md:pt-8 pt-5">
             PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
             WITHIN 24 HOURS WITH A PRICE QUOTE.
           </p>
@@ -245,7 +245,7 @@ const Contact = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ ease: 'easeInOut', duration: 1, delay: 0.5 }}
-            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-10 relative md:py-8 pt-9 pb-3"
+            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-5 relative md:py-8 pt-5 pb-3"
           >
             <div className="flex gap-4 justify-evenly">
               <Input
@@ -253,21 +253,18 @@ const Contact = () => {
                 id="inputCustom"
                 type="email"
                 value={formData.email}
-                label={isMobile ? undefined : inputPlaceHolder[1]}
-                labelPlaceholder={isMobile ? inputPlaceHolder[1] : undefined}
+                label={inputPlaceHolder[1]}
                 onChange={(e: any) => handleChange(e)}
                 required
                 css={{ width: '100%' }}
                 name="email"
                 clearable
                 shadow={true}
-                size={size}
               />
               <Input
                 style={{ fontWeight: 'bold' }}
                 id="inputCustom"
-                label={isMobile ? undefined : inputPlaceHolder[0]}
-                labelPlaceholder={isMobile ? inputPlaceHolder[0] : undefined}
+                label={inputPlaceHolder[0]}
                 onChange={(e: any) => handleChange(e)}
                 required
                 name="name"
@@ -275,10 +272,9 @@ const Contact = () => {
                 clearable
                 shadow={true}
                 value={formData.name}
-                size={size}
               />
             </div>
-            <div className="flex  justify-between items-center gap-4 font-bold">
+            <div className="flex  justify-evenly gap-2 ">
               <Input
                 id="inputCustom"
                 type="date" // Use text type to accept MM/DD/YYYY
@@ -289,10 +285,8 @@ const Contact = () => {
                 required
                 css={{ width: '100%' }}
                 shadow={true}
-                size={size}
                 style={{ fontWeight: 'bold' }}
-                label={isMobile ? undefined : inputPlaceHolder[3]}
-                labelPlaceholder={isMobile ? inputPlaceHolder[3] : undefined}
+                label={inputPlaceHolder[3]}
               />
 
               <Input
@@ -303,70 +297,52 @@ const Contact = () => {
                 name="eventTime"
                 clearable
                 style={{ fontWeight: 'bold' }}
-                label={isMobile ? undefined : inputPlaceHolder[4]}
-                labelPlaceholder={isMobile ? inputPlaceHolder[4] : undefined}
+                label={inputPlaceHolder[4]}
                 required
                 css={{ width: '100%' }}
                 shadow={true}
-                size={size}
               />
+            </div>
+            <div className="flex justify-evenly gap-4">
               <Input
                 style={{ fontWeight: 'bold' }}
                 id="inputCustom"
                 value={formData.guestCount}
-                label={isMobile ? undefined : inputPlaceHolder[5]}
-                labelPlaceholder={isMobile ? inputPlaceHolder[5] : undefined}
+                label={inputPlaceHolder[5]}
                 onChange={(e: any) => handleChange(e)}
                 required
                 name="guestCount"
+                css={{ width: '100%' }}
                 clearable
-                css={{
-                  display: 'flex-1',
-                  color: 'black',
-                  fontWeight: 'bold',
-                }}
                 shadow={true}
-                size={size}
+              />
+              <Input
+                style={{ fontWeight: 'bold' }}
+                id="inputCustom"
+                value={formData.hearAboutUs}
+                label={inputPlaceHolder[6]}
+                onChange={(e: any) => handleChange(e)}
+                required
+                clearable
+                name="hearAboutUs"
+                shadow={true}
+                css={{ width: '100%' }}
               />
             </div>
-
             <div className="relative flex w-full" style={{ width: '100%' }}>
               <div className="flex flex-row gap-4 w-full">
-                <Tooltip
-                  css={{ display: 'flex' }}
-                  className="flex-grow"
-                  content={formData.address}
-                >
-                  <Input
-                    style={{ fontWeight: 'bold' }}
-                    id="inputCustom"
-                    type="text"
-                    name="address"
-                    width="100%"
-                    onChange={(e) => handleParams(e)}
-                    label={isMobile ? undefined : inputPlaceHolder[2]}
-                    labelPlaceholder={
-                      isMobile ? inputPlaceHolder[2] : undefined
-                    }
-                    value={formData.address}
-                    required
-                    clearable
-                    shadow={true}
-                    size={size}
-                  />
-                </Tooltip>
                 <Input
                   style={{ fontWeight: 'bold' }}
                   id="inputCustom"
-                  value={formData.hearAboutUs}
-                  label={isMobile ? undefined : inputPlaceHolder[6]}
-                  labelPlaceholder={isMobile ? inputPlaceHolder[6] : undefined}
-                  onChange={(e: any) => handleChange(e)}
+                  type="text"
+                  name="address"
+                  width="100%"
+                  onChange={(e) => handleParams(e)}
+                  label={inputPlaceHolder[2]}
+                  value={formData.address}
                   required
                   clearable
-                  name="hearAboutUs"
                   shadow={true}
-                  size={size}
                 />
               </div>
 
@@ -379,19 +355,17 @@ const Contact = () => {
 
             <Textarea
               id="inputCustom"
-              label={isMobile ? undefined : inputPlaceHolder[7]}
-              labelPlaceholder={isMobile ? inputPlaceHolder[7] : undefined}
+              label={inputPlaceHolder[7]}
               value={formData.eventDescription}
               onChange={(e: any) => handleChange(e)}
               required
               name="eventDescription"
               shadow={true}
-              size={isMobile ? 'xs' : 'xl'}
             />
           </motion.div>
           <Button
             type="submit"
-            size={isMobile ? 'md' : 'xl'}
+            size={isMobile ? 'sm' : 'xl'}
             style={{
               letterSpacing: '1.5px',
               fontSize: isMobile ? '18px' : '23px',
@@ -402,7 +376,7 @@ const Contact = () => {
               borderRadius: 2,
               backgroundColor: ' rgb(100 181 246)',
             }}
-            className="btn shadow-lg font-bold md:text-lg text-sm"
+            className="btn shadow-lg font-bold md:text-lg text-sm flex"
           >
             SUBMIT
           </Button>
