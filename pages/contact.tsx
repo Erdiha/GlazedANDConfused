@@ -188,7 +188,7 @@ const Contact = () => {
   };
   console.log('types', browserType, isMobile);
   return (
-    <div className="flex flex-col w-full min-h-screen px-[2%] py-[10%] md:p-[15%] lg:p-[15%]  2xl:p-[10%]  relative justify-center items-center bg-black/10 truck">
+    <div className="flex flex-col w-full min-h-screen px-[2%] py-[12%] pt-[18%] md:p-[15%] lg:p-[15%]  2xl:p-[10%]  relative justify-center items-center bg-black/10 truck">
       {isEmailSent.openContainer ? (
         <div className="w-full  h-[60vh] max-w-[40rem] flex bg-primary-offWhite justify-center items-center">
           {isLoading ? (
