@@ -20,12 +20,15 @@
   body {
     font-size: 13px;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   * {
-    box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   a {
@@ -312,19 +315,26 @@
   font-family: 'Henny Penny', cursive !important;
 }
 
-input::placeholder {
-  font-weight: bold;
-}
-
 .addFunnyFont {
   font-family: 'Henny Penny', cursive;
   letter-spacing: 3px;
 }
 
-#inputCustom::placeholder {
-  font-weight: bold;
+#inputCustom {
+  font-size: 15px;
+  letter-spacing: 0.8px;
+}
+.nextui-c-hzQjrs.nextui-input-block-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
+@media (max-width: 468px) {
+  .nextui-c-hzQjrs.nextui-input-block-label {
+    font-size: 14px;
+  }
+}
 /* bubbles.css */
 @keyframes float {
   0%,
@@ -437,7 +447,7 @@ Input::placeholder {
 }
 
 .nextui-c-jeuecp.nextui-input {
-  padding: 0px 15px 0px 5px;
+  padding: 0px 5px 0px 5px;
   padding-right: 20px;
   border-radius: 0 !important;
 }
@@ -451,8 +461,8 @@ Input::placeholder {
 }
 
 .nextui-c-ctQnhE.nextui-input-clear-button svg {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   color: red;
   transition: all 0.8s ease-in-out;
 }

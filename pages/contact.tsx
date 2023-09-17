@@ -1,33 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  Input,
-  Textarea,
-  Button,
-  Text,
-  Tooltip,
-  Spinner,
-} from '@nextui-org/react';
+import { Input, Textarea, Button, Text, Tooltip, Spinner } from '@nextui-org/react';
 import { inputPlaceHolder } from '../components/data/texts';
-import { motion } from 'framer-motion';
+import { frameData, motion } from 'framer-motion';
 import { EmailSent, EmailSending } from '../components/email/VerifyEmailSent';
 import { useMediaQuery } from 'react-responsive';
-import {
-  FormData,
-  EmailResponse,
-  IAddress,
-  AddressProps,
-} from '../components/types';
+import { FormData, EmailResponse, IAddress, AddressProps } from '../components/types';
+import BrowserDetection from '@/components/BrowserDetection';
 
 const Contact = () => {
   const [isEmailSent, setIsEmailSent] = useState<EmailResponse>({
     openContainer: false,
     mailSent: false,
   });
-
+  const browserType: any = BrowserDetection();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const size = 'lg';
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
   let [isLoading, setIsLoading] = useState(false);
   const [emailResponse, setEmailResponse] = useState([
@@ -44,6 +31,8 @@ const Contact = () => {
     guestCount: '',
     hearAboutUs: '',
     eventDescription: '',
+    isMobile,
+    browserType,
   });
 
   const suggestionItems = suggestions?.map((suggestion, index) => (
@@ -100,21 +89,17 @@ const Contact = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        const suggestions: IAddress[] = result?.features?.map(
-          (feature: any, index: number) => {
-            const addressProps: AddressProps = feature.properties;
-            const { address_line1, address_line2, city, country } =
-              addressProps;
-            const [a, b, c] = address_line2.split(',');
-            console.log('address friends', a, b, c);
-            //TODO:remove country and
-            const label = `${address_line1}, ${city}, ${b}`;
-            return {
-              label,
-              id: index,
-            };
-          }
-        );
+        const suggestions: IAddress[] = result?.features?.map((feature: any, index: number) => {
+          const addressProps: AddressProps = feature.properties;
+          const { address_line1, address_line2, city } = addressProps;
+          //const [a, b, c] = address_line2.split(',');
+          const label = `${address_line1}, ${city} `;
+
+          return {
+            label,
+            id: index,
+          };
+        });
         setSuggestions(suggestions);
       })
       .catch((error) => console.log('error', error));
@@ -130,6 +115,8 @@ const Contact = () => {
       guestCount: '',
       hearAboutUs: '',
       eventDescription: '',
+      isMobile,
+      browserType,
     });
     setIsLoading(false);
 
@@ -199,14 +186,11 @@ const Contact = () => {
 
     setIsDropdownOpen(false);
   };
-
+  console.log('types', browserType, isMobile);
   return (
-    <div
-      ref={wrapperRef}
-      className="flex flex-col w-full min-h-screen md:pt-20 pt-5 relative justify-center items-center px-2  bg-black/10 truck overflow-y-auto"
-    >
+    <div className="flex flex-col w-full min-h-screen px-[2%] py-[10%] md:p-[15%] lg:p-[15%]  2xl:p-[10%]  relative justify-center items-center bg-black/10 truck">
       {isEmailSent.openContainer ? (
-        <div className="w-[50%] md:max-h-[85vh]  h-[70vh] max-w-[40rem] flex bg-primary-offWhite justify-center items-center ">
+        <div className="w-full  h-[60vh] max-w-[40rem] flex bg-primary-offWhite justify-center items-center">
           {isLoading ? (
             <EmailSending isLoading={isLoading} />
           ) : (
@@ -225,19 +209,25 @@ const Contact = () => {
           whileInView={{ x: 0 }}
           viewport={{ once: true }}
           transition={{ ease: 'easeInOut', duration: 1 }}
-          className="md:max-w-[60rem] px-5 md:px-10 gap-2 pb-5 md:pb-10 z-50  md:justify-between md:font-semibold flex-col bg-primary-pink/80 flex
-          backdrop-blur-2xl shadow-4xl md:max-h-[100vh] h-full"
+          className="p-[1rem] pb-8 md:px-[1.5rem] bg-white/50 flex gap-1"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: '50rem',
+            backgroundColor: 'var(--primary-pink)',
+          }}
           onSubmit={handleSubmit}
         >
-          <p className="text-[12px]  justify-center items-center font-semibold italic uppercase contactHeaderText text-center  flex text-slate-800/70 md:text-2xl break-words max-w-[100%]   md:leading-9 md:pt-8 pt-5">
-            PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU
-            WITHIN 24 HOURS WITH A PRICE QUOTE.
+          <p className="text-md justify-center items-center font-semibold italic uppercase contactHeaderText text-center flex text-slate-800/70 md:text-2xl break-words max-w-[100%] md:pt-10 md:leading-9 md:p-4 w-full p-2">
+            PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU WITHIN 24 HOURS WITH A
+            PRICE QUOTE.
           </p>
-          <hr className="w-full text-center self-center " />
-          <p className="md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[12px]  flex">
-            If you call to receive to a quote, you will be directed to this
-            website. The quickest way to get a quote is by filling out the form
-            on this page.
+          <hr className="w-full text-center self-center" />
+          <p className="md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[12px] md:p-4 w-full p-2">
+            If you call to receive a quote, you will be directed to this website. The quickest way
+            to get a quote is by filling out the form on this page.
           </p>
 
           <motion.div
@@ -245,39 +235,39 @@ const Contact = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ ease: 'easeInOut', duration: 1, delay: 0.5 }}
-            className="flex flex-col border-t-2 border-gray-300 justify-evenly  md:gap-8 gap-4 relative md:py-8 pt-5 pb-3"
+            className="flex flex-col border-t-2 border-gray-300 justify-between relative w-full h-full p-2 md:p-8 gap-4 md:gap-5"
           >
-            <div className="flex gap-4 justify-evenly">
+            <div className="flex justify-between items-center gap-2">
               <Input
-                style={{ fontWeight: 'bold' }}
+                id="inputCustom"
+                label={inputPlaceHolder[0]}
+                onChange={(e: any) => handleChange(e)}
+                required
+                name="name"
+                clearable
+                type="text"
+                shadow={true}
+                value={formData.name}
+                css={{ width: '100%' }}
+              />
+
+              <Input
                 id="inputCustom"
                 type="email"
                 value={formData.email}
                 label={inputPlaceHolder[1]}
                 onChange={(e: any) => handleChange(e)}
                 required
-                css={{ width: '100%' }}
                 name="email"
                 clearable
                 shadow={true}
-              />
-              <Input
-                style={{ fontWeight: 'bold' }}
-                id="inputCustom"
-                label={inputPlaceHolder[0]}
-                onChange={(e: any) => handleChange(e)}
-                required
-                name="name"
                 css={{ width: '100%' }}
-                clearable
-                shadow={true}
-                value={formData.name}
               />
             </div>
-            <div className="flex  justify-evenly gap-2 ">
+            <div className="flex justify-between items-center gap-2">
               <Input
                 id="inputCustom"
-                type="date" // Use text type to accept MM/DD/YYYY
+                type="date"
                 value={formData?.eventDate}
                 onChange={(e) => handleChange(e)}
                 name="eventDate"
@@ -285,10 +275,8 @@ const Contact = () => {
                 required
                 css={{ width: '100%' }}
                 shadow={true}
-                style={{ fontWeight: 'bold' }}
                 label={inputPlaceHolder[3]}
               />
-
               <Input
                 id="inputCustom"
                 type="time"
@@ -296,28 +284,35 @@ const Contact = () => {
                 onChange={(e: any) => handleChange(e)}
                 name="eventTime"
                 clearable
-                style={{ fontWeight: 'bold' }}
                 label={inputPlaceHolder[4]}
                 required
                 css={{ width: '100%' }}
                 shadow={true}
               />
             </div>
-            <div className="flex justify-evenly gap-4">
+
+            <div className="flex w-full h-full relative ">
               <Input
-                style={{ fontWeight: 'bold' }}
                 id="inputCustom"
-                value={formData.guestCount}
-                label={inputPlaceHolder[5]}
-                onChange={(e: any) => handleChange(e)}
+                type="address"
+                name="address"
+                width="100%"
+                onChange={(e) => handleParams(e)}
+                label={inputPlaceHolder[2]}
+                value={formData.address}
                 required
-                name="guestCount"
-                css={{ width: '100%' }}
                 clearable
                 shadow={true}
               />
+              {isDropdownOpen && suggestions && (
+                <div className="flex flex-col rounded-md bg-slate-200 p-5 space-y-1  bg-gray-800/70 absolute w-full h-fit min-h-full  overflow-y-scroll z-[999] top-[101%]  justify-evenly items-start">
+                  {suggestionItems}
+                </div>
+              )}
+            </div>
+
+            <div className="flex gap-2 w-full">
               <Input
-                style={{ fontWeight: 'bold' }}
                 id="inputCustom"
                 value={formData.hearAboutUs}
                 label={inputPlaceHolder[6]}
@@ -326,33 +321,20 @@ const Contact = () => {
                 clearable
                 name="hearAboutUs"
                 shadow={true}
-                css={{ width: '100%' }}
+                css={{ width: '60%' }}
+              />
+              <Input
+                id="inputCustom"
+                value={formData.guestCount}
+                label={inputPlaceHolder[5]}
+                onChange={(e: any) => handleChange(e)}
+                required
+                name="guestCount"
+                clearable
+                css={{ width: '40%' }}
+                shadow={true}
               />
             </div>
-            <div className="relative flex w-full" style={{ width: '100%' }}>
-              <div className="flex flex-row gap-4 w-full">
-                <Input
-                  style={{ fontWeight: 'bold' }}
-                  id="inputCustom"
-                  type="text"
-                  name="address"
-                  width="100%"
-                  onChange={(e) => handleParams(e)}
-                  label={inputPlaceHolder[2]}
-                  value={formData.address}
-                  required
-                  clearable
-                  shadow={true}
-                />
-              </div>
-
-              {isDropdownOpen && suggestions && (
-                <div className="flex flex-col rounded-xl bg-slate-200 p-4 bg-gray-800 absolute md:w-[70%] w-[100%] h-[20rem] overflow-y-scroll  z-[999] lg:top-[4.8rem] top-[2.8rem] justify-start items-start gap-2 ">
-                  {suggestionItems}
-                </div>
-              )}
-            </div>
-
             <Textarea
               id="inputCustom"
               label={inputPlaceHolder[7]}
@@ -361,11 +343,12 @@ const Contact = () => {
               required
               name="eventDescription"
               shadow={true}
+              size={isMobile ? 'xs' : 'xl'}
             />
           </motion.div>
           <Button
             type="submit"
-            size={isMobile ? 'sm' : 'xl'}
+            size={isMobile ? 'md' : 'xl'}
             style={{
               letterSpacing: '1.5px',
               fontSize: isMobile ? '18px' : '23px',
@@ -374,9 +357,9 @@ const Contact = () => {
               alignSelf: 'end',
               textShadow: '0px 0px 4px gray',
               borderRadius: 2,
-              backgroundColor: ' rgb(100 181 246)',
+              backgroundColor: 'rgb(100 181 246)',
             }}
-            className="btn shadow-lg font-bold md:text-lg text-sm flex"
+            className="btn shadow-lg font-bold md:text-lg text-sm md:mr-8 mr-2"
           >
             SUBMIT
           </Button>

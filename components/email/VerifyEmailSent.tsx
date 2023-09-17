@@ -4,27 +4,27 @@ import PacmanLoader from 'react-spinners/PacmanLoader';
 import { Button } from '@material-tailwind/react';
 import Loading from '../sharedComponents/Loading';
 
-export const EmailSent = ({
-  emailResponse,
-  setIsLoading,
-  setIsEmailSent,
-}: any) => {
+export const EmailSent = ({ emailResponse, setIsLoading, setIsEmailSent }: any) => {
   return (
     <motion.div
       initial={{ x: '100%' }}
       animate={{ x: 0 }}
       transition={{ ease: 'easeInOut', duration: 1 }}
-      className="flex flex-col relative"
+      className="flex flex-col relative h-full w-full p-10"
       id="emailSentDiv"
     >
-      <div className="w-full h-[40%] py-20 px-10 flex flex-col items-center gap-10 bg-gradient-to-b from-primary-pink to-transparent text-primary-offWhite">
-        <p className="text-4xl uppercase font-bold tracking-wider addFunnyFont bg-black/50 backbrop-blur-lg p-5 rounded-md animated-pulse">
+      <div className=" min-h-[35%] md:h-[30%] md:min-h-[15vh,15vw]  rounded-xl  pt-5 px-4 flex flex-col bg-white/30  items-center md:gap-10 gap-5 bg-gradient-to-b from-primary-pink to-transparent text-primary-offWhite">
+        <p className="md:text-4xl text-2xl px-5 uppercase font-bold tracking-wider addFunnyFont backbrop-blur-lg p-5 rounded-md animated-pulse">
           {emailResponse[0]}
         </p>
-        <p className="text-2xl text-black/80 font-bold tracking-wide text-center ">
+        <p
+          style={{ textShadow: '0px 0px 10px white' }}
+          className="text-xl md:text-2xl text-black/80 w-full   font-bold tracking-wide text-center"
+        >
           {emailResponse[1]}
         </p>
       </div>
+
       <motion.button
         onClick={() =>
           setIsEmailSent((prevIsEmailSent: any) => ({
@@ -56,9 +56,7 @@ export const EmailSending = ({ isLoading }: any) => {
       transition={{ ease: 'easeInOut', duration: 1 }}
       className="w-full h-full flex flex-col justify-evenly items-center"
     >
-      <p className="text-5xl tracking-wide addFunnyFont animate-bounce text-shadow">
-        SENDING...
-      </p>
+      <p className="text-5xl tracking-wide addFunnyFont animate-bounce text-shadow">SENDING...</p>
       <Loading isLoading={isLoading} />
     </motion.div>
   );

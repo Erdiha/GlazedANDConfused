@@ -1,10 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 
-export default async function sendEmail(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     try {
       const {
@@ -16,6 +13,8 @@ export default async function sendEmail(
         guestCount,
         hearAboutUs,
         eventDescription,
+        isMobile,
+        browserType,
       } = req.body;
 
       // Initialize Nodemailer transporter
@@ -29,8 +28,8 @@ export default async function sendEmail(
 
       // Email content
       const mailOptions = {
-        from: `"Glazed & Confused" <${process.env.EMAIL_USER}>`,
-        to: 'minidonutsnyc@gmail.com',
+        from: `Glazed & Confused <${process.env.EMAIL_USER}>`,
+        to: 'erdiha@hotmail.com',
         subject: 'Message From Glazed & Confused',
         html: `
         <div style="width: 100%; background-color: #f3f9ff; padding: 2rem 0;">
@@ -39,12 +38,16 @@ export default async function sendEmail(
             <a style="padding:" href="#">
               <img src="https://www.foodtrucksonthemove.com/wp-content/uploads/2021/01/glazed-confused-logo-300x363.jpg" alt="Glazed & Confused Logo" style="width: 80px; border:10px solid #279EFF;box-shadow:0px 0px 10px black;padding:10px;background-color:white;border-radius:1px;  ">
             </a>
+          <p style="color:white;font-size:1.2rem;font-weight:bold;letter-spacing:0.5px">
+            
+           Device:   <span style='color:black'>${isMobile ? 'Mobile Device' : 'Web Site'}</span></p>
+          
           </div>
           <div style="width: 100%; gap: 10px; padding: 2rem 0.5rem; display: grid; justify-content:center">
             <p style="font-weight: 800; font-size: 1.6rem; border-bottom:2px solid #ff52a2">
               Quote Request for Truck Rental
             </p>
-            <div style="font-size: 1.2rem; margin: 0.6rem 1rem; font-weight:bold;letter-spacing:0.5px">
+            <div style="font-size: 1.2rem; margin: 0.1rem 1rem; font-weight:bold;letter-spacing:0.5px">
               <p><i style='font-weight:normal'>Full Name:</i> ${name}</p>
               <p><i style='font-weight:normal'>Email:</i> ${email}</p>
               <p><i style='font-weight:normal'>Address:</i> ${address}</p>

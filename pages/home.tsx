@@ -22,11 +22,16 @@ const Home: React.FC = () => {
   const freshMiniDonuts = ['Fresh', 'made-to-order', 'mini donuts'];
 
   const arrayInArrayLetter = freshMiniDonuts.map((word, wordIndex) => (
-    <div className="md:m-5 m-2 md:inline-block whitespace-pre" key={wordIndex}>
+    <div
+      className="md:m-5 m-[2px] md:inline-block whitespace-pre"
+      key={wordIndex}
+    >
       {word.split('').map((letter, index) => (
         <motion.span
           key={index}
-          className="homeText flex lg:text-[3rem]  text-3xl text-[#ecf0f3] p-[1px]"
+          className={`homeText flex lg:text-[3rem]  text-3xl ${
+            browserType === 'Safari' ? 'text-gray-900' : 'text-[#ecf0f3]'
+          }  p-[1px]`}
           style={{
             backfaceVisibility: 'hidden',
             fontSmooth: 'antialiased',
@@ -53,7 +58,7 @@ const Home: React.FC = () => {
     <div className="flex min-h-screen justify-center items-center overflow-hidden ">
       <div
         className={`flex flex-col md:items-center justify-evenly gap-[5rem] mt-20 md:gap-[12rem] p-10 md:p-20
-      ${browserType === 'Safari' ? 'bg-primary-blue/90' : ''}
+      ${browserType === 'Safari' ? 'bg-primary-blue/70 shadow-2xl ' : ''}
        `}
       >
         <motion.div
@@ -81,7 +86,7 @@ const Home: React.FC = () => {
           animate={controls}
           initial={{ y: 500 }}
           transition={{ type: 'spring', damping: 5, stiffness: 70 }}
-          className="flex flex-col backdrop-blur-md gap-10 bg-[#ecf0f3]/20 rounded-md justify-evenly z-[999] items-center p-8"
+          className="flex flex-col backdrop-blur-md gap-8 bg-[#ecf0f3]/20 rounded-md justify-evenly z-[999] items-center p-5"
         >
           <div className="bg-transparent flex flex-col md:flex-row">
             {arrayInArrayLetter}

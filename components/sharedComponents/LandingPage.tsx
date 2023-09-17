@@ -16,7 +16,7 @@ const LandingPage: React.FC = () => {
           alt={'bg image'}
           objectFit="cover"
           style={{
-            backdropFilter: 'blur(10px) saturation(0.3)',
+            backdropFilter: 'blur(10px) saturation(0.5)',
           }}
         />
       ) : (
