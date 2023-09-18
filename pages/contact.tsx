@@ -104,6 +104,7 @@ const Contact = () => {
       })
       .catch((error) => console.log('error', error));
   };
+
   const handleEmailSent = () => {
     // Reset the form fields after successful email submission
     setFormData({
@@ -124,7 +125,8 @@ const Contact = () => {
   };
 
   const handleError = (error: any): void => {
-    setEmailResponse(['Failed to send email', error]);
+    const phoneNum = '(201) 951-3864';
+    setEmailResponse([`Failed to send email ${error}`, `Please Call: ${phoneNum}`]);
     setIsLoading(false);
     setIsEmailSent((prevIsEmailSent) => ({
       ...prevIsEmailSent,
