@@ -14,14 +14,14 @@ interface AppProps {
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const [showSplashScreen, setShowSplashScreen] = useState(true);
-  useEffect(() => {
-    // Hide splash screen after 2 seconds
-    const timer = setTimeout(() => {
-      setShowSplashScreen(false);
-    }, 2000);
-    // Clear the timer if the component unmounts
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   // Hide splash screen after 2 seconds
+  //   const timer = setTimeout(() => {
+  //     setShowSplashScreen(false);
+  //   }, 2000);
+  //   // Clear the timer if the component unmounts
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   const router = useRouter();
   const { pathname } = router;
@@ -30,10 +30,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const currentSeoInfo: any = seoInfo[pathname] || {};
   console.log('currentSeoInfo', currentSeoInfo);
   return (
-    <>
-      {showSplashScreen ? (
-        <SplashScreen />
-      ) : (
+    
+     
         <div className="relative">
           <Nav />
           <Layout
@@ -45,8 +43,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           </Layout>
           <Footer />
         </div>
-      )}
-    </>
+      
+    
   );
 };
 

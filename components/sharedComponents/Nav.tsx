@@ -17,7 +17,7 @@ const Nav: React.FC = () => {
   const [openNav, setOpenNav] = React.useState(false);
   const isMobile = useMediaQuery({ maxWidth: 468 });
   const [activeItem, setActiveItem] = useState('home');
-  const navbar: NavbarElement = document.getElementById('navbar');
+  const navbar: any = typeof document !== 'undefined' && document?.getElementById('navbar');
 
   const items: NavItem[] = useMemo(
     () => [
@@ -35,21 +35,25 @@ const Nav: React.FC = () => {
     ],
     []
   );
-  document.addEventListener('DOMContentLoaded', () => {
-    const navItem = document.getElementById('navItem');
+  useEffect(() => {
+    if (typeof document !== 'undefined') { // Ensure this code only runs on the client-side
+      document.addEventListener('DOMContentLoaded', () => {
+        const navItem = document.getElementById('navItem');
 
-    if (navItem) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 0) {
-          navItem.classList.add('text-white');
-          navItem.classList.remove('text-black');
-        } else {
-          navItem.classList.add('text-black');
-          navItem.classList.remove('text-white');
+        if (navItem) {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+              navItem.classList.add('text-white');
+              navItem.classList.remove('text-black');
+            } else {
+              navItem.classList.add('text-black');
+              navItem.classList.remove('text-white');
+            }
+          });
         }
       });
     }
-  });
+  }, []);
 
   const router = useRouter(); // Initialize the router
 
