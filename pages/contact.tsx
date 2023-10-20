@@ -398,7 +398,7 @@ const handleChange = (e: any) => {
 >
   <span
     className={`shadow-md bg-transparent rounded-full shadow-blue-400 transform origin-center transition-transform duration-500 ease-in-out ${
-      showPhoneNUmber.show ? 'rotate-90' : 'rotate-0'
+      showPhoneNUmber.show ? '-rotate-0' : 'rotate-90'
     }`}
     onClick={() =>
       setShowPhoneNumber((prev) => ({ ...prev, show: !prev.show }))
