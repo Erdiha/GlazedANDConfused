@@ -49,6 +49,7 @@ export interface FormData {
   address: string;
   eventDate: string;
   eventTime: string;
+  mobileEventTime:{time:string,ampm:string},
   guestCount: string;
   hearAboutUs: string;
   eventDescription: string;

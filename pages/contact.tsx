@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Input, Textarea, Button, Text, Tooltip, Spinner } from '@nextui-org/react';
+import { Input, Textarea, Button, Text, Radio, Tooltip } from '@nextui-org/react';
+import {FiPhoneCall} from 'react-icons/fi'
 import { inputPlaceHolder } from '../components/data/texts';
 import { frameData, motion } from 'framer-motion';
 import { EmailSent, EmailSending } from '../components/email/VerifyEmailSent';
@@ -13,6 +14,7 @@ const Contact = () => {
     mailSent: false,
   });
   const browserType: any = BrowserDetection();
+  const [showPhoneNUmber,setShowPhoneNumber] = useState({show:false,phone:'(201) 951 3864'})
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
@@ -28,6 +30,7 @@ const Contact = () => {
     address: '',
     eventDate: '',
     eventTime: '',
+    mobileEventTime:{time:'',ampm:''},
     guestCount: '',
     hearAboutUs: '',
     eventDescription: '',
@@ -61,15 +64,32 @@ const Contact = () => {
       {suggestion.label}
     </Text>
   ));
-
-  //handles the change when user type in input
-  const handleChange = (e: any) => {
-    const { name, value, defaultValue } = e.target;
+// Handles the change when the user types in an input
+const handleChange = (e: any) => {
+  if (e === 'PM' || e === 'AM') {
+    setFormData((prevData) => ({
+      ...prevData,
+      mobileEventTime: {
+        ...prevData.mobileEventTime,
+        ampm: e, // Update the ampm property
+      },
+    }));
+  } else if (e.target.name === 'time') {
+    setFormData((prevData) => ({
+      ...prevData,
+      mobileEventTime: {
+        ...prevData.mobileEventTime,
+        time: e.target.value.toString(), // Update the time property
+      },
+    }));
+  } else {
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value.toString(), // Convert the value to a string
     }));
-  };
+  }
+};
 
   //handles the dropdown map/address
   const handleParams = (params: any) => {
@@ -92,6 +112,7 @@ const Contact = () => {
         const suggestions: IAddress[] = result?.features?.map((feature: any, index: number) => {
           const addressProps: AddressProps = feature.properties;
           const { address_line1, address_line2, city } = addressProps;
+        
           //const [a, b, c] = address_line2.split(',');
           const label = `${address_line1}, ${city} `;
 
@@ -113,6 +134,7 @@ const Contact = () => {
       address: '',
       eventDate: '',
       eventTime: '',
+      mobileEventTime:{time:'',ampm:''},
       guestCount: '',
       hearAboutUs: '',
       eventDescription: '',
@@ -141,7 +163,10 @@ const Contact = () => {
       ...prevIsEmailSent,
       openContainer: true,
     }));
-    const { eventDate, eventTime } = formData;
+    if(isMobile){
+      formData.eventTime = formData.mobileEventTime.time + " " + formData.mobileEventTime.ampm
+    }else{
+      const { eventDate, eventTime } = formData;
 
     const [year, month, day] = eventDate.split('-');
     formData.eventDate = `${month}/${day}/${year}`;
@@ -150,7 +175,8 @@ const Contact = () => {
     const amPm = hour >= 12 ? 'PM' : 'AM';
     const formattedHour = hour % 12 || 12;
     formData.eventTime = `${formattedHour}:${minutes} ${amPm}`;
-
+    }
+    console.log(formData)
     try {
       const response = await fetch('/api/sendEmail', {
         method: 'POST',
@@ -279,7 +305,7 @@ const Contact = () => {
                 shadow={true}
                 label={inputPlaceHolder[3]}
               />
-              <Input
+              {!isMobile ? <Input
                 id="inputCustom"
                 type="time"
                 value={formData.eventTime}
@@ -290,7 +316,25 @@ const Contact = () => {
                 required
                 css={{ width: '100%' }}
                 shadow={true}
+              />:
+             <> <Input
+                id="inputCustom"
+                type="text"
+                value={formData.mobileEventTime.time}
+                onChange={(e: any) => handleChange(e)}
+                name="time"
+                clearable
+                label={inputPlaceHolder[4]}
+                required
+                css={{ width: '100%' }}
+                shadow={true}
               />
+              <Radio.Group isRequired value={formData.mobileEventTime.ampm} onChange={(e:any)=>handleChange(e)}  
+              orientation="horizontal"  className=' h-10  text-black font-semibold flex justify-center
+               items-center self-end'>
+              <Radio size='sm'  value='AM'>AM</Radio><Radio size='sm'  value='PM'>PM</Radio>
+              </Radio.Group >
+              </>}
             </div>
 
             <div className="flex w-full h-full relative ">
@@ -348,6 +392,30 @@ const Contact = () => {
               size={isMobile ? 'xs' : 'xl'}
             />
           </motion.div>
+          <Tooltip
+  className={`absolute transition-all duration-500 ease-in-out bottom-5 shadow-xl rounded-full hover:scale-110 md:bottom-10 left-6 md:left-14 ${isMobile?'w-10 h-10':"w-12 h-12" } cursor-pointer bg-transparent`}
+  content="CALL US"
+>
+  <span
+    className={`shadow-md bg-transparent rounded-full shadow-blue-400 transform origin-center transition-transform duration-500 ease-in-out ${
+      showPhoneNUmber.show ? 'rotate-90' : 'rotate-0'
+    }`}
+    onClick={() =>
+      setShowPhoneNumber((prev) => ({ ...prev, show: !prev.show }))
+    }
+  >
+    <FiPhoneCall size="md" />
+  </span>
+</Tooltip>
+<span
+  className={`bg-transparent w-fit h-fit bg-white absolute left-20 bottom-5 md:bottom-10 ${
+    showPhoneNUmber.show ? 'opacity-100 h-8' : 'opacity-0 h-0'
+  } transition-all duration-500 ease-in-out md:left-32 text-xl font-semibold p-2 shadow-md rounded`}
+>
+  {showPhoneNUmber.phone}
+</span>
+
+
           <Button
             type="submit"
             size={isMobile ? 'md' : 'xl'}
@@ -367,6 +435,7 @@ const Contact = () => {
           </Button>
         </motion.form>
       )}
+     
     </div>
   );
 };
