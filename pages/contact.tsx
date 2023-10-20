@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Input, Textarea, Button, Text, Radio, Tooltip } from '@nextui-org/react';
-import {FiPhoneCall} from 'react-icons/fi'
+import { FiPhoneCall } from 'react-icons/fi';
 import { inputPlaceHolder } from '../components/data/texts';
 import { frameData, motion } from 'framer-motion';
 import { EmailSent, EmailSending } from '../components/email/VerifyEmailSent';
@@ -14,7 +14,7 @@ const Contact = () => {
     mailSent: false,
   });
   const browserType: any = BrowserDetection();
-  const [showPhoneNUmber,setShowPhoneNumber] = useState({show:false,phone:'(201) 951 3864'})
+  const [showPhoneNUmber, setShowPhoneNumber] = useState({ show: false, phone: '(201) 951 3864' });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
@@ -30,7 +30,7 @@ const Contact = () => {
     address: '',
     eventDate: '',
     eventTime: '',
-    mobileEventTime:{time:'',ampm:''},
+    mobileEventTime: { time: '', ampm: '' },
     guestCount: '',
     hearAboutUs: '',
     eventDescription: '',
@@ -64,32 +64,32 @@ const Contact = () => {
       {suggestion.label}
     </Text>
   ));
-// Handles the change when the user types in an input
-const handleChange = (e: any) => {
-  if (e === 'PM' || e === 'AM') {
-    setFormData((prevData) => ({
-      ...prevData,
-      mobileEventTime: {
-        ...prevData.mobileEventTime,
-        ampm: e, // Update the ampm property
-      },
-    }));
-  } else if (e.target.name === 'time') {
-    setFormData((prevData) => ({
-      ...prevData,
-      mobileEventTime: {
-        ...prevData.mobileEventTime,
-        time: e.target.value.toString(), // Update the time property
-      },
-    }));
-  } else {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value.toString(), // Convert the value to a string
-    }));
-  }
-};
+  // Handles the change when the user types in an input
+  const handleChange = (e: any) => {
+    if (e === 'PM' || e === 'AM') {
+      setFormData((prevData) => ({
+        ...prevData,
+        mobileEventTime: {
+          ...prevData.mobileEventTime,
+          ampm: e, // Update the ampm property
+        },
+      }));
+    } else if (e.target.name === 'time') {
+      setFormData((prevData) => ({
+        ...prevData,
+        mobileEventTime: {
+          ...prevData.mobileEventTime,
+          time: e.target.value.toString(), // Update the time property
+        },
+      }));
+    } else {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value.toString(), // Convert the value to a string
+      }));
+    }
+  };
 
   //handles the dropdown map/address
   const handleParams = (params: any) => {
@@ -112,7 +112,7 @@ const handleChange = (e: any) => {
         const suggestions: IAddress[] = result?.features?.map((feature: any, index: number) => {
           const addressProps: AddressProps = feature.properties;
           const { address_line1, address_line2, city } = addressProps;
-        
+
           //const [a, b, c] = address_line2.split(',');
           const label = `${address_line1}, ${city} `;
 
@@ -134,7 +134,7 @@ const handleChange = (e: any) => {
       address: '',
       eventDate: '',
       eventTime: '',
-      mobileEventTime:{time:'',ampm:''},
+      mobileEventTime: { time: '', ampm: '' },
       guestCount: '',
       hearAboutUs: '',
       eventDescription: '',
@@ -148,7 +148,7 @@ const handleChange = (e: any) => {
 
   const handleError = (error: any): void => {
     const phoneNum = '(201) 951-3864';
-    setEmailResponse([`Failed to send email ${error}`, `Please Call: ${phoneNum}`]);
+    setEmailResponse([`Failed to send.`, `Sorry For the Inconvenience\nPlease Call: ${phoneNum}`]);
     setIsLoading(false);
     setIsEmailSent((prevIsEmailSent) => ({
       ...prevIsEmailSent,
@@ -163,20 +163,20 @@ const handleChange = (e: any) => {
       ...prevIsEmailSent,
       openContainer: true,
     }));
-    if(isMobile){
-      formData.eventTime = formData.mobileEventTime.time + " " + formData.mobileEventTime.ampm
-    }else{
-      const { eventDate, eventTime } = formData;
+    // if(isMobile){
+    formData.eventTime = formData.mobileEventTime.time + ' ' + formData.mobileEventTime.ampm;
+    // }else{
+    //   const { eventDate, eventTime } = formData;
 
-    const [year, month, day] = eventDate.split('-');
-    formData.eventDate = `${month}/${day}/${year}`;
-    const [hours, minutes] = eventTime.split(':');
-    const hour = parseInt(hours, 10);
-    const amPm = hour >= 12 ? 'PM' : 'AM';
-    const formattedHour = hour % 12 || 12;
-    formData.eventTime = `${formattedHour}:${minutes} ${amPm}`;
-    }
-    console.log(formData)
+    // const [year, month, day] = eventDate.split('-');
+    // formData.eventDate = `${month}/${day}/${year}`;
+    // const [hours, minutes] = eventTime.split(':');
+    // const hour = parseInt(hours, 10);
+    // const amPm = hour >= 12 ? 'PM' : 'AM';
+    // const formattedHour = hour % 12 || 12;
+    // formData.eventTime = `${formattedHour}:${minutes} ${amPm}`;
+    // }
+    console.log(formData);
     try {
       const response = await fetch('/api/sendEmail', {
         method: 'POST',
@@ -253,9 +253,15 @@ const handleChange = (e: any) => {
             PRICE QUOTE.
           </p>
           <hr className="w-full text-center self-center" />
-          <p className="md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[12px] md:p-4 w-full p-2">
-            If you call to receive a quote, you will be directed to this website. The quickest way
-            to get a quote is by filling out the form on this page.
+          <p className="md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[11px] md:p-4 w-full p-2">
+            The quickest way to get a quote is by filling out the form on this page. <br></br>
+            If you need help to fill out the form, please call us at{' '}
+            <a
+              href="tel:201-951-3864"
+              className="text-blue-800 font-bold no-underline hover:underline"
+            >
+              {showPhoneNUmber.phone}
+            </a>
           </p>
 
           <motion.div
@@ -305,19 +311,8 @@ const handleChange = (e: any) => {
                 shadow={true}
                 label={inputPlaceHolder[3]}
               />
-              {!isMobile ? <Input
-                id="inputCustom"
-                type="time"
-                value={formData.eventTime}
-                onChange={(e: any) => handleChange(e)}
-                name="eventTime"
-                clearable
-                label={inputPlaceHolder[4]}
-                required
-                css={{ width: '100%' }}
-                shadow={true}
-              />:
-             <> <Input
+
+              <Input
                 id="inputCustom"
                 type="text"
                 value={formData.mobileEventTime.time}
@@ -329,12 +324,21 @@ const handleChange = (e: any) => {
                 css={{ width: '100%' }}
                 shadow={true}
               />
-              <Radio.Group isRequired value={formData.mobileEventTime.ampm} onChange={(e:any)=>handleChange(e)}  
-              orientation="horizontal"  className=' h-10  text-black font-semibold flex justify-center
-               items-center self-end'>
-              <Radio size='sm'  value='AM'>AM</Radio><Radio size='sm'  value='PM'>PM</Radio>
-              </Radio.Group >
-              </>}
+              <Radio.Group
+                isRequired
+                value={formData.mobileEventTime.ampm}
+                onChange={(e: any) => handleChange(e)}
+                orientation="horizontal"
+                className=" h-10  text-black font-semibold flex justify-center
+               items-center self-end"
+              >
+                <Radio size="sm" value="AM">
+                  AM
+                </Radio>
+                <Radio size="sm" value="PM">
+                  PM
+                </Radio>
+              </Radio.Group>
             </div>
 
             <div className="flex w-full h-full relative ">
@@ -346,7 +350,6 @@ const handleChange = (e: any) => {
                 onChange={(e) => handleParams(e)}
                 label={inputPlaceHolder[2]}
                 value={formData.address}
-                required
                 clearable
                 shadow={true}
               />
@@ -363,7 +366,6 @@ const handleChange = (e: any) => {
                 value={formData.hearAboutUs}
                 label={inputPlaceHolder[6]}
                 onChange={(e: any) => handleChange(e)}
-                required
                 clearable
                 name="hearAboutUs"
                 shadow={true}
@@ -374,7 +376,6 @@ const handleChange = (e: any) => {
                 value={formData.guestCount}
                 label={inputPlaceHolder[5]}
                 onChange={(e: any) => handleChange(e)}
-                required
                 name="guestCount"
                 clearable
                 css={{ width: '40%' }}
@@ -386,35 +387,34 @@ const handleChange = (e: any) => {
               label={inputPlaceHolder[7]}
               value={formData.eventDescription}
               onChange={(e: any) => handleChange(e)}
-              required
               name="eventDescription"
               shadow={true}
               size={isMobile ? 'xs' : 'xl'}
             />
           </motion.div>
           <Tooltip
-  className={`absolute transition-all duration-500 ease-in-out bottom-5 shadow-xl rounded-full hover:scale-110 md:bottom-10 left-6 md:left-14 ${isMobile?'w-10 h-10':"w-12 h-12" } cursor-pointer bg-transparent`}
-  content="CALL US"
->
-  <span
-    className={`shadow-md bg-transparent rounded-full shadow-blue-400 transform origin-center transition-transform duration-500 ease-in-out ${
-      showPhoneNUmber.show ? '-rotate-0' : 'rotate-90'
-    }`}
-    onClick={() =>
-      setShowPhoneNumber((prev) => ({ ...prev, show: !prev.show }))
-    }
-  >
-    <FiPhoneCall size="md" />
-  </span>
-</Tooltip>
-<span
-  className={`bg-transparent w-fit h-fit bg-white absolute left-20 bottom-5 md:bottom-10 ${
-    showPhoneNUmber.show ? 'opacity-100 h-8' : 'opacity-0 h-0'
-  } transition-all duration-500 ease-in-out md:left-32 text-xl font-semibold p-2 shadow-md rounded`}
->
-  {showPhoneNUmber.phone}
-</span>
-
+            className={`absolute transition-all duration-500 ease-in-out bottom-5 shadow-xl rounded-full hover:scale-110 md:bottom-10 left-6 md:left-14 ${
+              isMobile ? 'w-10 h-10' : 'w-12 h-12'
+            } cursor-pointer bg-transparent`}
+            content="CALL US"
+          >
+            <span
+              className={`shadow-md bg-transparent rounded-full shadow-blue-400 transform origin-center transition-transform duration-500 ease-in-out ${
+                showPhoneNUmber.show ? '-rotate-0' : 'rotate-90'
+              }`}
+              onClick={() => setShowPhoneNumber((prev) => ({ ...prev, show: !prev.show }))}
+            >
+              <FiPhoneCall size="md" />
+            </span>
+          </Tooltip>
+          <a
+            href="tel:201-951-3864"
+            className={`w-fit h-fit absolute left-20 bottom-5 md:bottom-10 text-blue-50 font-bold border-[1px] border-b-white ${
+              showPhoneNUmber.show ? 'opacity-100 h-8' : 'opacity-0 h-0'
+            } transition-all duration-500 ease-in-out md:left-32 text-xl font-semibold p-2 shadow-md rounded`}
+          >
+            {showPhoneNUmber.phone}
+          </a>
 
           <Button
             type="submit"
@@ -435,7 +435,6 @@ const handleChange = (e: any) => {
           </Button>
         </motion.form>
       )}
-     
     </div>
   );
 };
