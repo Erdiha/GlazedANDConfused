@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -10,12 +10,9 @@ const SplashScreen: React.FC = () => {
   const isMobile = useMediaQuery({ maxWidth: 468 });
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      router.push('/home');
-    }, 100); // Adjust the timeout duration as needed
-
-    return () => clearTimeout(timeout);
-  }, [router]);
+    // Redirect to the home page when the component mounts
+    router.push('/home');
+  }, []); // The empty dependency array ensures this effect runs only once
 
   return (
     <div className="flex flex-col items-center justify-evenly h-screen bg-blue-300 text-white w-screen p-10 overflow-hidden">
