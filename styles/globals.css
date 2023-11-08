@@ -438,6 +438,9 @@ Input::placeholder {
   padding-right: 20px;
   border-radius: 0 !important;
 }
+.nextui-c-jeuecp.nextui-input::placeholder {
+  background-color: transparent !important; /* Replace #444 with your desired dark gray color code */
+}
 
 .nextui-c-ghxhhI {
   border-radius: 0 !important;
