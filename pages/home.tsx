@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
-import LandingPage from '../components/sharedComponents/LandingPage';
-import { useMediaQuery } from 'react-responsive';
-import { Button } from '@material-tailwind/react';
-import { useRouter } from 'next/router';
 import BrowserDetection from '@/components/BrowserDetection';
+import { Button } from '@material-tailwind/react';
+import { motion, useAnimation } from 'framer-motion';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import LandingPage from '../components/sharedComponents/LandingPage';
 
 const Home: React.FC = () => {
   const controls = useAnimation();
@@ -29,9 +29,8 @@ const Home: React.FC = () => {
       {word.split('').map((letter, index) => (
         <motion.span
           key={index}
-          className={`homeText flex lg:text-[3rem]  text-3xl ${
-            browserType === 'Safari' ? 'text-gray-900' : 'text-[#ecf0f3]'
-          }  p-[1px]`}
+          className={`homeText flex lg:text-[3rem]  text-3xl ${browserType === 'Safari' ? 'text-gray-900' : 'text-[#ecf0f3]'
+            }  p-[1px]`}
           style={{
             backfaceVisibility: 'hidden',
             fontSmooth: 'antialiased',

@@ -12,7 +12,6 @@ const LandingPage: React.FC = () => {
         <Image
           fill
           src={bgImage}
-          loading='eager'
           alt={'bg image'}
           objectFit="cover"
           style={{
@@ -25,7 +24,6 @@ const LandingPage: React.FC = () => {
           autoPlay={true}
           muted
           loop
-          preload="none" 
           playsInline
         >
           <source src={webmVideoUrl} type="video/webm" />
