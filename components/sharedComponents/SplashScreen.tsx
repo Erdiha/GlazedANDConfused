@@ -1,18 +1,28 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Loading from './Loading';
-
 const SplashScreen: React.FC = () => {
   const router = useRouter();
   const isMobile = useMediaQuery({ maxWidth: 468 });
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push('/home');
+      if (isMounted.current) {
+        router.push('/home');
+      }
     }, 2000); // Delay for 2 seconds before redirecting
+
     return () => clearTimeout(timer); // Clean up the timer
   }, []);
 
