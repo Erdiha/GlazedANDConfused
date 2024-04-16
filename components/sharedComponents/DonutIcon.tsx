@@ -1,7 +1,6 @@
-import React from 'react';
-import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useMediaQuery } from 'react-responsive';
 const DonutIcon = () => {
   const router = useRouter();
@@ -22,6 +21,7 @@ const DonutIcon = () => {
             height={isMobile ? 40 : 45}
             src="/homerdonut.png"
             alt="image"
+            loading='eager'
           />
         </AnimatePresence>
       </div>

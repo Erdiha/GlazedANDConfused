@@ -2,6 +2,7 @@
 import img1 from '../../public/clientImages/Amazon-Black (1).jpg';
 import img2 from '../../public/clientImages/Apple-TV (1).jpg';
 import img3 from '../../public/clientImages/Bloomingdales (1).jpg';
+import img24 from '../../public/clientImages/Boeing.png';
 import img4 from '../../public/clientImages/Bristol.png';
 import img5 from '../../public/clientImages/Coca-Cola-Square-Red (1).jpg';
 import img6 from '../../public/clientImages/Deloitte (1).jpg';
@@ -14,15 +15,14 @@ import img12 from '../../public/clientImages/Nike-Swoosh (1).jpg';
 import img13 from '../../public/clientImages/Novartis.jpg';
 import img14 from '../../public/clientImages/Paramount-Television-Studios (1).jpg';
 import img15 from '../../public/clientImages/Porsche-Schriftzug (1).jpg';
-import img16 from '../../public/clientImages/Trader-Joe (1).jpg';
 import img17 from '../../public/clientImages/The-Home-Depot (1).jpg';
 import img18 from '../../public/clientImages/Toyota (1).jpg';
+import img16 from '../../public/clientImages/Trader-Joe (1).jpg';
 import img19 from '../../public/clientImages/Viacom (1).jpg';
 import img20 from '../../public/clientImages/Warner-Brothers.jpg';
 import img21 from '../../public/clientImages/benjamin-moore-paints.png';
 import img22 from '../../public/clientImages/jp-morgan (1).jpg';
 import img23 from '../../public/clientImages/mtv-brand-new (1).jpg';
-import img24 from '../../public/clientImages/Boeing.png';
 export const list: any[] = [
   img1,
   img2,

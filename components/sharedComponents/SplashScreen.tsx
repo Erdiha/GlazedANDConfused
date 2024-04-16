@@ -1,21 +1,20 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Loading from './Loading';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import Loading from './Loading';
 
 const SplashScreen: React.FC = () => {
   const router = useRouter();
   const isMobile = useMediaQuery({ maxWidth: 468 });
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const timer = setTimeout(() => {
       router.push('/home');
-    }, 100); // Adjust the timeout duration as needed
-
-    return () => clearTimeout(timeout);
-  }, [router]);
+    }, 2000); // Delay for 2 seconds before redirecting
+    return () => clearTimeout(timer); // Clean up the timer
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-evenly h-screen bg-blue-300 text-white w-screen p-10 overflow-hidden">
@@ -29,6 +28,8 @@ const SplashScreen: React.FC = () => {
           alt="Splash Screen Image"
           width={isMobile ? 200 : 300}
           height={isMobile ? 200 : 300}
+          loading='eager'
+          priority={true}
         />
       </motion.div>
       <Loading isMobile={isMobile} isLoading={true} />

@@ -1,8 +1,7 @@
+import { Analytics } from '@vercel/analytics/react';
+import Head from 'next/head';
 import React from 'react';
 import SEO from './SEO';
-import Head from 'next/head';
-import DonutIcon from '../sharedComponents/DonutIcon';
-import { Analytics } from '@vercel/analytics/react';
 
 type LayoutProps = {
   title: string;
@@ -26,6 +25,7 @@ const Layout: React.FC<LayoutProps> = ({
           href="/homerdonut.png"
           type="image/svg+xml"
         />
+        <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" sizes="180x180" href="/homerdonut.png" />
         {/* Include additional sizes if needed */}

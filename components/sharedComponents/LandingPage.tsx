@@ -1,7 +1,6 @@
-import ReactPlayer from 'react-player';
-import BrowserDetection from '../BrowserDetection';
 import Image from 'next/image';
 import bgImage from '../../public/truck photo 1.jpg';
+import BrowserDetection from '../BrowserDetection';
 
 const LandingPage: React.FC = () => {
   const videoUrl = '/videos/20230621_110752.mp4';
@@ -13,6 +12,7 @@ const LandingPage: React.FC = () => {
         <Image
           fill
           src={bgImage}
+          loading='eager'
           alt={'bg image'}
           objectFit="cover"
           style={{
@@ -25,6 +25,7 @@ const LandingPage: React.FC = () => {
           autoPlay={true}
           muted
           loop
+          preload="none" 
           playsInline
         >
           <source src={webmVideoUrl} type="video/webm" />
