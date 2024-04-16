@@ -1,8 +1,7 @@
 import BrowserDetection from '@/components/BrowserDetection';
-import { Button, Input, Radio, Text, Textarea, Tooltip } from '@nextui-org/react';
+import { Input, Radio, Text, Textarea } from '@nextui-org/react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { FiPhoneCall } from 'react-icons/fi';
 import { useMediaQuery } from 'react-responsive';
 import { inputPlaceHolder } from '../components/data/texts';
 import { EmailSending, EmailSent } from '../components/email/VerifyEmailSent';
@@ -14,11 +13,11 @@ const Contact = () => {
     mailSent: false,
   });
   const browserType: any = BrowserDetection();
-  const [showPhoneNUmber, setShowPhoneNumber] = useState({ show: false, phone: '(201) 951 3864' });
+  const [showPhoneNumber, setShowPhoneNumber] = useState({ show: false, phone: '(201) 951 3864' });
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const isMobile = useMediaQuery({ query: '(max-width: 468px)' });
   const [suggestions, setSuggestions] = useState<IAddress[]>([]);
-  let [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [emailResponse, setEmailResponse] = useState([
     'Email Sent!',
     'WE WILL GET BACK TO YOU WITHIN 24 HOURS WITH A PRICE QUOTE',
@@ -64,7 +63,7 @@ const Contact = () => {
       {suggestion.label}
     </Text>
   ));
-  // Handles the change when the user types in an input
+
   const handleChange = (e: any) => {
     if (e === 'PM' || e === 'AM') {
       setFormData((prevData) => ({
@@ -91,7 +90,6 @@ const Contact = () => {
     }
   };
 
-  //handles the dropdown map/address
   const handleParams = (params: any) => {
     const { name, value } = params.target;
 
@@ -112,7 +110,6 @@ const Contact = () => {
         const suggestions: IAddress[] = result?.features?.map((feature: any, index: number) => {
           const addressProps: AddressProps = feature.properties;
           const { address_line1, address_line2, city } = addressProps;
-          //const [a, b, c] = address_line2.split(',');
           const label = `${address_line1}, ${city} `;
 
           return {
@@ -126,7 +123,6 @@ const Contact = () => {
   };
 
   const handleEmailSent = () => {
-    // Reset the form fields after successful email submission
     setFormData({
       name: '',
       email: '',
@@ -141,8 +137,6 @@ const Contact = () => {
       browserType,
     });
     setIsLoading(false);
-
-    // Provide user feedback or redirect here if needed
   };
 
   const handleError = (error: any): void => {
@@ -202,6 +196,7 @@ const Contact = () => {
 
     setIsDropdownOpen(false);
   };
+
   return (
     <div className="flex flex-col w-full min-h-screen px-[2%] py-[12%] pt-[18%] md:p-[15%] lg:p-[15%]  2xl:p-[10%]  relative justify-center items-center bg-black/10 truck">
       {isEmailSent.openContainer ? (
@@ -235,19 +230,16 @@ const Contact = () => {
           }}
           onSubmit={handleSubmit}
         >
-          <p className="text-md justify-center items-center font-semibold italic uppercase contactHeaderText text-center flex text-slate-800/70 md:text-2xl break-words max-w-[100%] md:pt-10 md:leading-9 md:p-4 w-full p-2">
+          <Text className="text-md justify-center items-center font-semibold italic uppercase contactHeaderText text-center flex text-slate-800/70 md:text-2xl break-words max-w-[100%] md:pt-10 md:leading-9 md:p-4 w-full p-2">
             PLEASE LET US KNOW YOUR EVENT DETAILS AND WE WILL GET BACK TO YOU WITHIN 24 HOURS WITH A
             PRICE QUOTE.
-          </p>
+          </Text>
           <hr className="w-full text-center self-center" />
           <p className="md:text-[1.3rem] md:tracking-wide md:leading-8 text-center text-gray-900 italic text-[11px] md:p-4 w-full p-2">
             The quickest way to get a quote is by filling out the form on this page. <br></br>
             If you need help to fill out the form, please call us at{' '}
-            <a
-              href="tel:201-951-3864"
-              className="text-blue-800 font-bold no-underline hover:underline"
-            >
-              {showPhoneNUmber.phone}
+            <a href="tel:201-951-3864" className="text-blue-800 font-bold no-underline hover:underline">
+              {showPhoneNumber.phone}
             </a>
           </p>
 
@@ -311,7 +303,7 @@ const Contact = () => {
                 css={{ width: '100%' }}
                 shadow={true}
               />:
-             <> <Input
+              <Input
                 id="inputCustom"
                 type="text"
                 value={formData.mobileEventTime.time}
@@ -329,7 +321,7 @@ const Contact = () => {
                 onChange={(e: any) => handleChange(e)}
                 orientation="horizontal"
                 className=" h-10  text-black font-semibold flex justify-center
-               items-center self-end"
+         items-center self-end"
               >
                 <Radio size="sm" value="AM">
                   AM
@@ -391,50 +383,9 @@ const Contact = () => {
               size={isMobile ? 'xs' : 'xl'}
             />
           </motion.div>
-          <Tooltip
-            className={`absolute transition-all duration-500 ease-in-out bottom-5 shadow-xl rounded-full hover:scale-110 md:bottom-10 left-6 md:left-14 ${
-              isMobile ? 'w-10 h-10' : 'w-12 h-12'
-            } cursor-pointer bg-transparent`}
-            content="CALL US"
-          >
-            <span
-              className={`shadow-md bg-transparent rounded-full shadow-blue-400 transform origin-center transition-transform duration-500 ease-in-out ${
-                showPhoneNUmber.show ? '-rotate-0' : 'rotate-90'
-              }`}
-              onClick={() => setShowPhoneNumber((prev) => ({ ...prev, show: !prev.show }))}
-            >
-              <FiPhoneCall size="md" />
-            </span>
-          </Tooltip>
-          <a
-            href="tel:201-951-3864"
-            className={`w-fit h-fit absolute left-20 bottom-5 md:bottom-10 text-blue-50 font-bold border-[1px] border-b-white ${
-              showPhoneNUmber.show ? 'opacity-100 h-8' : 'opacity-0 h-0'
-            } transition-all duration-500 ease-in-out md:left-32 text-xl font-semibold p-2 shadow-md rounded`}
-          >
-            {showPhoneNUmber.phone}
-          </a>
 
-          <Button
-            type="submit"
-            size={isMobile ? 'md' : 'xl'}
-            style={{
-              letterSpacing: '1.5px',
-              fontSize: isMobile ? '18px' : '23px',
-              fontWeight: 'bold',
-              width: 'fit-content',
-              alignSelf: 'end',
-              textShadow: '0px 0px 4px gray',
-              borderRadius: 2,
-              backgroundColor: 'rgb(100 181 246)',
-            }}
-            className="btn shadow-lg font-bold md:text-lg text-sm md:mr-8 mr-2"
-          >
-            SUBMIT
-          </Button>
         </motion.form>
       )}
-     
     </div>
   );
 };
