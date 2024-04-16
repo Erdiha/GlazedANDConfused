@@ -1,6 +1,6 @@
-import React from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 interface CompanyCardProps {
@@ -17,7 +17,6 @@ const CompanyCard: React.FC<CompanyCardProps> = ({ name, img, id }) => {
     y: Math.random() * 500 + '%', // Random initial y position (-50 to 50)
     opacity: 0,
   };
-  console.log('ismobile isss', isMobile);
   return (
     <motion.div
       className="  aspect-square flex justify-center items-center border-2 md:border-4 border-pink-300  placeholder shadow-2xl "

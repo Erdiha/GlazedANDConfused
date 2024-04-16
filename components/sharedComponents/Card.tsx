@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
+import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 interface CardProps {

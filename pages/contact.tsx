@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Input, Textarea, Button, Text, Radio, Tooltip } from '@nextui-org/react';
-import { FiPhoneCall } from 'react-icons/fi';
-import { inputPlaceHolder } from '../components/data/texts';
-import { frameData, motion } from 'framer-motion';
-import { EmailSent, EmailSending } from '../components/email/VerifyEmailSent';
-import { useMediaQuery } from 'react-responsive';
-import { FormData, EmailResponse, IAddress, AddressProps } from '../components/types';
 import BrowserDetection from '@/components/BrowserDetection';
+import { Button, Input, Radio, Text, Textarea, Tooltip } from '@nextui-org/react';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { FiPhoneCall } from 'react-icons/fi';
+import { useMediaQuery } from 'react-responsive';
+import { inputPlaceHolder } from '../components/data/texts';
+import { EmailSending, EmailSent } from '../components/email/VerifyEmailSent';
+import { AddressProps, EmailResponse, FormData, IAddress } from '../components/types';
 
 const Contact = () => {
   const [isEmailSent, setIsEmailSent] = useState<EmailResponse>({
@@ -163,20 +163,9 @@ const Contact = () => {
       ...prevIsEmailSent,
       openContainer: true,
     }));
-    // if(isMobile){
-    formData.eventTime = formData.mobileEventTime.time + ' ' + formData.mobileEventTime.ampm;
-    // }else{
-    //   const { eventDate, eventTime } = formData;
 
-    // const [year, month, day] = eventDate.split('-');
-    // formData.eventDate = `${month}/${day}/${year}`;
-    // const [hours, minutes] = eventTime.split(':');
-    // const hour = parseInt(hours, 10);
-    // const amPm = hour >= 12 ? 'PM' : 'AM';
-    // const formattedHour = hour % 12 || 12;
-    // formData.eventTime = `${formattedHour}:${minutes} ${amPm}`;
-    // }
-    console.log(formData);
+    formData.eventTime = formData.mobileEventTime.time + ' ' + formData.mobileEventTime.ampm;
+
     try {
       const response = await fetch('/api/sendEmail', {
         method: 'POST',
@@ -214,7 +203,6 @@ const Contact = () => {
 
     setIsDropdownOpen(false);
   };
-  console.log('types', browserType, isMobile);
   return (
     <div className="flex flex-col w-full min-h-screen px-[2%] py-[12%] pt-[18%] md:p-[15%] lg:p-[15%]  2xl:p-[10%]  relative justify-center items-center bg-black/10 truck">
       {isEmailSent.openContainer ? (
