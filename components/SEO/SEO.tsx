@@ -6,13 +6,20 @@ interface SEOProps {
   keywords: string;
 }
 
-const SEO: React.FC<SEOProps> = ({ title='Glazed $ Confused', description, keywords }) => {
+const SEO: React.FC<SEOProps> = ({ title, description, keywords }) => {
   return (
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <script type="application/ld+json">
+        {JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: title,
+          description: description,
+        })}
+      </script>
     </Head>
   );
 };
